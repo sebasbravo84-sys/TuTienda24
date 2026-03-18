@@ -40,7 +40,7 @@ import Partners from './pages/Partners';
 import PartnerManual from './pages/PartnerManual';
 import SplineScene from './components/SplineScene';
 import ErrorBoundary from './components/ErrorBoundary';
-import Native3DShowcase from './components/Native3DShowcase';
+import LogoCube3D from './components/LogoCube3D';
 
 
 
@@ -625,7 +625,7 @@ function Home() {
               className="order-2 lg:order-1 h-[500px]"
             >
               <div className="w-full h-full glass-card rounded-[3rem] overflow-hidden ring-1 ring-white/10 shadow-[0_0_100px_rgba(59,130,246,0.15)] relative">
-                <Native3DShowcase />
+                <LogoCube3D />
 
                 {/* Floating Micro-UI for aesthetic */}
                 <div className="absolute bottom-8 left-8 right-8 glass p-6 rounded-2xl flex items-center justify-between border border-white/10 backdrop-blur-xl z-10">
