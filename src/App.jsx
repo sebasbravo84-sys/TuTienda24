@@ -134,10 +134,10 @@ function Home() {
     };
   }, []);
 
-  const openWhatsApp = (planName = "") => {
-    const baseMsg = "Hola TuTienda24, vengo de la web y tengo una consulta.";
-    const planMsg = planName ? ` Me interesa específicamente el *${planName}*.` : "";
-    window.open(`https://wa.me/543460406121?text=${encodeURIComponent(baseMsg + planMsg)}`, '_blank');
+  const openWhatsApp = (subject = "") => {
+    const baseMsg = "Hola TuTienda24! Vengo de la web y me interesa ";
+    const finalMsg = subject ? `${baseMsg} la *${subject}*.` : "Hola TuTienda24! Vengo de la web y tengo una consulta.";
+    window.open(`https://wa.me/543460406121?text=${encodeURIComponent(finalMsg)}`, '_blank');
   };
 
   const handleForm = async (e) => {
@@ -284,7 +284,7 @@ function Home() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => {
-                    openWhatsApp('Consulta General');
+                    openWhatsApp('Promo de $89.000');
                     setShowPromo(false);
                   }}
                   className="w-full bg-blue-600 text-white py-6 rounded-2xl font-black text-xl uppercase tracking-tighter shadow-2xl transition-all flex items-center justify-center gap-3"
@@ -359,7 +359,7 @@ function Home() {
                   <div className="space-y-4">
                     <motion.button
                       whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                      onClick={() => openWhatsApp('Inicio')}
+                      onClick={() => openWhatsApp()}
                       className="w-full bg-blue-600 text-white py-6 rounded-2xl font-black text-lg uppercase tracking-tighter shadow-[0_0_30px_rgba(37,99,235,0.3)]"
                     >
                       Quiero algo similar
@@ -399,7 +399,7 @@ function Home() {
           </nav>
           <motion.button
             whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-            onClick={() => openWhatsApp('Conversación Inicial')}
+            onClick={() => openWhatsApp()}
             className="bg-white text-slate-900 hover:bg-blue-50 px-6 py-2 rounded-full font-bold shadow-xl transition-all"
           >
             Hablemos
@@ -467,7 +467,7 @@ function Home() {
                 whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(59, 130, 246, 0.4)" }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-blue-600 text-white px-10 py-5 rounded-2xl font-bold flex items-center gap-3 group w-full sm:w-auto justify-center text-lg"
-                onClick={() => openWhatsApp('Empezar mi Transformación Digital')}
+                onClick={() => openWhatsApp('Transformación Digital')}
               >
                 Empezar mi transformación
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
@@ -1172,7 +1172,7 @@ function Home() {
       {/* Botón WhatsApp con Badge */}
       <motion.button
         initial={{ scale: 0 }} animate={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
-        onClick={() => openWhatsApp('Consulta Flotante')}
+        onClick={() => openWhatsApp()}
         className="fixed bottom-6 right-6 w-14 h-14 rounded-2xl bg-[#25D366] text-white flex items-center justify-center shadow-[0_15px_40px_rgba(37,211,102,0.3)] z-50 whatsapp-pulse"
       >
         <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full border-4 border-[#0f172a] animate-bounce z-10 flex items-center justify-center text-[10px] font-black">
