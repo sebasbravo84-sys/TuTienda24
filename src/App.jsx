@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { useNavigate, Routes, Route, Link } from 'react-router-dom';
 import Guide from './pages/Guide';
+import Brief from './pages/Brief';
 import { pricingPlans } from './data/pricingData';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -35,6 +36,8 @@ import {
 import Terminos from './pages/legal/terminos';
 import Privacidad from './pages/legal/privacidad';
 import Cookies from './pages/legal/cookies';
+import Partners from './pages/Partners';
+import PartnerManual from './pages/PartnerManual';
 import SplineScene from './components/SplineScene';
 import ErrorBoundary from './components/ErrorBoundary';
 import Native3DShowcase from './components/Native3DShowcase';
@@ -150,7 +153,10 @@ function Home() {
     try {
       const response = await fetch("https://formspree.io/f/xqeygwok", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
         body: JSON.stringify({ ...data, _subject: "Nueva solicitud de Asesoría VIP - TuTienda24" })
       });
 
@@ -159,10 +165,13 @@ function Home() {
         setTimeout(() => setFormStatus(''), 5000);
         e.target.reset();
       } else {
-        setFormStatus('Error al enviar.');
-        setTimeout(() => setFormStatus(''), 5000);
+        const result = await response.json().catch(() => ({ errors: [{ message: "Error en el servidor de envíos." }] }));
+        console.error("Formspree Error Details:", result);
+        setFormStatus(result.errors ? result.errors.map(err => err.message).join(', ') : 'Error al enviar la solicitud.');
+        setTimeout(() => setFormStatus(''), 6000);
       }
     } catch (error) {
+      console.error("Connection Error:", error);
       setFormStatus('Error de conexión.');
       setTimeout(() => setFormStatus(''), 5000);
     }
@@ -178,17 +187,27 @@ function Home() {
     try {
       const response = await fetch("https://formspree.io/f/mvzwvdyv", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, _subject: "Nueva suscripción - Club de Éxito Digital" })
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({ 
+          ...data, 
+          name: "Nuevo Suscriptor", 
+          _subject: "Suscripción: Club de Éxito Digital" 
+        })
       });
 
       if (response.ok) {
         setNewsletterStatus('success');
       } else {
-        setNewsletterStatus('Error. Intenta de nuevo.');
-        setTimeout(() => setNewsletterStatus(''), 5000);
+        const result = await response.json().catch(() => ({ errors: [{ message: "Error al suscribir." }] }));
+        console.error("Newsletter Error Details:", result);
+        setNewsletterStatus(result.errors ? result.errors.map(err => err.message).join(', ') : 'Error. Intenta de nuevo más tarde.');
+        setTimeout(() => setNewsletterStatus(''), 6000);
       }
     } catch (error) {
+      console.error("Connection Newsletter Error:", error);
       setNewsletterStatus('Error de conexión.');
       setTimeout(() => setNewsletterStatus(''), 5000);
     }
@@ -937,7 +956,7 @@ function Home() {
                   </div>
                 </div>
                 <p className="text-lg text-slate-300 font-medium mb-10 leading-relaxed">
-                  Buscamos socios estratégicos en Catamarca. Te entregamos un <strong>Kit de Ventas</strong> y te enseñamos a detectar negocios con potencial.
+                  Buscamos socios estratégicos. Te entregamos un <strong>Kit de Ventas</strong> y te enseñamos a detectar negocios con potencial.
                 </p>
 
                 <div className="space-y-4 mb-12">
@@ -955,7 +974,7 @@ function Home() {
                 </div>
 
                 <button 
-                  onClick={() => window.open('https://wa.me/543460406121?text=Hola!%20Vi%20el%20programa%20de%20aliados%20en%20la%20web%20y%20me%20interesa%20capacitarme%20para%20recomendar%20clientes.', '_blank')}
+                  onClick={() => navigate('/aliados')}
                   className="bg-white text-slate-900 font-black px-12 py-6 rounded-2xl hover:bg-blue-50 transition-all shadow-2xl flex items-center justify-center gap-4 text-xl group/btn w-full sm:w-auto"
                 >
                   Quiero ser Aliado VIP <ArrowRight className="w-6 h-6 group-hover/btn:translate-x-2 transition-transform" />
@@ -1011,25 +1030,33 @@ function Home() {
 
               <form onSubmit={handleNewsletter} className="relative max-w-2xl mx-auto">
                 <div className="flex flex-col md:flex-row gap-3">
-                  {!newsletterStatus ? (
-                    <>
-                      <div className="flex-1 relative">
-                        <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5 pointer-events-none" />
-                        <input
-                          name="email"
-                          type="email"
-                          required
-                          placeholder="Tu mejor correo..."
-                          className="w-full bg-slate-800/40 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-lg"
-                        />
+                  {newsletterStatus !== 'success' ? (
+                    <div className="w-full">
+                      <div className="flex flex-col md:flex-row gap-3">
+                        <div className="flex-1 relative">
+                          <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5 pointer-events-none" />
+                          <input
+                            name="email"
+                            type="email"
+                            required
+                            placeholder="Tu mejor correo..."
+                            className="w-full bg-slate-800/40 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-lg"
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          className="bg-blue-600 text-white font-black px-8 py-5 rounded-2xl hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/20 flex items-center justify-center gap-3 whitespace-nowrap text-lg group/btn"
+                        >
+                          Unirme y descargar <Download className="w-5 h-5 group-hover/btn:translate-y-1 transition-transform" />
+                        </button>
                       </div>
-                      <button
-                        type="submit"
-                        className="bg-blue-600 text-white font-black px-8 py-5 rounded-2xl hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/20 flex items-center justify-center gap-3 whitespace-nowrap text-lg group/btn"
-                      >
-                        Unirme y descargar <Download className="w-5 h-5 group-hover/btn:translate-y-1 transition-transform" />
-                      </button>
-                    </>
+                      {newsletterStatus && newsletterStatus !== 'Suscribiendo...' && (
+                        <p className="mt-4 text-red-500 font-bold animate-pulse text-sm uppercase tracking-widest">{newsletterStatus}</p>
+                      )}
+                      {newsletterStatus === 'Suscribiendo...' && (
+                        <p className="mt-4 text-blue-400 font-bold animate-pulse text-sm uppercase tracking-widest">Suscribiendo...</p>
+                      )}
+                    </div>
                   ) : (
                     <motion.div 
                       initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
@@ -1090,14 +1117,28 @@ function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input
                     name="name"
-                    type="text" required placeholder="Nombre"
+                    type="text" required placeholder="Nombre completo"
                     className="w-full bg-blue-700/50 border border-blue-400/30 rounded-2xl p-6 text-white placeholder:text-blue-200 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all"
                   />
                   <input
-                    name="email"
-                    type="email" required placeholder="Tu correo"
+                    name="phone"
+                    type="tel" required placeholder="WhatsApp (Ej: 3834...)"
                     className="w-full bg-blue-700/50 border border-blue-400/30 rounded-2xl p-6 text-white placeholder:text-blue-200 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all"
                   />
+                </div>
+                <div className="grid grid-cols-1 gap-4">
+                  <input
+                    name="email"
+                    type="email" required placeholder="Tu correo electrónico"
+                    className="w-full bg-blue-700/50 border border-blue-400/30 rounded-2xl p-6 text-white placeholder:text-blue-200 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all"
+                  />
+                  <textarea
+                    name="message"
+                    required
+                    rows="3"
+                    placeholder="Contanos un poco de tu negocio (Rubro, si ya tenés web, etc.)"
+                    className="w-full bg-blue-700/50 border border-blue-400/30 rounded-2xl p-6 text-white placeholder:text-blue-200 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all resize-none"
+                  ></textarea>
                 </div>
                 <button
                   type="submit"
@@ -1158,6 +1199,8 @@ function Home() {
                 <li><Link to="/terminos" className="hover:text-blue-500 transition-colors">Términos</Link></li>
                 <li><Link to="/privacidad" className="hover:text-blue-500 transition-colors">Privacidad</Link></li>
                 <li><Link to="/cookies" className="hover:text-blue-500 transition-colors">Cookies</Link></li>
+                <li><Link to="/aliados" className="hover:text-blue-500 transition-colors">Aliados VIP</Link></li>
+                <li><Link to="/aliados" className="text-blue-400 hover:text-blue-300 transition-colors font-black">Gana con nosotros</Link></li>
               </ul>
             </div>
           </div>
@@ -1195,6 +1238,9 @@ export default function App() {
       <Route path="/terminos" element={<Terminos />} />
       <Route path="/privacidad" element={<Privacidad />} />
       <Route path="/cookies" element={<Cookies />} />
+      <Route path="/aliados" element={<Partners />} />
+      <Route path="/aliados/manual" element={<PartnerManual />} />
+      <Route path="/brief" element={<Brief />} />
     </Routes>
   );
 }
