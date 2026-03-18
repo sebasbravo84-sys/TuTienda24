@@ -69,7 +69,7 @@ export default function Partners() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {resources.map((res, i) => (
               <div key={i} className="glass-card p-10 rounded-[3rem] border border-white/5 flex flex-col items-center text-center group">
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border bg-white/5 text-blue-500 border-white/10 group-hover:bg-blue-600 group-hover:text-white transition-all`}>
@@ -95,13 +95,13 @@ export default function Partners() {
             ¿Listo para <br /> <span className="text-blue-500">arrasar?</span>
           </h2>
           <p className="text-xl text-slate-400 font-medium mb-12">
-            Únete al grupo de WhatsApp VIP donde compartimos nuevos proyectos y scripts de venta exclusivos.
+            ¿Tienes dudas o necesitas soporte personalizado para cerrar una venta? Habla directamente con nuestro Coordinador de Aliados.
           </p>
           <button 
-            onClick={() => window.open('https://wa.me/543460406121', '_blank')}
+            onClick={() => window.open('https://wa.me/543460406121?text=Hola! Soy aliado y necesito soporte.', '_blank')}
             className="bg-white text-slate-900 font-black px-12 py-8 rounded-3xl hover:bg-blue-50 transition-all shadow-2xl flex items-center gap-4 text-2xl group w-full sm:w-auto mx-auto italic tracking-tighter justify-center"
           >
-            UNIRME AL GRUPO VIP <ArrowRight className="w-8 h-8 group-hover:translate-x-2 transition-transform" />
+            SOPORTE PARA ALIADOS <ArrowRight className="w-8 h-8 group-hover:translate-x-2 transition-transform" />
           </button>
         </div>
       </section>

@@ -1200,7 +1200,7 @@ function Home() {
                 <li><Link to="/privacidad" className="hover:text-blue-500 transition-colors">Privacidad</Link></li>
                 <li><Link to="/cookies" className="hover:text-blue-500 transition-colors">Cookies</Link></li>
                 <li><Link to="/aliados" className="hover:text-blue-500 transition-colors">Aliados VIP</Link></li>
-                <li><Link to="/aliados" className="text-blue-400 hover:text-blue-300 transition-colors font-black">Gana con nosotros</Link></li>
+                <li><Link to="/aliados" className="text-blue-400 hover:text-blue-300 transition-colors font-black">Hazte Aliado</Link></li>
               </ul>
             </div>
           </div>
