@@ -403,10 +403,14 @@ function Home() {
             className="text-2xl font-bold tracking-tighter cursor-pointer flex items-center gap-2 group"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform">
-              <span className="text-white text-sm">24</span>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-black text-white shadow-lg shadow-blue-600/20 shrink-0">
+                24
+              </div>
+              <div className="text-2xl font-black italic tracking-tighter uppercase leading-none">
+                TuTienda<span className="text-blue-500">24</span>
+              </div>
             </div>
-            <span>TuTienda<span className="text-blue-500">24</span></span>
           </motion.div>
           <nav className="hidden md:flex gap-10 text-sm font-semibold tracking-wide uppercase">
             {['proyectos', 'servicios', 'testimonios'].map((item) => (
@@ -1158,8 +1162,13 @@ function Home() {
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-20">
             <div className="col-span-1 md:col-span-1">
-              <div className="text-3xl font-black tracking-tighter mb-8 italic">
-                TuTienda<span className="text-blue-500">24</span>
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-black text-white shadow-lg shadow-blue-600/20 shrink-0">
+                  24
+                </div>
+                <div className="text-3xl font-black italic tracking-tighter uppercase leading-none">
+                  TuTienda<span className="text-blue-500">24</span>
+                </div>
               </div>
               <p className="text-slate-500 font-medium text-lg leading-relaxed mb-10">
                 Líderes en transformación digital para comercios locales. Orgullosamente radicados en Catamarca.

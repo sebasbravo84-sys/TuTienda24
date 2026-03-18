@@ -125,7 +125,14 @@ export default function PartnerManual() {
             >
               <Printer className="w-4 h-4" /> Imprimir / PDF
             </button>
-            <div className="text-xl font-black italic tracking-tighter">TuTienda<span className="text-blue-500">24</span></div>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black text-white shadow-lg shadow-blue-600/20 shrink-0 text-sm">
+                24
+              </div>
+              <div className="text-xl font-black italic tracking-tighter uppercase leading-none">
+                TuTienda<span className="text-blue-500">24</span>
+              </div>
+            </div>
           </div>
         </div>
       </header>

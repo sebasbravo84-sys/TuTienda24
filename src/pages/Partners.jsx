@@ -33,7 +33,14 @@ export default function Partners() {
             <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span className="font-bold uppercase tracking-widest text-xs">Inicio</span>
           </Link>
-          <div className="text-xl font-black italic tracking-tighter">TuTienda<span className="text-blue-500">24</span></div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-black text-white shadow-lg shadow-blue-600/20 shrink-0">
+              24
+            </div>
+            <div className="text-xl font-black italic tracking-tighter uppercase leading-none">
+              TuTienda<span className="text-blue-500">24</span>
+            </div>
+          </div>
         </div>
       </header>
 
