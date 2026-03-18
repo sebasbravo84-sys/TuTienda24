@@ -100,9 +100,9 @@ const getPlanIcon = (index) => {
 };
 
 const referralSteps = [
-  { title: "Onboarding VIP", desc: "Te capacitamos en 15 min para que sepas detectar clientes de alto valor.", icon: <CheckCircle2 className="w-6 h-6" /> },
-  { title: "Recomendación", desc: "Nos presentas por WhatsApp. Nosotros nos encargamos del cierre técnico.", icon: <MessageCircle className="w-6 h-6" /> },
-  { title: "Comisión Inmediata", desc: "Cobras tu 10% apenas el cliente realice el primer pago (50% de seña).", icon: <Zap className="w-6 h-6" /> }
+  { title: "Kit de Ventas Élite", desc: "Te enviamos un speech de venta probado y materiales gráficos para que ganes autoridad al instante.", icon: <CheckCircle2 className="w-6 h-6" /> },
+  { title: "Contacto Privado", desc: "Nos presentas por WhatsApp con tu cliente. Nosotros cerramos el trato técnico por ti.", icon: <MessageCircle className="w-6 h-6" /> },
+  { title: "10% de Comisión Neta", desc: "Cobras tu comisión apenas el cliente reserve su lugar (50% de seña). Sin vueltas.", icon: <Zap className="w-6 h-6" /> }
 ];
 
 function Home() {
