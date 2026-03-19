@@ -17,9 +17,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const resources = [
   { title: "Manual del Aliado", desc: "El speech de venta probado.", color: "blue", icon: <FileText />, link: "/aliados/manual" },
-  { title: "Brief de Proyecto", desc: "Formulario para nuevos clientes.", color: "orange", icon: <Briefcase />, link: "/brief" },
-  { title: "Kit de Imágenes", desc: "Capturas para estados.", color: "emerald", icon: <ImageIcon />, link: "https://wa.me/543460406121" },
-  { title: "Textos de Cierre", desc: "Copiar y pegar por WA.", color: "purple", icon: <MessageSquare />, link: "https://wa.me/543460406121" }
+  { title: "Brief de Proyecto", desc: "Formulario para nuevos clientes.", color: "orange", icon: <Briefcase />, link: "/brief" }
 ];
 
 export default function Partners() {
