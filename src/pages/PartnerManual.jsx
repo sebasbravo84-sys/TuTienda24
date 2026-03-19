@@ -22,9 +22,9 @@ import { Link } from 'react-router-dom';
 
 const sections = [
   {
-    title: "1. La Misión: Digitalización de Impacto",
+    title: "1. La Misión: Ayudar a los Negocios a Crecer",
     icon: <Globe className="w-6 h-6" />,
-    content: "No vendemos sitios web; vendemos prosperidad para el comercio. Nuestra misión es que cada negocio tenga una presencia digital de nivel mundial. Entiende esto: una web de TuTienda24 no es un gasto, es un activo que trabaja 24/7.",
+    content: "No vendemos sitios web; vendemos una forma de que el comercio prospere. Nuestra misión es que cada negocio tenga una imagen profesional que atraiga clientes. Entiende esto: una web de TuTienda24 no es un gasto, es un empleado que trabaja las 24 horas para vos.",
     points: [
       "No vendemos 'páginas', vendemos TIEMPO y AUTORIDAD para el dueño del negocio.",
       "Lujo Silencioso: Diseños limpios que eliminan la fricción de compra.",
@@ -39,48 +39,62 @@ const sections = [
       {
         name: "Plan Catálogo: El Generador de Ventas",
         price: "$120.000 (Promo $89.900)",
-        focus: "Para quien vende productos físicos (Ropa, Comida, Kioscos).",
-        highlight: "Elimina el '¿Me pasás precio?' repetitivo.",
-        features: ["Diseño Mobile First", "Botonera WhatsApp Pro", "SEO en Maps", "Dominio gratis por 1 año"],
-        salesTip: "Dile: '¿Cuánto tiempo perdés mandando fotos y precios uno por uno? Con esto, el cliente te manda el pedido ya listo'."
+        focus: "Para emprendedores que venden por WhatsApp (Ropa, Comida, Regalos).",
+        highlight: "Convierte un catálogo aburrido en una tienda que enamora.",
+        features: [
+          { name: "Diseño Mobile First", desc: "La web se diseña pensando 100% en el celular, que es donde la gente compra hoy." },
+          { name: "Botonera WhatsApp Pro", desc: "Botones que llevan al cliente directo a tu chat con el pedido ya armado." },
+          { name: "SEO en Maps", desc: "Ayudamos a que tu negocio aparezca primero en Google Maps cuando alguien busca lo que vendes." },
+          { name: "Dominio gratis", desc: "El nombre de tu web (ej: www.tunegocio.com) bonificado por el primer año." }
+        ],
+        salesTip: "Dile: '¿Te imaginas dejar de responder 100 veces el mismo precio por WhatsApp? Con esto, el cliente te manda el pedido ya listo'."
       },
       {
         name: "Plan Corporativo: El Imán de Autoridad",
         price: "$295.000",
-        focus: "Para profesionales y empresas (Clínicas, Abogados, Inmobiliarias).",
-        highlight: "Proyecta confianza y capta clientes calificados.",
-        features: ["8 Secciones", "Formulario de Leads Pro", "Blog de Contenidos", "Google Analytics 4"],
-        salesTip: "Dile: 'Tus clientes te buscan en Google antes de elegirte. Si no te encuentran o tu web es vieja, se van con la competencia'."
+        focus: "Para profesionales y empresas que buscan seriedad (Abogados, Clínicas, Servicios).",
+        highlight: "Proyecta una imagen de empresa grande y confiable.",
+        features: [
+          { name: "8 Secciones", desc: "Páginas completas: Inicio, Quiénes Somos, Servicios detallados, Galería y más." },
+          { name: "Formulario de Leads", desc: "Un sistema para que los clientes dejen sus datos y puedas llamarlos para presupuestar." },
+          { name: "Blog de Contenidos", desc: "Para escribir consejos de tu rubro y que Google te premie mostrándote más." },
+          { name: "Google Analytics", desc: "Informes mensuales para saber cuántas personas entraron y desde dónde vinieron." }
+        ],
+        salesTip: "Dile: 'Si un cliente importante te busca en Google y no te encuentra, o ve una web vieja, pierde la confianza y se va con otro'."
       },
       {
         name: "Plan Élite 3D: El Futuro hoy",
         price: "$580.000",
-        focus: "Para quienes quieren ser el referente máximo de su rubro.",
-        highlight: "Experiencia visual que nadie más tiene en la provincia.",
-        features: ["Interacción 3D", "Identidad Sonora", "Estrategia de Ads", "Servidor Dedicado Speed-Pro"],
-        salesTip: "Dile: 'Querés que cuando alguien entre a tu web diga: WOW. No solo vendés un producto, vendés una experiencia de lujo'."
+        focus: "Para marcas premium que quieren ser las #1 y dejar a todos con la boca abierta.",
+        highlight: "Tecnología de vanguardia que genera un efecto 'WOW' inmediato.",
+        features: [
+          { name: "Interacción 3D", desc: "Elementos que se mueven y giran cuando el usuario pasa el mouse o toca la pantalla." },
+          { name: "Identidad Sonora", desc: "Sonidos de alta calidad que acompañan la marca para una experiencia inmersiva." },
+          { name: "Estrategia de Ads", desc: "Te enseñamos a poner publicidad en Instagram y Google para que lluevan visitas." },
+          { name: "Servidor Speed-Pro", desc: "El servidor más rápido del mercado para que la web cargue en menos de un segundo." }
+        ],
+        salesTip: "Dile: 'Este plan no es solo una web, es una pieza de arte digital. Nadie en la competencia va a tener algo que se vea así de moderno'."
       }
     ]
   },
   {
-    title: "3. Cómo ser un 'Auditor Digital' (Técnica de Pro)",
-    icon: <Search className="w-6 h-6" />,
-    content: "No llegues preguntando si quieren una web. Llega con un diagnóstico. Usa estos 'Tips de Auditor':",
+    title: "3. Cómo detectar clientes (Consejos de Experto)",
+    content: "No llegues preguntando si quieren una web. Llega señalando cómo pueden mejorar lo que ya tienen. Fijate en estos detalles:",
     points: [
-      "Velocidad: Si su web tarda +3 segundos en cargar, ya perdió el 50% de las ventas.",
-      "Diseño Mobile: El 95% del tráfico en Catamarca es por celular. Si la web se ve 'chiquita' o vieja en mobile, es obsoleta.",
-      "Seguridad: Si sale el cartel de 'Sitio No Seguro', el cliente huye por miedo.",
-      "Call to Action: ¿Hay un botón de WhatsApp visible o tienen que buscar el número?"
+      "Velocidad: Si su web actual tarda mucho en cargar, el cliente se cansa y se va.",
+      "Diseño en el Celular: El 90% de la gente busca por celular. Si la web se ve mal o chiquita ahí, no sirve.",
+      "Seguridad: Si sale el cartel de 'Sitio No Seguro', la gente tiene miedo de entrar.",
+      "Botón de WhatsApp: ¿Es fácil contactarlos o hay que dar mil vueltas?"
     ]
   },
   {
-    title: "4. Speech de Venta por Plan",
+    title: "4. Qué decir para vender (según el cliente)",
     icon: <MessageCircle className="w-6 h-6" />,
-    content: "Adapta tu mensaje según quién tengas enfrente. El secreto es el 'Dolor' vs 'Solución'.",
+    content: "Cada negocio es diferente. Escuchá lo que necesitan y dales la solución ideal.",
     quotes: [
-      "Catálogo: 'Tener tu stock en una web es como tener un vendedor que no duerme y que nunca se equivoca con el precio de una prenda'.",
-      "Corporativo: 'Una web profesional es tu mejor tarjeta de presentación. Sin ella, sos invisible para los clientes premium que buscan calidad'.",
-      "Élite: 'Hagamos que tu marca se vea como una empresa de Buenos Aires o el exterior, pero con la calidez de nuestra atención local'."
+      "Si es un Catálogo: 'Tener tus productos en una web es como tener un vendedor que no duerme y que nunca se equivoca con los precios'.",
+      "Si es Corporativo: 'Una web profesional es tu mejor tarjeta de presentación. Si no estás en internet con calidad, sos invisible para los mejores clientes'.",
+      "Si es Élite: 'Hagamos que tu marca se vea como una empresa de primer nivel mundial, con una tecnología que nadie más tiene'."
     ]
   },
   {
@@ -212,11 +226,15 @@ export default function PartnerManual() {
                           <div>
                             <p className="text-[10px] text-slate-500 font-black uppercase mb-4 tracking-widest">Características Clave:</p>
                             <ul className="space-y-2">
-                              {plan.features.map((f, j) => (
-                                <li key={j} className="text-xs text-slate-400 flex items-center gap-2">
-                                  <Zap className="w-3 h-3 text-blue-500" /> {f}
-                                </li>
-                              ))}
+                                {plan.features.map((f, j) => (
+                                  <li key={j} className="text-xs text-slate-400 flex flex-col gap-1">
+                                    <div className="flex items-center gap-2">
+                                      <Zap className="w-3 h-3 text-blue-500" /> 
+                                      <span className="font-bold text-slate-200">{f.name}</span>
+                                    </div>
+                                    <p className="pl-5 text-[10px] leading-relaxed text-slate-500">{f.desc}</p>
+                                  </li>
+                                ))}
                             </ul>
                           </div>
                           <div className="bg-blue-600/10 p-4 rounded-xl border border-blue-500/20">
