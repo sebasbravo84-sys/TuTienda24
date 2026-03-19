@@ -15,7 +15,8 @@ import {
   ArrowRight,
   Calculator,
   Download,
-  Printer
+  Printer,
+  Briefcase
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

@@ -41,7 +41,7 @@ import PartnerManual from './pages/PartnerManual';
 import SplineScene from './components/SplineScene';
 import ErrorBoundary from './components/ErrorBoundary';
 import LogoCube3D from './components/LogoCube3D';
-
+import ScrollToTop from './components/ScrollToTop';
 
 
 
@@ -215,7 +215,7 @@ function Home() {
 
   return (
     <div className="min-h-screen text-slate-50 bg-[#0f172a] selection:bg-blue-500/30 overflow-x-hidden">
-
+      <ScrollToTop />
       {/* Preloader following Lipipalu style */}
       <AnimatePresence>
         {loading && (
