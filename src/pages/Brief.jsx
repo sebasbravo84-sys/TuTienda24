@@ -123,7 +123,7 @@ export default function Brief() {
               Brief de <br /> <span className="text-blue-500">Proyecto Élite</span>
             </h1>
             <p className="text-xl text-slate-400 font-medium max-w-2xl mx-auto print:hidden">
-              Completá estos datos para que nuestro equipo pueda diseñar la solución perfecta para tu negocio en Catamarca.
+              Completá estos datos para que nuestro equipo pueda diseñar la solución perfecta para tu negocio.
             </p>
           </motion.div>
 
