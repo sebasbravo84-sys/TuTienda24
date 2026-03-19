@@ -1070,7 +1070,7 @@ function Home() {
                       <h4 className="text-2xl font-black text-white mb-2 italic">¡Bienvenido al Club!</h4>
                       <p className="text-emerald-100/70 mb-6 font-medium">Hemos preparado tu acceso de élite.</p>
                       <button 
-                        onClick={() => navigate('/guia-pro-2024')}
+                        onClick={() => navigate('/guia-pro')}
                         className="bg-emerald-600 text-white font-black px-12 py-4 rounded-xl hover:bg-emerald-500 transition-all flex items-center gap-3"
                       >
                         Ver Guía Pro Ahora <ArrowRight className="w-5 h-5" />
@@ -1242,7 +1242,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/guia-pro-2024" element={<Guide />} />
+      <Route path="/guia-pro" element={<Guide />} />
       <Route path="/terminos" element={<Terminos />} />
       <Route path="/privacidad" element={<Privacidad />} />
       <Route path="/cookies" element={<Cookies />} />

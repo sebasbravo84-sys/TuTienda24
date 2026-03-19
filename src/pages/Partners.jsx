@@ -88,7 +88,9 @@ export default function Partners() {
                   onClick={() => res.link.startsWith('http') ? window.open(res.link, '_blank') : navigate(res.link)}
                   className="w-full py-4 rounded-xl bg-blue-600 text-white font-black uppercase text-[10px] tracking-widest hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/20"
                 >
-                  {res.title === "Manual del Aliado" ? "Leer Manual" : "Descargar Kit"}
+                  {res.title === "Manual del Aliado" ? "Leer Manual" : 
+                   res.title === "Brief de Proyecto" ? "Abrir Formulario" : 
+                   "Descargar Kit"}
                 </button>
               </div>
             ))}
@@ -114,7 +116,7 @@ export default function Partners() {
       </section>
 
       <footer className="py-20 px-6 border-t border-white/5 text-center text-slate-600 text-[10px] font-black uppercase tracking-[0.4em]">
-        © 2024 TuTienda24 • Programa de Élite
+        © TuTienda24 • Programa de Élite
       </footer>
     </div>
   );

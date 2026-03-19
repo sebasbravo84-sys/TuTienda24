@@ -1,24 +1,25 @@
 import { motion } from 'framer-motion';
 import { ChevronLeft, Zap, CheckCircle2, Star, TrendingUp, ShieldCheck, Search, Globe, Instagram, Mail, MapPin, Facebook } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const secrets = [
   {
     id: "01",
     title: "La Regla de los 3 Segundos",
-    desc: "En Catamarca, el 90% de tus clientes te buscan desde un celular con datos móviles. Si tu web tarda más de 3 segundos en cargar, perdiste la venta. TuTienda24 optimiza cada imagen para que la carga sea instantánea.",
+    desc: "El 90% de tus clientes te buscan desde un celular con datos móviles. Si tu web tarda más de 3 segundos en cargar, perdiste la venta. TuTienda24 optimiza cada imagen para que la carga sea instantánea.",
     icon: <Zap className="w-8 h-8 text-yellow-500" />
   },
   {
     id: "02",
     title: "WhatsApp como Centro de Cierre",
-    desc: "No obligues al cliente a llenar formularios infinitos. El catamarqueño prefiere el trato directo. El botón de WhatsApp debe estar siempre visible para cerrar ventas de forma humana y rápida.",
+    desc: "No obligues al cliente a llenar formularios infinitos. La gente prefiere el trato directo. El botón de WhatsApp debe estar siempre visible para cerrar ventas de forma humana y rápida.",
     icon: <CheckCircle2 className="w-8 h-8 text-emerald-500" />
   },
   {
     id: "03",
     title: "Fotos Reales vs Stock Genérico",
-    desc: "La gente en Catamarca reconoce las fotos bajadas de internet. Genera confianza usando fotos reales de tu local o productos. Si no tienes, nosotros te asesoramos en cómo capturarlas con tu celular para que luzcan premium.",
+    desc: "Tus clientes potenciales reconocen las fotos bajadas de internet al instante. Genera confianza usando fotos reales de tu local o productos. Si no tienes, nosotros te asesoramos en cómo capturarlas con tu celular para que luzcan premium.",
     icon: <Star className="w-8 h-8 text-blue-500" />
   },
   {
@@ -41,13 +42,17 @@ const secrets = [
   },
   {
     id: "07",
-    title: "Prueba Social Catamarqueña",
-    desc: "En una ciudad donde todos nos conocemos, las recomendaciones valen oro. Mostrar testimonios reales con nombre y apellido en tu web multiplica tu tasa de conversión por 3.",
+    title: "Prueba Social de Alto Impacto",
+    desc: "En un mercado competitivo, las recomendaciones valen oro. Mostrar testimonios reales con nombre y apellido en tu web multiplica tu tasa de conversión por 3.",
     icon: <Globe className="w-8 h-8 text-blue-600" />
   }
 ];
 
 export default function Guide() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0f172a] text-white">
       {/* Header */}
@@ -69,13 +74,13 @@ export default function Guide() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }}>
               <span className="inline-block py-1.5 px-4 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-black tracking-[0.2em] mb-8 border border-blue-500/20 uppercase">
-                💎 Guía de Éxito Digital 2024
+                💎 Guía de Éxito Digital
               </span>
               <h1 className="text-5xl md:text-8xl font-black italic tracking-tighter leading-none mb-8">
                 7 Secretos <br /> <span className="text-blue-500">para vender X3</span>
               </h1>
               <p className="text-xl text-slate-400 font-medium leading-relaxed mb-10">
-                Esta no es una guía teórica. Son las claves reales que estamos aplicando hoy en Catamarca para que los comercios locales dominen el mercado digital.
+                Esta no es una guía teórica. Son las claves reales que estamos aplicando hoy para que los comercios locales dominen el mercado digital.
               </p>
             </motion.div>
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="relative group">
@@ -126,7 +131,7 @@ export default function Guide() {
             ¿Listo para aplicar <br /> esto en <span className="text-blue-500">tu negocio?</span>
           </h2>
           <p className="text-xl text-slate-400 font-medium mb-12">
-            No tienes que hacerlo solo. Estamos en Catamarca para ayudarte en cada paso.
+            No tienes que hacerlo solo. Estamos aquí para ayudarte en cada paso del camino.
           </p>
           <button 
             onClick={() => window.open('https://wa.me/543460406121', '_blank')}
@@ -144,7 +149,7 @@ export default function Guide() {
           <Facebook className="w-5 h-5" />
           <Mail className="w-5 h-5" />
         </div>
-        <p>© 2024 TuTienda24. Dominando el Mercado Digital.</p>
+        <p>© TuTienda24. Dominando el Mercado Digital.</p>
       </footer>
     </div>
   );

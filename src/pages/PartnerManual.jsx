@@ -286,7 +286,7 @@ export default function PartnerManual() {
               </button>
             </div>
             <p className="mt-12 text-slate-600 text-[10px] font-black uppercase tracking-[0.4em] print:text-slate-400">
-              © 2024 TuTienda24 • Programa de Élite
+              © TuTienda24 • Programa de Élite
             </p>
           </section>
         </div>
