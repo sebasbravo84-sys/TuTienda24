@@ -12,7 +12,8 @@ import {
   Image as ImageIcon,
   MessageCircle,
   Clock,
-  Briefcase
+  Briefcase,
+  ShieldCheck
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
