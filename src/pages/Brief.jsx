@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ChevronLeft, 
@@ -14,7 +14,7 @@ import {
   Clock,
   Briefcase
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const sections = [
   {
@@ -67,6 +67,11 @@ const sections = [
 ];
 
 export default function Brief() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [formData, setFormData] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
@@ -89,10 +94,13 @@ export default function Brief() {
       {/* Header */}
       <header className="fixed top-0 w-full z-50 glass py-6 border-b border-white/5 print:hidden">
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors">
+          <button 
+            onClick={() => navigate(-1)} 
+            className="flex items-center gap-2 group text-slate-400 hover:text-white transition-colors"
+          >
             <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span className="font-bold uppercase tracking-widest text-xs">Atrás</span>
-          </Link>
+          </button>
           <div className="flex items-center gap-4">
             <button 
               onClick={handlePrint}
