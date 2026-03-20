@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   ChevronLeft, 
@@ -120,6 +121,10 @@ const sections = [
 ];
 
 export default function PartnerManual() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handlePrint = () => {
     window.print();
   };

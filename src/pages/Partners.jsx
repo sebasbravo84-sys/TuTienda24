@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   ChevronLeft, 
@@ -22,6 +23,10 @@ const resources = [
 
 export default function Partners() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#0f172a] text-white selection:bg-blue-500/30">
