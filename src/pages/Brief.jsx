@@ -223,7 +223,7 @@ export default function Brief() {
           </form>
 
           <footer className="mt-32 border-t border-white/5 pt-12 text-center text-slate-600 text-[10px] font-black uppercase tracking-[0.4em] print:mt-10 print:text-slate-400">
-            © TuTienda24 • Catamarca • Brief Técnico Confidencial
+            © TuTienda24 • Consultoría Digital Élite • Confidencial
           </footer>
         </div>
       </main>
