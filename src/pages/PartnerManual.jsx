@@ -114,7 +114,7 @@ const sections = [
     points: [
       "Técnica de Escasez: 'Solo aceptamos 3 nuevos proyectos por mes para garantizar la calidad VIP'.",
       "Contraste de Precios: El plan de $89k cuesta lo mismo que una pizza grande por mes prorrateado en un año.",
-      "El Miedo a Quedar Atrás: 'Fijate que X (su competencia) ya está profesionalizando su digitalización'."
+      "La Inversión que se Paga Sola: 'Si este sitio te trae solo 2 clientes nuevos por mes, la inversión ya se pagó sola. Todo lo demás es pura ganancia'."
     ]
   }
 ];
