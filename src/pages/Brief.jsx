@@ -63,6 +63,16 @@ const sections = [
       { id: "deadline", label: "¿Para cuándo lo necesitas?", placeholder: "Fecha aproximada de lanzamiento", type: "text" },
       { id: "plan", label: "Plan de Interés", placeholder: "Catálogo / Corporativo / Élite 3D", type: "text" }
     ]
+  },
+  {
+    id: "compromisos",
+    title: "6. Compromisos y Claridad",
+    icon: <ShieldCheck className="w-6 h-6" />,
+    fields: [
+      { id: "material", label: "Material del Cliente", placeholder: "Acepto proveer textos y fotos para el sitio", type: "text" },
+      { id: "revisions", label: "Revisiones", placeholder: "Entiendo que incluye 2 rondas de cambios", type: "text" },
+      { id: "maintenance", label: "Mantenimiento", placeholder: "Entiendo que el dominio es gratis solo por el 1er año", type: "text" }
+    ]
   }
 ];
 
