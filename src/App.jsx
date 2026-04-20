@@ -431,7 +431,8 @@ function Home() {
             muted
             loop
             playsInline
-            className="w-full h-full object-cover opacity-60 scale-105"
+            preload="none"
+            className="w-full h-full object-cover opacity-60 scale-105 hidden md:block"
           >
             <source src="/TuTienda24_fondo_inicio.mp4" type="video/mp4" />
           </video>
