@@ -1,0 +1,32 @@
+{
+  "name": "TuTienda24 | Diseño Web Profesional",
+  "short_name": "TuTienda24",
+  "description": "Agencia de diseño web y transformación digital para comercios y PYMES de Argentina",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "lang": "es-AR",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "screenshots": [
+    {
+      "src": "/lipipalu-preview.png",
+      "sizes": "1280x720",
+      "type": "image/png"
+    }
+  ]
+}

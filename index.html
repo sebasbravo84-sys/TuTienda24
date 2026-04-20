@@ -2,64 +2,188 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- SEO Primario & Redes Sociales (Premium Structure) -->
-    <title>TuTienda24 | Agencia de Diseño Web & Transformación Digital en Catamarca</title>
-    <meta name="title" content="TuTienda24 | Diseño Web Profesional en Catamarca" />
-    <meta name="description" content="Impulsamos comercios con sitios web de élite, catálogos por WhatsApp y mantenimiento. Expertos en digitalizar Catamarca con resultados reales." />
-    
+    <!-- SEO Primario -->
+    <title>TuTienda24 | Diseño Web Profesional para Negocios en Argentina</title>
+    <meta name="title" content="TuTienda24 | Agencia de Diseño Web y Transformación Digital" />
+    <meta name="description" content="Agencia de diseño web para comercios, emprendedores y PYMES de toda Argentina. Páginas web de élite, catálogos WhatsApp y SEO local. Resultados reales desde Catamarca." />
+    <meta name="keywords" content="diseño web profesional, agencia digital argentina, páginas web para negocios, catálogo digital whatsapp, diseño web catamarca, tienda online pymes, seo local argentina, transformación digital, web para emprendedores, agencia web mendoza, agencia web tucuman, agencia web argentina" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="TuTienda24" />
+    <link rel="canonical" href="https://tutienda24.com.ar/" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tutienda24.com.ar/" />
-    <meta property="og:title" content="TuTienda24 | Marca de Élite para tu Negocio" />
-    <meta property="og:description" content="Diseño web profesional y software a medida en Catamarca. Escalamos tu negocio al siguiente nivel." />
-    <meta property="og:image" content="https://tutienda24.com.ar/web_design_dentista_es_1773068700113.png" />
+    <meta property="og:title" content="TuTienda24 | Diseño Web Profesional para tu Negocio" />
+    <meta property="og:description" content="Transformamos comercios locales en marcas digitales de élite. Páginas web rápidas, catálogos WhatsApp y SEO para toda Argentina." />
+    <meta property="og:image" content="https://tutienda24.com.ar/og-cover.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="TuTienda24 - Agencia de Diseño Web Argentina" />
     <meta property="og:site_name" content="TuTienda24" />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content="es_AR" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://tutienda24.com/" />
-    <meta property="twitter:title" content="TuTienda24 | Diseño Web de Élite" />
-    <meta property="twitter:description" content="Convertimos tu comercio local en una potencia digital." />
-    <meta property="twitter:image" content="https://tutienda24.com/web_design_dentista_es_1773068700113.png" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://tutienda24.com.ar/" />
+    <meta name="twitter:title" content="TuTienda24 | Diseño Web de Élite para tu Negocio" />
+    <meta name="twitter:description" content="Transformamos tu comercio en una potencia digital. Web profesional + SEO + WhatsApp desde $120.000." />
+    <meta name="twitter:image" content="https://tutienda24.com.ar/og-cover.jpg" />
 
-    <!-- JSON-LD Datos Estructurados (SEO Avanzado) -->
+    <!-- JSON-LD: LocalBusiness + ProfessionalService -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "TuTienda24",
-      "image": "https://tutienda24.com/web_design_dentista_es_1773068700113.png",
-      "@id": "https://tutienda24.com",
-      "url": "https://tutienda24.com",
-      "telephone": "+543460406121",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "San Fernando del Valle de Catamarca",
-        "addressLocality": "Catamarca",
-        "addressCountry": "AR"
-      },
-      "serviceType": ["Diseño Web", "E-commerce", "Mantenimiento Web"],
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "09:00",
-        "closes": "20:00"
-      },
-      "sameAs": [
-        "https://www.instagram.com/tutienda24"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://tutienda24.com.ar/#website",
+          "url": "https://tutienda24.com.ar/",
+          "name": "TuTienda24",
+          "description": "Agencia de diseño web y transformación digital para comercios y PYMES de Argentina",
+          "inLanguage": "es-AR",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://tutienda24.com.ar/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": ["LocalBusiness", "ProfessionalService"],
+          "@id": "https://tutienda24.com.ar/#business",
+          "name": "TuTienda24",
+          "image": "https://tutienda24.com.ar/logo.png",
+          "logo": "https://tutienda24.com.ar/logo.png",
+          "url": "https://tutienda24.com.ar/",
+          "telephone": "+543460406121",
+          "email": "sebastianbravo84@gmail.com",
+          "priceRange": "$$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "San Fernando del Valle de Catamarca",
+            "addressLocality": "San Fernando del Valle de Catamarca",
+            "addressRegion": "Catamarca",
+            "postalCode": "4700",
+            "addressCountry": "AR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -28.4696,
+            "longitude": -65.7852
+          },
+          "areaServed": [
+            { "@type": "Country", "name": "Argentina" },
+            { "@type": "AdministrativeArea", "name": "Catamarca" },
+            { "@type": "AdministrativeArea", "name": "Tucumán" },
+            { "@type": "AdministrativeArea", "name": "Santiago del Estero" },
+            { "@type": "AdministrativeArea", "name": "La Rioja" },
+            { "@type": "AdministrativeArea", "name": "Salta" }
+          ],
+          "serviceType": ["Diseño Web", "E-commerce", "Catálogo Digital", "SEO Local", "Mantenimiento Web", "Identidad Sonora"],
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "20:00"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Planes de Diseño Web",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Plan Catálogo",
+                "description": "Sitio web profesional con catálogo WhatsApp, SEO local y hosting incluido",
+                "price": "120000",
+                "priceCurrency": "ARS"
+              },
+              {
+                "@type": "Offer",
+                "name": "Plan Corporativo",
+                "description": "Web corporativa de hasta 8 secciones, blog estratégico, Google Analytics y soporte VIP",
+                "price": "295000",
+                "priceCurrency": "ARS"
+              },
+              {
+                "@type": "Offer",
+                "name": "Plan Élite 3D",
+                "description": "Interfaz inmersiva 3D, animaciones Triple A, identidad sonora y servidor dedicado",
+                "price": "580000",
+                "priceCurrency": "ARS"
+              }
+            ]
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "25",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "sameAs": [
+            "https://www.instagram.com/tutienda24"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Necesito conocimientos técnicos para tener una página web?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Para nada. Nosotros nos encargamos de todo el montaje, configuración y mantenimiento. Vos solo te encargás de atender a tus clientes."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuánto tiempo tarda en estar lista mi página web?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Depende del proyecto, pero una landing page profesional suele estar lista en 7 a 10 días hábiles."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Tengo que pagar todos los meses por mi página web?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "El diseño se paga una sola vez. Luego ofrecemos un plan de mantenimiento opcional que incluye el hosting, el dominio y actualizaciones."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Mi negocio va a aparecer en Google?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, todos nuestros sitios se entregan con SEO básico configurado para que ganes visibilidad en Google desde el día uno. También configuramos tu ficha en Google Maps."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Puedo cobrar con tarjeta de crédito en mi página web?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "¡Claro! Podemos integrar Mercado Pago para que tus clientes paguen en cuotas de forma automática y segura."
+              }
+            }
+          ]
+        }
       ]
     }
     </script>
 
-    <!-- Google Analytics 4 (GA4 Ready) -->
+    <!-- Google Analytics 4 — Reemplazá G-XXXXXXXXXX con tu ID real de GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX', { 'debug_mode': true });
+      gtag('config', 'G-XXXXXXXXXX');
     </script>
 
     <!-- Start Single Page Apps for GitHub Pages -->
@@ -80,7 +204,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
       :root {

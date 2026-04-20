@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Routes, Route, Link } from 'react-router-dom';
 import Guide from './pages/Guide';
 import Brief from './pages/Brief';
-import { pricingPlans } from './data/pricingData';
+import { pricingPlans, PROMO_PRICE, PROMO_ORIGINAL_PRICE, PROMO_FEATURES } from './PRECIOS.js';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Globe,
@@ -41,6 +41,7 @@ import PartnerManual from './pages/PartnerManual';
 import SplineScene from './components/SplineScene';
 import ErrorBoundary from './components/ErrorBoundary';
 import LogoCube3D from './components/LogoCube3D';
+import Logo from './components/Logo';
 import ScrollToTop from './components/ScrollToTop';
 
 
@@ -83,7 +84,7 @@ const faqs = [
   { q: "¿Necesito conocimientos técnicos?", a: "Para nada. Nosotros nos encargamos de todo el montaje, configuración y mantenimiento. Vos solo te encargás de atender a tus clientes." },
   { q: "¿Cuánto tiempo tarda en estar lista?", a: "Depende del proyecto, pero una landing page profesional suele estar lista en 7 a 10 días hábiles." },
   { q: "¿Tengo que pagar todos los meses?", a: "El diseño se paga una sola vez. Luego ofrecemos un plan de mantenimiento opcional que incluye el hosting, el dominio y actualizaciones." },
-  { q: "¿Apareceré en Google?", a: "Sí, todos nuestros sitios se entregan con SEO básico configurado para que ganes visibilidad en Catamarca desde el día uno." },
+  { q: "¿Apareceré en Google y en Google Maps?", a: "Sí. Todos nuestros sitios se entregan con SEO básico configurado y te ayudamos a configurar tu ficha en Google Business para que aparezcas en el mapa y en los resultados de búsqueda desde el día uno." },
   { q: "¿Puedo cobrar con tarjeta de crédito?", a: "¡Claro! Podemos integrar Mercado Pago para que tus clientes paguen en cuotas de forma automática y segura." }
 ];
 
@@ -283,14 +284,14 @@ function Home() {
                 </h3>
                 <p className="text-lg text-slate-400 font-medium mb-10 leading-relaxed">
                   Llevamos tu negocio al siguiente nivel con una web informativa de élite.
-                  Diseño profesional, ultra-rápido y optimizado para ventas en Catamarca.
+                  Diseño profesional, ultra-rápido y optimizado para ventas en toda Argentina.
                 </p>
 
                 <div className="bg-white/5 border border-white/10 rounded-3xl p-8 mb-10 relative overflow-hidden group">
                   <div className="relative z-10 flex items-center justify-between">
                     <div>
                       <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px] mb-2">Desde solo</p>
-                      <div className="text-5xl font-black text-white">$89.000</div>
+                      <div className="text-5xl font-black text-white">${PROMO_PRICE}</div>
                     </div>
                     <div className="text-right">
                       <p className="text-blue-400 font-black italic text-xl">PROMO PRO</p>
@@ -303,7 +304,7 @@ function Home() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => {
-                    openWhatsApp('Promo de $89.000');
+                    openWhatsApp(`Promo de $${PROMO_PRICE}`);
                     setShowPromo(false);
                   }}
                   className="w-full bg-blue-600 text-white py-6 rounded-2xl font-black text-xl uppercase tracking-tighter shadow-2xl transition-all flex items-center justify-center gap-3"
@@ -384,7 +385,7 @@ function Home() {
                       Quiero algo similar
                     </motion.button>
                     <p className="text-center text-[10px] text-slate-500 font-bold uppercase tracking-widest">
-                      Presupuesto estimado: {selectedProject.featured ? "$120.000+" : "$89.900+"}
+                      Presupuesto estimado: {selectedProject.featured ? `$${pricingPlans[0].price}+` : `$${PROMO_PRICE}+`}
                     </p>
                   </div>
                 </div>
@@ -400,17 +401,8 @@ function Home() {
         <div className="container mx-auto px-6 flex justify-between items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-bold tracking-tighter cursor-pointer flex items-center gap-2 group"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-black text-white shadow-lg shadow-blue-600/20 shrink-0">
-                24
-              </div>
-              <div className="text-2xl font-black italic tracking-tighter uppercase leading-none">
-                TuTienda<span className="text-blue-500">24</span>
-              </div>
-            </div>
+            <Logo size={0.85} dark onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
           </motion.div>
           <nav className="hidden md:flex gap-10 text-sm font-semibold tracking-wide uppercase">
             {['proyectos', 'servicios', 'testimonios'].map((item) => (
@@ -457,7 +449,7 @@ function Home() {
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <div className="flex flex-col items-center mb-10">
               <span className="inline-block py-1.5 px-4 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold tracking-widest uppercase border border-blue-500/20 mb-6">
-                ✨ Agencia de Élite en Catamarca
+                ✨ Agencia Digital de Élite · Argentina
               </span>
               <motion.div
                 whileHover={{ y: -5 }}
@@ -528,7 +520,7 @@ function Home() {
         <div className="container mx-auto max-w-7xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mb-20">
             <h2 className="text-4xl md:text-6xl font-black mb-6">Proyectos que inspiran</h2>
-            <p className="text-xl text-slate-400 max-w-2xl">Diseños únicos desarrollados para elevar el estándar de los comercios en Catamarca.</p>
+            <p className="text-xl text-slate-400 max-w-2xl">Diseños únicos desarrollados para elevar el estándar de comercios y emprendedores en toda Argentina.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -803,14 +795,7 @@ function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
                   <ul className="space-y-8">
-                    {[
-                      "Landing Page de Élite (Vende sola)",
-                      "Catálogo de hasta 10 productos",
-                      "Checkout directo a tu WhatsApp",
-                      "Dominio .com.ar + Hosting (Bonificado 1 año)",
-                      "Geolocalización en Google Maps",
-                      "Soporte y Mantenimiento Técnico"
-                    ].map((item, i) => (
+                    {PROMO_FEATURES.map((item, i) => (
                       <li key={i} className="flex items-center gap-5 text-slate-200 font-bold text-lg">
                         <div className="w-8 h-8 rounded-xl bg-cyan-500/20 flex items-center justify-center shrink-0">
                           <CheckCircle2 className="w-5 h-5 text-cyan-400" />
@@ -823,8 +808,8 @@ function Home() {
 
                 <div className="text-center lg:text-right border-t lg:border-t-0 lg:border-l border-white/5 pt-12 lg:pt-0 lg:pl-16">
                   <div className="mb-10">
-                    <span className="text-slate-500 line-through text-2xl font-bold uppercase tracking-widest block mb-4 opacity-40">$120.000</span>
-                    <div className="text-7xl md:text-9xl font-black text-white tracking-tighter">$89<span className="text-3xl text-cyan-400">.900</span></div>
+                    <span className="text-slate-500 line-through text-2xl font-bold uppercase tracking-widest block mb-4 opacity-40">${PROMO_ORIGINAL_PRICE}</span>
+                    <div className="text-7xl md:text-9xl font-black text-white tracking-tighter">${PROMO_PRICE.split('.')[0]}<span className="text-3xl text-cyan-400">.{PROMO_PRICE.split('.')[1]}</span></div>
                     <p className="text-slate-500 font-black uppercase tracking-[0.2em] mt-6 text-xs">Pago único inicial</p>
                   </div>
 
@@ -1162,13 +1147,8 @@ function Home() {
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-20">
             <div className="col-span-1 md:col-span-1">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-black text-white shadow-lg shadow-blue-600/20 shrink-0">
-                  24
-                </div>
-                <div className="text-3xl font-black italic tracking-tighter uppercase leading-none">
-                  TuTienda<span className="text-blue-500">24</span>
-                </div>
+              <div className="mb-8">
+                <Logo size={0.9} dark />
               </div>
               <p className="text-slate-500 font-medium text-lg leading-relaxed mb-10">
                 Líderes en transformación digital para comercios locales. Orgullosamente radicados en Catamarca.

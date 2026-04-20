@@ -51,6 +51,11 @@ const secrets = [
 export default function Guide() {
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = '7 Secretos para Vender x3 Online | TuTienda24';
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute('content', 'Guía gratuita: 7 estrategias probadas para triplicar tus ventas con una página web profesional. SEO local, WhatsApp, catálogo digital y más. Por TuTienda24.');
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', 'https://tutienda24.com.ar/guia-pro');
   }, []);
 
   return (

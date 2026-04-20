@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { pricingPlans, PROMO_PRICE } from '../PRECIOS.js';
 import { motion } from 'framer-motion';
 import { 
   ChevronLeft, 
@@ -39,7 +40,7 @@ const sections = [
     detailedPlans: [
       {
         name: "Plan Catálogo: El Generador de Ventas",
-        price: "$120.000 (Promo $89.900)",
+        price: `$${pricingPlans[0].price} (Promo $${PROMO_PRICE})`,
         focus: "Para emprendedores que venden por WhatsApp (Ropa, Comida, Regalos).",
         highlight: "Convierte un catálogo aburrido en una tienda que enamora.",
         features: [
@@ -52,7 +53,7 @@ const sections = [
       },
       {
         name: "Plan Corporativo: El Imán de Autoridad",
-        price: "$295.000",
+        price: `$${pricingPlans[1].price}`,
         focus: "Para profesionales y empresas que buscan seriedad (Abogados, Clínicas, Servicios).",
         highlight: "Proyecta una imagen de empresa grande y confiable.",
         features: [
@@ -65,7 +66,7 @@ const sections = [
       },
       {
         name: "Plan Élite 3D: El Futuro hoy",
-        price: "$580.000",
+        price: `$${pricingPlans[2].price}`,
         focus: "Para marcas premium que quieren ser las #1 y dejar a todos con la boca abierta.",
         highlight: "Tecnología de vanguardia que genera un efecto 'WOW' inmediato.",
         features: [

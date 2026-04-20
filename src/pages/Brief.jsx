@@ -81,6 +81,11 @@ export default function Brief() {
   const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = 'Iniciar mi Proyecto Web | TuTienda24';
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute('content', 'Completá el brief de tu proyecto web y recibí una propuesta personalizada en 24hs. Diseño web profesional para negocios en Argentina. Sin compromiso.');
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', 'https://tutienda24.com.ar/brief');
   }, []);
 
   const [formData, setFormData] = useState({});

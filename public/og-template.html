@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=1200"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background: #0f172a;
+      font-family: 'Space Grotesk', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 100px;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      bottom: -120px; left: -80px;
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(27,79,216,0.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Pixel grid T icon */
+    .pixel-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 14px);
+      grid-template-rows: repeat(5, 14px);
+      gap: 3.5px;
+      margin-bottom: 48px;
+    }
+
+    .cell {
+      width: 14px; height: 14px;
+      border-radius: 2.5px;
+    }
+    .cell.on  { background: #4d8bff; }
+    .cell.off { background: rgba(77,139,255,0.12); }
+
+    /* Wordmark */
+    .wordmark {
+      font-size: 42px;
+      line-height: 1;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+    }
+    .wordmark .tu  { font-weight: 700; color: #ffffff; }
+    .wordmark .ti  { font-weight: 300; color: #9ca3af; }
+    .wordmark .num { font-weight: 700; color: #4d8bff; }
+
+    .tagline {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      font-weight: 400;
+      color: #334155;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      margin-bottom: 60px;
+    }
+
+    /* Headline */
+    .headline {
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -3px;
+      color: white;
+      margin-bottom: 24px;
+    }
+
+    .headline .hl {
+      color: #4d8bff;
+    }
+
+    .sub {
+      font-size: 20px;
+      color: #475569;
+      font-weight: 400;
+    }
+
+    .url {
+      position: absolute;
+      bottom: 48px; right: 100px;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      color: #1e293b;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Pixel Grid T -->
+  <div class="pixel-grid">
+    <!-- row 0: full -->
+    <div class="cell on"></div><div class="cell on"></div><div class="cell on"></div><div class="cell on"></div><div class="cell on"></div>
+    <!-- rows 1-4: center only -->
+    <div class="cell off"></div><div class="cell off"></div><div class="cell on"></div><div class="cell off"></div><div class="cell off"></div>
+    <div class="cell off"></div><div class="cell off"></div><div class="cell on"></div><div class="cell off"></div><div class="cell off"></div>
+    <div class="cell off"></div><div class="cell off"></div><div class="cell on"></div><div class="cell off"></div><div class="cell off"></div>
+    <div class="cell off"></div><div class="cell off"></div><div class="cell on"></div><div class="cell off"></div><div class="cell off"></div>
+  </div>
+
+  <!-- Wordmark -->
+  <div class="wordmark">
+    <span class="tu">Tu</span><span class="ti">Tienda</span><span class="num">24</span>
+  </div>
+  <div class="tagline">Agencia Digital · Argentina</div>
+
+  <!-- Headline -->
+  <div class="headline">
+    Tu negocio,<br/><span class="hl">visible en todo el país.</span>
+  </div>
+
+  <div class="sub">Diseño web · SEO · WhatsApp · Google Maps</div>
+
+  <div class="url">tutienda24.com.ar</div>
+
+</body>
+</html>

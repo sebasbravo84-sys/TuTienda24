@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57.5 57.5" fill="none">
+  <!-- Pixel grid T — fondo transparente -->
+  <!-- row 0: todos llenos -->
+  <rect x="0"    y="0"    width="10" height="10" rx="1.8" fill="#4d8bff"/>
+  <rect x="12.5" y="0"    width="10" height="10" rx="1.8" fill="#4d8bff"/>
+  <rect x="25"   y="0"    width="10" height="10" rx="1.8" fill="#4d8bff"/>
+  <rect x="37.5" y="0"    width="10" height="10" rx="1.8" fill="#4d8bff"/>
+  <rect x="50"   y="0"    width="10" height="10" rx="1.8" fill="#4d8bff"/>
+  <!-- rows 1-4: solo columna central -->
+  <rect x="25"   y="12.5" width="10" height="10" rx="1.8" fill="#4d8bff"/>
+  <rect x="25"   y="25"   width="10" height="10" rx="1.8" fill="#4d8bff"/>
+  <rect x="25"   y="37.5" width="10" height="10" rx="1.8" fill="#4d8bff"/>
+  <rect x="25"   y="50"   width="10" height="10" rx="1.8" fill="#4d8bff"/>
+</svg>

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { commissions } from '../PRECIOS.js';
 import { motion } from 'framer-motion';
 import { 
   ChevronLeft, 
@@ -26,6 +27,11 @@ export default function Partners() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = 'Programa de Aliados TuTienda24 · Ganá Comisiones Recomendando';
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute('content', 'Sumate al programa de aliados de TuTienda24 y ganá hasta $58.000 por proyecto referido. Sin inversión, sin límite de comisiones. Para toda Argentina.');
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', 'https://tutienda24.com.ar/aliados');
   }, []);
 
   return (
@@ -66,11 +72,7 @@ export default function Partners() {
       <section className="pb-32 px-6">
         <div className="container mx-auto max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-            {[
-              { label: "Plan Catálogo", gain: "$12.000" },
-              { label: "Plan Corporativo", gain: "$29.500" },
-              { label: "Plan Élite 3D", gain: "$58.000" }
-            ].map((p, i) => (
+            {commissions.map((p, i) => (
               <div key={i} className="glass-card p-10 rounded-[3rem] text-center border border-white/5">
                 <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4">{p.label}</p>
                 <div className="text-4xl font-black text-emerald-400">+{p.gain}</div>

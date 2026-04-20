@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://tutienda24.com.ar/sitemap.xml
+
+# No indexar rutas de admin o desarrollo
+Disallow: /dist/
+Disallow: /.git/
