@@ -1,28 +1,37 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { pricingPlans, PROMO_PRICE } from '../PRECIOS.js';
 import { motion } from 'framer-motion';
-import { 
-  ChevronLeft, 
-  Target, 
-  Zap, 
-  CheckCircle2, 
-  TrendingUp, 
-  Award, 
+import {
+  ChevronLeft,
+  Target,
+  Zap,
+  CheckCircle2,
+  TrendingUp,
   ShoppingCart,
   Globe,
-  Star,
   MessageCircle,
   ShieldCheck,
-  Search,
-  ArrowRight,
-  Calculator,
-  Download,
   Printer,
   Briefcase
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Logo from '../components/Logo';
+import PinGate from '../components/PinGate';
 
 const sections = [
+  {
+    title: "0. Tu Primer Venta en 6 Pasos",
+    icon: <Zap className="w-6 h-6" />,
+    content: "No necesitás experiencia previa. Seguí estos pasos y cerrá tu primera comisión esta semana:",
+    steps: [
+      { num: "01", text: "Presentate con autoridad — 'Trabajo con una agencia digital que ayuda a negocios como el tuyo a conseguir más clientes por internet'." },
+      { num: "02", text: "Googleá su negocio frente a ellos — buscá su nombre o rubro y mostrales si aparecen o no, qué tan bien se ven vs la competencia. Eso genera urgencia al instante." },
+      { num: "03", text: "Identificá qué necesita — ¿vende por WhatsApp? ¿necesita imagen profesional? ¿no aparece en Google?" },
+      { num: "04", text: "Ofrecé el plan que le encaja (ver sección 2) y contale el precio con confianza. Sin dudas, sin rodeos." },
+      { num: "05", text: "Cerrá vos la venta — pedí la decisión: '¿Empezamos esta semana?' No necesitás saber todo lo técnico, para eso estamos nosotros de respaldo." },
+      { num: "06", text: "Cobrás tu 10% de comisión cuando el cliente realiza el primer pago del 50%." },
+    ]
+  },
   {
     title: "1. La Misión: Ayudar a los Negocios a Crecer",
     icon: <Globe className="w-6 h-6" />,
@@ -71,7 +80,7 @@ const sections = [
         highlight: "Tecnología de vanguardia que genera un efecto 'WOW' inmediato.",
         features: [
           { name: "Interacción 3D", desc: "Elementos que se mueven y giran cuando el usuario pasa el mouse o toca la pantalla." },
-          { name: "Identidad Sonora", desc: "Sonidos de alta calidad que acompañan la marca para una experiencia inmersiva." },
+          { name: "Hosting & Dominio incluido", desc: "Hosting y dominio .com.ar bonificado por 1 año, sin costos ocultos." },
           { name: "Estrategia de Ads", desc: "Te enseñamos a poner publicidad en Instagram y Google para que lluevan visitas." },
           { name: "Servidor Speed-Pro", desc: "El servidor más rápido del mercado para que la web cargue en menos de un segundo." }
         ],
@@ -81,6 +90,7 @@ const sections = [
   },
   {
     title: "3. Cómo detectar clientes (Consejos de Experto)",
+    icon: <Target className="w-6 h-6" />,
     content: "No llegues preguntando si quieren una web. Llega señalando cómo pueden mejorar lo que ya tienen. Fijate en estos detalles:",
     points: [
       "Velocidad: Si su web actual tarda mucho en cargar, el cliente se cansa y se va.",
@@ -115,13 +125,14 @@ const sections = [
     content: "Para que esa charla termine en una comisión depositada en tu cuenta:",
     points: [
       "Técnica de Escasez: 'Solo aceptamos 3 nuevos proyectos por mes para garantizar la calidad VIP'.",
-      "Contraste de Precios: El plan de $89k cuesta lo mismo que una pizza grande por mes prorrateado en un año.",
+      `Contraste de Precios: El plan más accesible cuesta menos que una pizza grande por semana prorrateado en un año.`,
       "La Inversión que se Paga Sola: 'Si este sitio te trae solo 2 clientes nuevos por mes, la inversión ya se pagó sola. Todo lo demás es pura ganancia'."
     ]
   }
 ];
 
 export default function PartnerManual() {
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -131,6 +142,7 @@ export default function PartnerManual() {
   };
 
   return (
+    <PinGate>
     <div className="min-h-screen bg-[#0f172a] text-white selection:bg-blue-500/30 print:bg-white print:text-slate-900">
       {/* Header - Hidden on print */}
       <header className="fixed top-0 w-full z-50 glass py-6 border-b border-white/5 print:hidden">
@@ -146,14 +158,7 @@ export default function PartnerManual() {
             >
               <Printer className="w-4 h-4" /> Imprimir / PDF
             </button>
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black text-white shadow-lg shadow-blue-600/20 shrink-0 text-sm">
-                24
-              </div>
-              <div className="text-xl font-black italic tracking-tighter uppercase leading-none">
-                TuTienda<span className="text-blue-500">24</span>
-              </div>
-            </div>
+            <Logo size={0.7} dark onClick={() => navigate('/aliados')} />
           </div>
         </div>
       </header>
@@ -198,6 +203,17 @@ export default function PartnerManual() {
                 <p className="text-lg text-slate-300 font-medium mb-8 leading-relaxed print:text-slate-700 print:text-sm">
                   {section.content}
                 </p>
+
+                {section.steps && (
+                  <div className="space-y-4 mb-8">
+                    {section.steps.map((step, i) => (
+                      <div key={i} className="flex items-start gap-5">
+                        <span className="text-3xl font-black text-blue-500/30 leading-none w-10 shrink-0">{step.num}</span>
+                        <p className="text-slate-300 font-medium pt-1">{step.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 {section.points && (
                   <ul className="space-y-4 mb-8">
@@ -319,14 +335,28 @@ export default function PartnerManual() {
       {/* Print styles */}
       <style dangerouslySetInnerHTML={{ __html: `
         @media print {
-          body { color: black; background: white; }
-          .glass-card { border: 1px solid #e2e8f0; border-radius: 0; box-shadow: none; margin-bottom: 2rem; }
+          *, *::before, *::after {
+            overflow: visible !important;
+            opacity: 1 !important;
+            transform: none !important;
+            animation: none !important;
+            transition: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            filter: none !important;
+          }
+          body { background: white !important; color: #0f172a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .glass-card { background: white !important; box-shadow: none !important; border: 1px solid #cbd5e1 !important; border-radius: 8px !important; page-break-inside: avoid; margin-bottom: 1.2rem !important; }
+          * { background-color: transparent !important; }
+          section, div { color: #0f172a !important; }
+          span, p, li, label, h1, h2, h3, h4 { color: #1e293b !important; }
+          [class*="text-blue"] { color: #2563eb !important; }
+          [class*="text-emerald"] { color: #059669 !important; }
           .print\\:hidden { display: none !important; }
-          @page { margin: 2cm; }
-          h1, h2, h3 { color: #0f172a; }
-          p, li { color: #334155; }
+          @page { margin: 1.5cm; }
         }
       ` }} />
     </div>
+    </PinGate>
   );
 }

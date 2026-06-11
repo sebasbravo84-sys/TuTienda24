@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react';
 
 import { useNavigate, Routes, Route, Link } from 'react-router-dom';
 import Guide from './pages/Guide';
+import NotFound from './pages/NotFound';
 import Brief from './pages/Brief';
-import { pricingPlans, PROMO_PRICE, PROMO_ORIGINAL_PRICE, PROMO_FEATURES } from './PRECIOS.js';
+import Thanks from './pages/Thanks';
+import { pricingPlans, PROMO_PRICE, PROMO_ORIGINAL_PRICE, PROMO_FEATURES, PROMO_MES, PROMO_CUPOS } from './PRECIOS.js';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Globe,
   ShoppingCart,
   Wrench,
-  Music,
+
   MessageCircle,
   ArrowRight,
   X,
@@ -43,6 +45,11 @@ import ErrorBoundary from './components/ErrorBoundary';
 import LogoCube3D from './components/LogoCube3D';
 import Logo from './components/Logo';
 import ScrollToTop from './components/ScrollToTop';
+import TestimonialsSection from './components/sections/TestimonialsSection';
+import PricingSection from './components/sections/PricingSection';
+import AliadosSection from './components/sections/AliadosSection';
+import FAQSection from './components/sections/FAQSection';
+import NewsletterSection from './components/sections/NewsletterSection';
 
 
 
@@ -60,33 +67,16 @@ const fadeIn = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
-const testimonials = [
-  { name: "Raúl Giménez", text: "Teníamos miedo de que una web sea muy cara y difícil de usar, pero con TuTienda24 fue todo lo contrario. Ahora nos piden presupuestos por WhatsApp todo el día.", stars: 5, avatar: "RG" },
-  { name: "Lucía Perea", text: "El catálogo digital cambió mi forma de vender. Mis clientas eligen lo que quieren y me llega el pedido ordenado. ¡Súper profesional!", stars: 5, avatar: "LP" },
-  { name: "Marcos Torres", text: "Necesitaba una web institucional que diera confianza. El resultado superó mis expectativas, el diseño es de otro nivel comparado con lo que se ve en Catamarca.", stars: 5, avatar: "MT" },
-  { name: "Sofía Méndez", text: "Excelente atención. No solo me hicieron la web, sino que me asesoraron en cómo mostrar mis productos. Muy recomendables.", stars: 5, avatar: "SM" },
-  { name: "Jorge Luna", text: "El servicio de mantenimiento me saca un peso de encima. Sé que mi web siempre está online y rápida sin que yo tenga que tocar nada.", stars: 5, avatar: "JL" },
-  { name: "Elena Castro", text: "Gracias a TuTienda24, mis clientes pueden ver todos mis tratamientos y reservar turnos de manera mucho más ágil. Una inversión que se pagó sola.", stars: 5, avatar: "EC" }
-];
-
-const scrollingTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
 const projects = [
   { id: 1, title: "Lipipalu Concept", category: "Accesorios de Autor", image: projectImages.lipipalu, featured: true, url: "https://lipipalu.netlify.app/", description: "Una experiencia de lujo minimalista con diseño de alta costura digital y animaciones fluidas." },
   { id: 2, title: "Voltax Baterías", category: "Servicios 24/7", image: projectImages.voltax, url: "https://voltaxbaterias.com.ar/", description: "Solución digital de alto rendimiento para servicios de asistencia inmediata. Interfaz optimizada para una respuesta rápida y conversión directa de usuarios en situaciones de emergencia." },
   { id: 3, title: "CorCent | Clínica Dental", category: "Salud Premium", image: projectImages.dentista, url: "https://corcent.netlify.app/", description: "Presencia digital de élite para el sector odontológico. Diseño limpio y profesional orientado a generar confianza y captar nuevos pacientes desde el primer clic." },
-  { id: 4, title: "App de Finanzas", category: "Web App Mobile", image: projectImages.finanzas, url: "https://adorable-fenglisu-f4b132.netlify.app/", description: "Una herramienta potente para el control de gastos personales con interfaz optimizada para móviles." },
+  { id: 4, title: "App de Finanzas", category: "Web App Mobile", image: projectImages.finanzas, url: "https://finnex.site/", description: "Una herramienta potente para el control de gastos personales con interfaz optimizada para móviles." },
   { id: 5, title: "Tienda de Ropa", category: "Retail", image: projectImages.ropa },
   { id: 6, title: "Kiosco Digital", category: "Catálogo", image: projectImages.kiosco },
 ];
 
-const faqs = [
-  { q: "¿Necesito conocimientos técnicos?", a: "Para nada. Nosotros nos encargamos de todo el montaje, configuración y mantenimiento. Vos solo te encargás de atender a tus clientes." },
-  { q: "¿Cuánto tiempo tarda en estar lista?", a: "Depende del proyecto, pero una landing page profesional suele estar lista en 7 a 10 días hábiles." },
-  { q: "¿Tengo que pagar todos los meses?", a: "El diseño se paga una sola vez. Luego ofrecemos un plan de mantenimiento opcional que incluye el hosting, el dominio y actualizaciones." },
-  { q: "¿Apareceré en Google y en Google Maps?", a: "Sí. Todos nuestros sitios se entregan con SEO básico configurado y te ayudamos a configurar tu ficha en Google Business para que aparezcas en el mapa y en los resultados de búsqueda desde el día uno." },
-  { q: "¿Puedo cobrar con tarjeta de crédito?", a: "¡Claro! Podemos integrar Mercado Pago para que tus clientes paguen en cuotas de forma automática y segura." }
-];
 
 const methodology = [
   { step: "01", title: "Estrategia", desc: "Analizamos tu negocio y definimos el camino para vencer a tu competencia.", icon: <TrendingUp className="w-8 h-8" /> },
@@ -97,27 +87,13 @@ const methodology = [
 
 const techStack = ["React 19", "Vite", "Tailwind CSS", "Framer Motion", "Three.js", "Spline", "Lucide", "SEO Pro"];
 
-// Los planes y precios ahora se gestionan en: /src/data/pricingData.jsx
-const getPlanIcon = (index) => {
-  const icons = [<ShoppingCart className="w-6 h-6" />, <Globe className="w-6 h-6" />, <Zap className="w-6 h-6" />];
-  return icons[index] || <Star className="w-6 h-6" />;
-};
-
-const referralSteps = [
-  { title: "Kit de Ventas Élite", desc: "Te enviamos un speech de venta probado y materiales gráficos para que ganes autoridad al instante.", icon: <CheckCircle2 className="w-6 h-6" /> },
-  { title: "Contacto Privado", desc: "Nos presentas por WhatsApp con tu cliente. Nosotros cerramos el trato técnico por ti.", icon: <MessageCircle className="w-6 h-6" /> },
-  { title: "10% de Comisión Neta", desc: "Cobras tu comisión apenas el cliente reserve su lugar (50% de seña). Sin vueltas.", icon: <Zap className="w-6 h-6" /> }
-];
 
 function Home() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeFaq, setActiveFaq] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [showPromo, setShowPromo] = useState(false);
-  const [formStatus, setFormStatus] = useState('');
-  const [newsletterStatus, setNewsletterStatus] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -142,77 +118,13 @@ function Home() {
     const baseMsg = "Hola TuTienda24! Vengo de la web y me interesa ";
     const finalMsg = subject ? `${baseMsg} la *${subject}*.` : "Hola TuTienda24! Vengo de la web y tengo una consulta.";
     window.open(`https://wa.me/543460406121?text=${encodeURIComponent(finalMsg)}`, '_blank');
-  };
-
-  const handleForm = async (e) => {
-    e.preventDefault();
-    setFormStatus('Enviando...');
     
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-
-    try {
-      const response = await fetch("https://formspree.io/f/xqeygwok", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({ ...data, _subject: "Nueva solicitud de Asesoría VIP - TuTienda24" })
-      });
-
-      if (response.ok) {
-        setFormStatus('¡Enviado! Un experto te contactará pronto.');
-        setTimeout(() => setFormStatus(''), 5000);
-        e.target.reset();
-      } else {
-        const result = await response.json().catch(() => ({ errors: [{ message: "Error en el servidor de envíos." }] }));
-        console.error("Formspree Error Details:", result);
-        setFormStatus(result.errors ? result.errors.map(err => err.message).join(', ') : 'Error al enviar la solicitud.');
-        setTimeout(() => setFormStatus(''), 6000);
-      }
-    } catch (error) {
-      console.error("Connection Error:", error);
-      setFormStatus('Error de conexión.');
-      setTimeout(() => setFormStatus(''), 5000);
-    }
+    // Redirigimos a la página de gracias después de un pequeño delay
+    setTimeout(() => {
+      navigate('/gracias');
+    }, 500);
   };
 
-  const handleNewsletter = async (e) => {
-    e.preventDefault();
-    setNewsletterStatus('Suscribiendo...');
-    
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-
-    try {
-      const response = await fetch("https://formspree.io/f/mvzwvdyv", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({ 
-          ...data, 
-          name: "Nuevo Suscriptor", 
-          _subject: "Suscripción: Club de Éxito Digital" 
-        })
-      });
-
-      if (response.ok) {
-        setNewsletterStatus('success');
-      } else {
-        const result = await response.json().catch(() => ({ errors: [{ message: "Error al suscribir." }] }));
-        console.error("Newsletter Error Details:", result);
-        setNewsletterStatus(result.errors ? result.errors.map(err => err.message).join(', ') : 'Error. Intenta de nuevo más tarde.');
-        setTimeout(() => setNewsletterStatus(''), 6000);
-      }
-    } catch (error) {
-      console.error("Connection Newsletter Error:", error);
-      setNewsletterStatus('Error de conexión.');
-      setTimeout(() => setNewsletterStatus(''), 5000);
-    }
-  };
 
   return (
     <div className="min-h-screen text-slate-50 bg-[#0f172a] selection:bg-blue-500/30 overflow-x-hidden">
@@ -280,7 +192,7 @@ function Home() {
                   ⚡ Oportunidad Limitada
                 </span>
                 <h3 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight italic tracking-tighter">
-                  ¡Gran Promoción <span className="text-blue-400">Hasta Abril!</span>
+                  ¡Gran Promoción <span className="text-blue-400">Hasta {PROMO_MES}!</span>
                 </h3>
                 <p className="text-lg text-slate-400 font-medium mb-10 leading-relaxed">
                   Llevamos tu negocio al siguiente nivel con una web informativa de élite.
@@ -741,7 +653,7 @@ function Home() {
                   { title: "Sitios Corporativos", desc: "La cara profesional que tu empresa necesita.", icon: <Globe className="w-6 h-6 text-blue-500" /> },
                   { title: "Catálogos Sales-Ready", desc: "Vende por WhatsApp de forma organizada.", icon: <ShoppingCart className="w-6 h-6 text-emerald-500" /> },
                   { title: "Mantenimiento Total", desc: "Cero preocupaciones técnicas para vos.", icon: <Wrench className="w-6 h-6 text-orange-500" /> },
-                  { title: "Identidad Sonora", desc: "Música exclusiva para tu local y marca.", icon: <Music className="w-6 h-6 text-pink-500" /> }
+                  { title: "Hosting & Dominio", desc: "Hosting y dominio .com.ar bonificado por 1 año.", icon: <ShieldCheck className="w-6 h-6 text-pink-500" /> }
                 ].map((s, i) => (
                   <div key={i} className="flex gap-6 items-start group">
                     <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
@@ -761,7 +673,7 @@ function Home() {
                 { label: "Sitios Web", color: "blue", list: ["Velocidad Extrema", "SEO Local CAT", "Diseño Adaptable"] },
                 { label: "E-Commerce", color: "emerald", list: ["WhatsApp Checkout", "Pagos Online", "Stock Digital"] },
                 { label: "Soporte", color: "orange", list: ["Hosting Premium", "Gestión Dominio", "Copias de Seguridad"] },
-                { label: "Sound Design", color: "pink", list: ["Jingles Pro", "Música Local", "Audio Branding"] }
+                { label: "Hosting & Dominio", color: "pink", list: ["Hosting incluido", "Dominio .com.ar", "1 año bonificado"] }
               ].map((card, i) => (
                 <div key={i} className="glass-card p-10 rounded-[2.5rem] border border-white/5 shadow-2xl">
                   <h4 className="text-2xl font-black mb-6">{card.label}</h4>
@@ -825,7 +737,7 @@ function Home() {
                   <div className="mt-8 flex items-center justify-center lg:justify-end gap-3">
                     <div className="w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
                     <p className="text-[10px] text-cyan-500 font-black uppercase tracking-widest italic">
-                      Últimos 10 cupos bonificados para Abril
+                      Últimos {PROMO_CUPOS} cupos bonificados para {PROMO_MES}
                     </p>
                   </div>
                 </div>
@@ -836,312 +748,15 @@ function Home() {
       </section>
 
 
-      {/* Testimonios */}
-      <section id="testimonios" className="py-32 bg-[#0f172a] overflow-hidden">
-        <div className="container mx-auto px-6 mb-20 text-center">
-          <h2 className="text-4xl md:text-6xl font-black mb-6 italic">Clientes que ganan</h2>
-          <p className="text-xl text-slate-500">Nuestra mejor garantía es tu éxito.</p>
-        </div>
+      <TestimonialsSection />
 
-        <div className="relative">
-          <motion.div
-            className="flex gap-10 px-6"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ ease: "linear", duration: 60, repeat: Infinity }}
-          >
-            {scrollingTestimonials.map((t, i) => (
-              <div key={i} className="glass-card p-10 rounded-[2rem] w-[400px] flex-shrink-0 border border-white/5 shadow-2xl">
-                <div className="flex gap-1 mb-6">
-                  {[...Array(t.stars)].map((_, j) => <Star key={j} className="w-5 h-5 text-yellow-500 fill-yellow-500" />)}
-                </div>
-                <p className="text-slate-300 font-medium text-lg leading-relaxed mb-8">"{t.text}"</p>
-                <div className="flex items-center gap-5">
-                  <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center font-black text-white text-xl">
-                    {t.avatar}
-                  </div>
-                  <h4 className="font-black text-xl text-white">{t.name}</h4>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      <PricingSection openWhatsApp={openWhatsApp} />
 
-      {/* Sección de Planes / Precios */}
-      <section id="precios" className="py-32 px-6 relative">
-        <div className="container mx-auto max-w-7xl text-center mb-24">
-          <span className="inline-block py-1.5 px-4 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-black tracking-[0.2em] mb-6 border border-blue-500/20 uppercase">
-            💎 Inversión Inteligente
-          </span>
-          <h2 className="text-4xl md:text-7xl font-black text-white italic tracking-tighter">
-            Planes diseñados <br /> <span className="text-slate-500">para dominar el mercado</span>
-          </h2>
-        </div>
+      <AliadosSection navigate={navigate} />
 
-        <div className="container mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-8">
-          {pricingPlans.map((plan, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className={`relative p-12 rounded-[3.5rem] border ${plan.isPopular ? 'bg-blue-600 border-blue-400 shadow-[0_30px_60px_rgba(37,99,235,0.3)]' : 'bg-slate-900/50 border-white/5 glass-card'} flex flex-col`}
-            >
-              {plan.isPopular && (
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-white text-blue-600 px-6 py-2 rounded-full text-xs font-black tracking-widest shadow-xl uppercase">
-                  Más Elegido
-                </div>
-              )}
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-8 ${plan.isPopular ? 'bg-white/20' : 'bg-blue-600/10 text-blue-400'}`}>
-                {getPlanIcon(i)}
-              </div>
-              <h3 className={`text-2xl font-black mb-2 italic uppercase tracking-tighter ${plan.isPopular ? 'text-white' : 'text-white'}`}>{plan.name}</h3>
-              <p className={`text-sm mb-10 font-bold ${plan.isPopular ? 'text-blue-100' : 'text-slate-500'}`}>{plan.setup}</p>
-              
-              <div className="flex items-baseline gap-2 mb-10">
-                <span className="text-sm font-black opacity-60">$</span>
-                <span className="text-6xl font-black tracking-tighter">{plan.price}</span>
-              </div>
+      <NewsletterSection />
 
-              <ul className="space-y-6 mb-12 flex-1">
-                {plan.features.map((feature, j) => (
-                  <li key={j} className="flex items-center gap-3 text-sm font-medium">
-                    <CheckCircle2 className={`w-5 h-5 ${plan.isPopular ? 'text-white' : 'text-blue-500'}`} />
-                    <span className={plan.isPopular ? 'text-blue-50' : 'text-slate-300'}>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                onClick={() => openWhatsApp(plan.name)}
-                className={`w-full py-6 rounded-2xl font-black text-lg transition-all ${plan.isPopular ? 'bg-white text-blue-600 hover:bg-blue-50' : 'bg-blue-600 text-white hover:bg-blue-500 shadow-xl shadow-blue-600/20'}`}
-              >
-                Elegir este Plan
-              </button>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Programa de Aliados (Comisiones) */}
-      <section className="py-32 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-600/5 z-0"></div>
-        <div className="container mx-auto max-w-7xl">
-          <div className="glass-card rounded-[4rem] p-12 md:p-24 border-white/5 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] -mr-48 -mt-48 transition-all group-hover:bg-blue-500/20"></div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-              <div>
-                <span className="inline-block py-1.5 px-4 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-black tracking-[0.2em] mb-8 border border-emerald-500/20 uppercase">
-                  🤝 Gana con nosotros
-                </span>
-                <h2 className="text-5xl md:text-7xl font-black text-white mb-8 italic tracking-tighter leading-none">
-                  Tus contactos <br /> <span className="text-blue-500">valen oro</span>
-                </h2>
-                <div className="flex items-center gap-6 mb-12">
-                  <div className="text-6xl font-black text-white tracking-tighter italic">10%</div>
-                  <div className="text-xl font-bold text-slate-400 leading-tight">
-                    de comisión neta <br /> por cada proyecto cerrado.
-                  </div>
-                </div>
-                <p className="text-lg text-slate-300 font-medium mb-10 leading-relaxed">
-                  Buscamos socios estratégicos. Te entregamos un <strong>Kit de Ventas</strong> y te enseñamos a detectar negocios con potencial.
-                </p>
-
-                <div className="space-y-4 mb-12">
-                  {[
-                    "Pago inmediato (sin esperas a fin de mes)",
-                    "Capacitación gratuita sobre ventas digitales",
-                    "Material de apoyo (PDFs y Speech de venta)",
-                    "Transparencia total en el proceso"
-                  ].map((text, i) => (
-                    <div key={i} className="flex items-center gap-3 text-sm font-bold text-slate-400 italic">
-                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
-                      {text}
-                    </div>
-                  ))}
-                </div>
-
-                <button 
-                  onClick={() => navigate('/aliados')}
-                  className="bg-white text-slate-900 font-black px-12 py-6 rounded-2xl hover:bg-blue-50 transition-all shadow-2xl flex items-center justify-center gap-4 text-xl group/btn w-full sm:w-auto"
-                >
-                  Quiero ser Aliado VIP <ArrowRight className="w-6 h-6 group-hover/btn:translate-x-2 transition-transform" />
-                </button>
-              </div>
-
-              <div className="grid grid-cols-1 gap-6">
-                {referralSteps.map((step, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.2 }}
-                    viewport={{ once: true }}
-                    className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] flex items-start gap-6 hover:bg-white/10 transition-colors"
-                  >
-                    <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-600/20 text-white">
-                      {step.icon}
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-black text-white mb-2 italic uppercase tracking-tighter">{step.title}</h4>
-                      <p className="text-slate-400 font-medium leading-relaxed">{step.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Digital Growth Section (Newsletter) */}
-      <section className="py-20 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-600/5 backdrop-blur-3xl z-0"></div>
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 rounded-[3rem] p-10 md:p-20 shadow-3xl text-center relative overflow-hidden group">
-            {/* Animated Background Element */}
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/20 rounded-full blur-[100px] group-hover:bg-blue-500/30 transition-all duration-1000"></div>
-            
-            <div className="max-w-3xl mx-auto">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-8">
-                <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                <span className="text-blue-400 text-[10px] font-black tracking-[0.2em] uppercase">Club de Éxito Digital</span>
-              </div>
-              
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-6 italic tracking-tighter">
-                ¿Quieres vender más <br /> mientras <span className="text-blue-500 italic">descansas?</span>
-              </h2>
-              
-              <p className="text-lg text-slate-400 font-medium mb-10 leading-relaxed">
-                Únete a emprendedores de Catamarca. Recibe estrategias, ofertas y nuestra <span className="text-white font-bold">Guía Pro 2024</span> gratis.
-              </p>
-
-              <form onSubmit={handleNewsletter} className="relative max-w-2xl mx-auto">
-                <div className="flex flex-col md:flex-row gap-3">
-                  {newsletterStatus !== 'success' ? (
-                    <div className="w-full">
-                      <div className="flex flex-col md:flex-row gap-3">
-                        <div className="flex-1 relative">
-                          <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5 pointer-events-none" />
-                          <input
-                            name="email"
-                            type="email"
-                            required
-                            placeholder="Tu mejor correo..."
-                            className="w-full bg-slate-800/40 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-lg"
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          className="bg-blue-600 text-white font-black px-8 py-5 rounded-2xl hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/20 flex items-center justify-center gap-3 whitespace-nowrap text-lg group/btn"
-                        >
-                          Unirme y descargar <Download className="w-5 h-5 group-hover/btn:translate-y-1 transition-transform" />
-                        </button>
-                      </div>
-                      {newsletterStatus && newsletterStatus !== 'Suscribiendo...' && (
-                        <p className="mt-4 text-red-500 font-bold animate-pulse text-sm uppercase tracking-widest">{newsletterStatus}</p>
-                      )}
-                      {newsletterStatus === 'Suscribiendo...' && (
-                        <p className="mt-4 text-blue-400 font-bold animate-pulse text-sm uppercase tracking-widest">Suscribiendo...</p>
-                      )}
-                    </div>
-                  ) : (
-                    <motion.div 
-                      initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                      className="w-full bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-8 flex flex-col items-center"
-                    >
-                      <CheckCircle2 className="w-12 h-12 text-emerald-500 mb-4" />
-                      <h4 className="text-2xl font-black text-white mb-2 italic">¡Bienvenido al Club!</h4>
-                      <p className="text-emerald-100/70 mb-6 font-medium">Hemos preparado tu acceso de élite.</p>
-                      <button 
-                        onClick={() => navigate('/guia-pro')}
-                        className="bg-emerald-600 text-white font-black px-12 py-4 rounded-xl hover:bg-emerald-500 transition-all flex items-center gap-3"
-                      >
-                        Ver Guía Pro Ahora <ArrowRight className="w-5 h-5" />
-                      </button>
-                    </motion.div>
-                  )}
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ & Contacto */}
-      <section className="py-32 px-6">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-            <div>
-              <h2 className="text-4xl md:text-6xl font-black mb-12 italic tracking-tighter">Despejemos dudas</h2>
-              <div className="space-y-6">
-                {faqs.map((faq, i) => (
-                  <div key={i} className="rounded-3xl border border-white/5 bg-slate-900/50 overflow-hidden">
-                    <button
-                      onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                      className="w-full flex justify-between items-center p-8 text-left hover:bg-white/5 transition-colors"
-                    >
-                      <span className="font-bold text-lg pr-4">{faq.q}</span>
-                      <ChevronDown className={`w-6 h-6 transition-transform flex-shrink-0 ${activeFaq === i ? 'rotate-180' : ''}`} />
-                    </button>
-                    <AnimatePresence>
-                      {activeFaq === i && (
-                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}>
-                          <div className="p-8 pt-0 text-slate-400 font-medium border-t border-white/5">{faq.a}</div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-blue-600 rounded-[3rem] p-12 md:p-20 relative overflow-hidden shadow-2xl transition-all">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-[100px]"></div>
-              <h3 className="text-4xl md:text-5xl font-black text-white mb-8 italic tracking-tighter">¿Hablamos de <br /> tu próximo éxito?</h3>
-              <p className="text-blue-100 text-xl font-medium mb-12">Déjanos tu correo y un especialista en ventas digitales de Catamarca te preparará un plan a medida.</p>
-
-              <form onSubmit={handleForm} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <input
-                    name="name"
-                    type="text" required placeholder="Nombre completo"
-                    className="w-full bg-blue-700/50 border border-blue-400/30 rounded-2xl p-6 text-white placeholder:text-blue-200 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all"
-                  />
-                  <input
-                    name="phone"
-                    type="tel" required placeholder="WhatsApp (Ej: 3834...)"
-                    className="w-full bg-blue-700/50 border border-blue-400/30 rounded-2xl p-6 text-white placeholder:text-blue-200 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all"
-                  />
-                </div>
-                <div className="grid grid-cols-1 gap-4">
-                  <input
-                    name="email"
-                    type="email" required placeholder="Tu correo electrónico"
-                    className="w-full bg-blue-700/50 border border-blue-400/30 rounded-2xl p-6 text-white placeholder:text-blue-200 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all"
-                  />
-                  <textarea
-                    name="message"
-                    required
-                    rows="3"
-                    placeholder="Contanos un poco de tu negocio (Rubro, si ya tenés web, etc.)"
-                    className="w-full bg-blue-700/50 border border-blue-400/30 rounded-2xl p-6 text-white placeholder:text-blue-200 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all resize-none"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-white text-blue-600 font-black py-6 rounded-2xl hover:bg-blue-50 transition-all flex items-center justify-center gap-3 text-xl shadow-xl shadow-black/10"
-                >
-                  <Send className="w-6 h-6" /> Solicitar Asesoría VIP
-                </button>
-                {formStatus && <p className="text-center font-bold text-blue-100 animate-pulse uppercase tracking-widest text-sm">{formStatus}</p>}
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FAQSection />
 
       {/* Footer */}
       <footer className="bg-[#080d1a] pt-32 pb-12 px-6 border-t border-slate-900">
@@ -1154,19 +769,12 @@ function Home() {
               <p className="text-slate-500 font-medium text-lg leading-relaxed mb-10">
                 Líderes en transformación digital para comercios locales. Orgullosamente radicados en Catamarca.
               </p>
-              <div className="flex gap-6">
-                {[Instagram, Facebook].map((Icon, i) => (
-                  <a key={i} href="#" className="w-14 h-14 rounded-2xl bg-slate-900 flex items-center justify-center hover:bg-blue-600 transition-all border border-white/5">
-                    <Icon className="w-6 h-6" />
-                  </a>
-                ))}
-              </div>
             </div>
 
             <div>
               <h4 className="font-black text-sm uppercase tracking-[0.2em] text-slate-500 mb-10">Servicios</h4>
               <ul className="space-y-6 text-lg text-slate-400 font-bold">
-                {['Sitios Corporativos', 'Catálogos WhatsApp', 'Mantenimiento Web', 'Identidad Sonora'].map((item) => (
+                {['Sitios Corporativos', 'Catálogos WhatsApp', 'Mantenimiento Web', 'Hosting & Dominio'].map((item) => (
                   <li key={item}><a href="#servicios" className="hover:text-blue-500 transition-colors uppercase text-sm tracking-widest">{item}</a></li>
                 ))}
               </ul>
@@ -1230,6 +838,8 @@ export default function App() {
       <Route path="/aliados" element={<Partners />} />
       <Route path="/aliados/manual" element={<PartnerManual />} />
       <Route path="/brief" element={<Brief />} />
+      <Route path="/gracias" element={<Thanks />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

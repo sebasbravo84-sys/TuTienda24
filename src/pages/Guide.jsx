@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronLeft, Zap, CheckCircle2, Star, TrendingUp, ShieldCheck, Search, Globe, Instagram, Mail, MapPin, Facebook } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Logo from '../components/Logo';
 import { useEffect } from 'react';
 
 const secrets = [
@@ -49,6 +50,7 @@ const secrets = [
 ];
 
 export default function Guide() {
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = '7 Secretos para Vender x3 Online | TuTienda24';
@@ -67,9 +69,7 @@ export default function Guide() {
             <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span className="font-bold uppercase tracking-widest text-xs">Volver al Inicio</span>
           </Link>
-          <div className="text-xl font-black italic tracking-tighter">
-            TuTienda<span className="text-blue-500">24</span>
-          </div>
+          <Logo size={0.8} dark onClick={() => navigate('/')} />
         </div>
       </header>
 
@@ -149,11 +149,6 @@ export default function Guide() {
 
       {/* Footer Minimal */}
       <footer className="py-20 px-6 border-t border-white/5 text-center text-slate-600 text-sm font-bold uppercase tracking-[0.3em]">
-        <div className="flex justify-center gap-10 mb-8">
-          <Instagram className="w-5 h-5" />
-          <Facebook className="w-5 h-5" />
-          <Mail className="w-5 h-5" />
-        </div>
         <p>© TuTienda24. Dominando el Mercado Digital.</p>
       </footer>
     </div>
