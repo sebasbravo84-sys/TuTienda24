@@ -57,9 +57,7 @@ const projectImages = {
   lipipalu: "/lipipalu-preview.png",
   voltax: "/voltax-preview.png",
   dentista: "/corcent-preview.png",
-  ropa: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000",
-  finanzas: "/finanzas-preview.png",
-  kiosco: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?q=80&w=1000"
+  finanzas: "/finanzas-preview.png"
 };
 
 const fadeIn = {
@@ -73,8 +71,8 @@ const projects = [
   { id: 2, title: "Voltax Baterías", category: "Servicios 24/7", image: projectImages.voltax, url: "https://voltaxbaterias.com.ar/", description: "Solución digital de alto rendimiento para servicios de asistencia inmediata. Interfaz optimizada para una respuesta rápida y conversión directa de usuarios en situaciones de emergencia." },
   { id: 3, title: "CorCent | Clínica Dental", category: "Salud Premium", image: projectImages.dentista, url: "https://corcent.netlify.app/", description: "Presencia digital de élite para el sector odontológico. Diseño limpio y profesional orientado a generar confianza y captar nuevos pacientes desde el primer clic." },
   { id: 4, title: "App de Finanzas", category: "Web App Mobile", image: projectImages.finanzas, url: "https://finnex.site/", description: "Una herramienta potente para el control de gastos personales con interfaz optimizada para móviles." },
-  { id: 5, title: "Tienda de Ropa", category: "Retail", image: projectImages.ropa },
-  { id: 6, title: "Kiosco Digital", category: "Catálogo", image: projectImages.kiosco },
+  { id: 5, title: "Precision Quiropráctica", category: "Salud Premium", url: "https://precision-quiropractica.netlify.app/", livePreview: true, description: "Presencia digital de élite para quiropráctica especializada con método Gonstead. Diseño enfocado en transmitir confianza médica y convertir visitantes en pacientes desde el primer clic." },
+  { id: 6, title: "Las Medialunas de Gre", category: "Panadería Artesanal", url: "https://lasmedialunasdegre.netlify.app/", livePreview: true, description: "Catálogo digital artesanal para panadería local de Catamarca. Diseño cálido y directo orientado a pedidos por WhatsApp con packs predefinidos y servicio de eventos." },
 ];
 
 
@@ -466,15 +464,33 @@ function Home() {
                     </div>
                   </div>
 
-                  {/* Image Container with proper top padding to accommodate header */}
+                  {/* Image / Live Preview Container */}
                   <div className="w-full h-full pt-8 overflow-hidden relative">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      loading="lazy"
-                      className={`w-full h-auto object-top transform ${project.featured ? 'group-hover:-translate-y-[20%]' : 'group-hover:-translate-y-[40%]'} transition-transform duration-[8s] ease-in-out opacity-85 group-hover:opacity-100`}
-                    />
-
+                    {project.livePreview ? (
+                      <div className="w-full h-full overflow-hidden relative">
+                        <iframe
+                          src={project.url}
+                          title={project.title}
+                          loading="lazy"
+                          style={{
+                            width: '1280px',
+                            height: '1800px',
+                            transform: 'scale(0.3)',
+                            transformOrigin: 'top left',
+                            pointerEvents: 'none',
+                            border: 'none',
+                            opacity: 0.9,
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        className={`w-full h-auto object-top transform ${project.featured ? 'group-hover:-translate-y-[20%]' : 'group-hover:-translate-y-[40%]'} transition-transform duration-[8s] ease-in-out opacity-85 group-hover:opacity-100`}
+                      />
+                    )}
                     {/* Shadow for top-edge realism */}
                     <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-black/20 to-transparent pointer-events-none"></div>
                   </div>
