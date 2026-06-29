@@ -468,14 +468,17 @@ function Home() {
                   <div className="w-full h-full pt-8 overflow-hidden relative">
                     {project.livePreview ? (
                       <div className="w-full h-full overflow-hidden relative">
-                        <div className="transition-transform duration-[8s] ease-in-out group-hover:-translate-y-[35%]">
+                        <div
+                          className="transition-transform duration-[8s] ease-in-out group-hover:-translate-y-[28%]"
+                          style={{ marginTop: '-220px' }}
+                        >
                           <iframe
                             src={project.url}
                             title={project.title}
                             loading="lazy"
                             style={{
                               width: '1280px',
-                              height: '1800px',
+                              height: '2000px',
                               transform: 'scale(0.3)',
                               transformOrigin: 'top left',
                               pointerEvents: 'none',
