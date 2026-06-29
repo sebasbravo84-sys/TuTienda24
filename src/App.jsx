@@ -470,7 +470,7 @@ function Home() {
                       /* Live preview: iframe ocupa solo el 58% superior */
                       <div className="absolute top-8 left-0 right-0 overflow-hidden" style={{ height: '58%' }}>
                         <div
-                          className="transition-transform duration-[10s] ease-in-out group-hover:-translate-y-[8%]"
+                          className="transition-transform duration-[5s] ease-in-out group-hover:-translate-y-[6%]"
                         >
                           <iframe
                             src={project.url}
@@ -491,7 +491,7 @@ function Home() {
                         src={project.image}
                         alt={project.title}
                         loading="lazy"
-                        className={`w-full h-auto object-top transform ${project.featured ? 'group-hover:-translate-y-[20%]' : 'group-hover:-translate-y-[40%]'} transition-transform duration-[8s] ease-in-out opacity-85 group-hover:opacity-100`}
+                        className={`w-full h-auto object-top transform ${project.featured ? 'group-hover:-translate-y-[20%]' : 'group-hover:-translate-y-[40%]'} transition-transform duration-[5s] ease-in-out opacity-85 group-hover:opacity-100`}
                       />
                     )}
                     {/* Shadow for top-edge realism */}
