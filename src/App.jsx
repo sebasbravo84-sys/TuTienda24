@@ -467,25 +467,22 @@ function Home() {
                   {/* Image / Live Preview Container */}
                   <div className="w-full h-full pt-8 overflow-hidden relative">
                     {project.livePreview ? (
-                      <div className="w-full h-full overflow-hidden relative">
+                      /* Live preview: iframe ocupa solo el 58% superior */
+                      <div className="absolute top-8 left-0 right-0 overflow-hidden" style={{ height: '58%' }}>
                         <div
-                          className="transition-transform duration-[8s] ease-in-out group-hover:-translate-y-[28%]"
-                          style={{ marginTop: '-220px' }}
+                          className="transition-transform duration-[10s] ease-in-out group-hover:-translate-y-[8%]"
                         >
                           <iframe
                             src={project.url}
                             title={project.title}
-                            loading="lazy"
                             style={{
                               width: '1280px',
-                              height: '2000px',
+                              height: '1200px',
                               transform: 'scale(0.3)',
                               transformOrigin: 'top left',
                               pointerEvents: 'none',
                               border: 'none',
-                              opacity: 0.85,
                             }}
-                            className="group-hover:opacity-100"
                           />
                         </div>
                       </div>
@@ -504,8 +501,12 @@ function Home() {
                   {/* Interior Shadow for depth */}
                   <div className="absolute inset-0 shadow-[inset_0_20px_40px_rgba(0,0,0,0.4)] pointer-events-none rounded-t-xl"></div>
 
-                  {/* Layered Gradient for depth - positioned above image but below UI */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/20 to-transparent group-hover:opacity-0 transition-opacity duration-700 z-10"></div>
+                  {/* Gradient — sólido para livePreview, se desvanece en hover para imágenes */}
+                  <div className={`absolute inset-x-0 bottom-0 transition-opacity duration-700 z-10 ${
+                    project.livePreview
+                      ? 'h-[48%] bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent'
+                      : 'h-1/2 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/20 to-transparent group-hover:opacity-0'
+                  }`}></div>
 
                   {/* Floating Action Button */}
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100">
@@ -517,16 +518,21 @@ function Home() {
 
 
                   {/* Bottom Info Bar */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 z-20 bg-gradient-to-t from-slate-950 to-transparent">
+                  <div className="absolute bottom-0 left-0 right-0 p-8 z-20 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
                     <div className="flex items-end justify-between gap-4">
-                      <div>
+                      <div className="flex-1 min-w-0">
                         <span className="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em] mb-2 block">{project.category}</span>
-                        <h3 className={`font-black text-white leading-tight ${project.featured ? 'text-4xl md:text-5xl italic tracking-tighter' : 'text-2xl'}`}>
+                        <h3 className={`font-black text-white leading-tight mb-2 ${project.featured ? 'text-4xl md:text-5xl italic tracking-tighter' : 'text-2xl'}`}>
                           {project.title}
                         </h3>
+                        {project.description && (
+                          <p className="text-slate-400 text-xs font-medium leading-relaxed line-clamp-2">
+                            {project.description}
+                          </p>
+                        )}
                       </div>
                       {project.url && (
-                        <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform">
+                        <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform flex-shrink-0">
                           <ExternalLink className="w-7 h-7 text-white" />
                         </div>
                       )}
