@@ -468,20 +468,23 @@ function Home() {
                   <div className="w-full h-full pt-8 overflow-hidden relative">
                     {project.livePreview ? (
                       <div className="w-full h-full overflow-hidden relative">
-                        <iframe
-                          src={project.url}
-                          title={project.title}
-                          loading="lazy"
-                          style={{
-                            width: '1280px',
-                            height: '1800px',
-                            transform: 'scale(0.3)',
-                            transformOrigin: 'top left',
-                            pointerEvents: 'none',
-                            border: 'none',
-                            opacity: 0.9,
-                          }}
-                        />
+                        <div className="transition-transform duration-[8s] ease-in-out group-hover:-translate-y-[35%]">
+                          <iframe
+                            src={project.url}
+                            title={project.title}
+                            loading="lazy"
+                            style={{
+                              width: '1280px',
+                              height: '1800px',
+                              transform: 'scale(0.3)',
+                              transformOrigin: 'top left',
+                              pointerEvents: 'none',
+                              border: 'none',
+                              opacity: 0.85,
+                            }}
+                            className="group-hover:opacity-100"
+                          />
+                        </div>
                       </div>
                     ) : (
                       <img
