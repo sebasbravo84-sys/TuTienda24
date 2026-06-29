@@ -73,6 +73,7 @@ const projects = [
   { id: 4, title: "App de Finanzas", category: "Web App Mobile", image: projectImages.finanzas, url: "https://finnex.site/", description: "Una herramienta potente para el control de gastos personales con interfaz optimizada para móviles." },
   { id: 5, title: "Precision Quiropráctica", category: "Salud Premium", url: "https://precision-quiropractica.netlify.app/", livePreview: true, description: "Presencia digital de élite para quiropráctica especializada con método Gonstead. Diseño enfocado en transmitir confianza médica y convertir visitantes en pacientes desde el primer clic." },
   { id: 6, title: "Las Medialunas de Gre", category: "Panadería Artesanal", url: "https://lasmedialunasdegre.netlify.app/", livePreview: true, description: "Catálogo digital artesanal para panadería local de Catamarca. Diseño cálido y directo orientado a pedidos por WhatsApp con packs predefinidos y servicio de eventos." },
+  { id: 7, title: "Buba Pet Shop", category: "Tienda de Mascotas", url: "https://bubapetshop.netlify.app/", livePreview: true, description: "Tienda online moderna para pet shop con catálogo de productos, diseño amigable y accesible. Experiencia de compra fluida orientada a dueños de mascotas." },
 ];
 
 
