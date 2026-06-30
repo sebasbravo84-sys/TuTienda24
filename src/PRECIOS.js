@@ -10,7 +10,7 @@
 // ---------------------------------------------------------------
 export const PROMO_PRICE          = "129.000";  // precio promocional
 export const PROMO_ORIGINAL_PRICE = "159.000";  // precio tachado (el "antes")
-export const PROMO_MES            = "Junio";     // mes que aparece en el cartel y el popup
+export const PROMO_MES            = "Julio";     // mes que aparece en el cartel y el popup
 export const PROMO_CUPOS          = "10";        // cupos disponibles que aparecen en el cartel
 
 export const PROMO_FEATURES = [
@@ -21,6 +21,25 @@ export const PROMO_FEATURES = [
   "Tu negocio visible en Google Maps y en búsquedas de Google",
   "30 días de soporte técnico post-lanzamiento",
 ];
+
+
+// ---------------------------------------------------------------
+//  SISTEMA DE VENTAS DIGITAL (producto estrella)
+// ---------------------------------------------------------------
+export const sistemaPlan = {
+  name:    "Sistema de Ventas Digital",
+  price:   "250.000",
+  setup:   "Pago único — sin costos mensuales",
+  tagline: "No es una web. Es un sistema que trae clientes solo mientras vos atendés tu negocio.",
+  features: [
+    "Web profesional TuTienda24 completa",
+    "Manychat — respuestas automáticas en Instagram DMs",
+    "WhatsApp Business con catálogo y bienvenida automática",
+    "Linktree — hub digital centralizado con todos tus canales",
+    "Google Business Profile optimizado para búsquedas locales",
+    "Capacitación de 1 hora para que lo manejés solo",
+  ],
+};
 
 
 // ---------------------------------------------------------------

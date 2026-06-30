@@ -89,7 +89,13 @@ const sections = [
     ]
   },
   {
-    title: "3. Cómo detectar clientes (Consejos de Experto)",
+    title: "3. El Ecosistema de Ventas Digital (Producto Estrella)",
+    icon: <Zap className="w-6 h-6" />,
+    content: "Esta es la oferta más poderosa que tenés. No vendemos 'una web más'. Vendemos un sistema completo que trae clientes solos. Cuando lo explicás bien, el precio deja de ser una objeción.",
+    ecosystem: true,
+  },
+  {
+    title: "5. Cómo detectar clientes (Consejos de Experto)",
     icon: <Target className="w-6 h-6" />,
     content: "No llegues preguntando si quieren una web. Llega señalando cómo pueden mejorar lo que ya tienen. Fijate en estos detalles:",
     points: [
@@ -100,7 +106,7 @@ const sections = [
     ]
   },
   {
-    title: "4. Qué decir para vender (según el cliente)",
+    title: "6. Qué decir para vender (según el cliente)",
     icon: <MessageCircle className="w-6 h-6" />,
     content: "Cada negocio es diferente. Escuchá lo que necesitan y dales la solución ideal.",
     quotes: [
@@ -110,7 +116,7 @@ const sections = [
     ]
   },
   {
-    title: "5. Manejo de Objeciones Nivel Élite",
+    title: "7. Manejo de Objeciones Nivel Élite",
     icon: <ShieldCheck className="w-6 h-6" />,
     content: "Cuando el cliente duda, es porque aún no ve el valor. Ayúdalo a entender:",
     objections: [
@@ -120,7 +126,7 @@ const sections = [
     ]
   },
   {
-    title: "6. Tips de Cierre y Psicología de Venta",
+    title: "8. Tips de Cierre y Psicología de Venta",
     icon: <TrendingUp className="w-6 h-6" />,
     content: "Para que esa charla termine en una comisión depositada en tu cuenta:",
     points: [
@@ -292,6 +298,56 @@ export default function PartnerManual() {
                         </p>
                       </div>
                     ))}
+                  </div>
+                )}
+
+                {section.ecosystem && (
+                  <div className="space-y-6">
+                    {/* Flow */}
+                    <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                      <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">El flujo que trabaja 24/7:</p>
+                      <div className="flex flex-wrap gap-2 items-center text-sm font-bold">
+                        {["📸 Instagram", "→", "🤖 Manychat", "→", "💬 WhatsApp", "→", "🌐 Web", "→", "📍 Google Maps"].map((s, i) => (
+                          <span key={i} className={s === "→" ? "text-slate-600" : "bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl text-slate-300"}>
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    {/* Tools */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {[
+                        { name: "Manychat", color: "text-orange-400", desc: "Automatiza los DMs de Instagram. Cuando alguien comenta 'INFO', Manychat le manda el catálogo automáticamente por privado. El aliado lo vende diciendo: 'Imaginate que alguien comenta tu post y al instante recibe tus productos sin que vos hagas nada'." },
+                        { name: "WhatsApp Business", color: "text-emerald-400", desc: "Catálogo de productos, mensaje de bienvenida automático y respuestas rápidas. El aliado lo vende diciendo: 'Tu cliente te manda un mensaje y de entrada ve todos tus productos como una tienda'." },
+                        { name: "Linktree (Link en Bio)", color: "text-green-400", desc: "Un solo link que lleva a WhatsApp, la web, Maps y el menú. Perfecto para el bio de Instagram. Decile al cliente: 'Un solo link, todo en un lugar. El cliente elige cómo contactarte'." },
+                        { name: "Google Business Profile", color: "text-blue-400", desc: "Aparecer en Google Maps y en búsquedas locales sin pagar publicidad. Ejemplo de venta: 'Si alguien busca una panadería en Catamarca, con esto aparecés en el mapa con tus fotos y tu WhatsApp'." },
+                      ].map((tool, i) => (
+                        <div key={i} className="bg-slate-800/40 rounded-xl p-5 border border-white/5 print:bg-slate-50 print:border-slate-100">
+                          <p className={`font-black text-sm mb-2 ${tool.color}`}>{tool.name}</p>
+                          <p className="text-slate-400 text-xs leading-relaxed print:text-slate-600">{tool.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                    {/* Pricing pitch */}
+                    <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-6 print:bg-emerald-50 print:border-slate-200">
+                      <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-3">Cómo presentar el precio:</p>
+                      <p className="text-slate-300 italic font-medium text-sm leading-relaxed print:text-slate-700">
+                        "El Sistema Completo cuesta entre $250.000 y $300.000 una sola vez. Incluye la web, el Manychat configurado, el WhatsApp Business armado, el Linktree, el Google Maps optimizado y una capacitación para que lo manejés solo. Si este sistema te trae 3 clientes nuevos por mes, en 2 meses ya se pagó solo y el resto es ganancia pura."
+                      </p>
+                      <div className="mt-4 pt-4 border-t border-emerald-500/20">
+                        <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-1">Tu comisión como aliado:</p>
+                        <p className="text-2xl font-black text-white">+$25.000 – $30.000 <span className="text-sm text-slate-400 font-medium">por venta cerrada</span></p>
+                      </div>
+                    </div>
+                    {/* Objection */}
+                    <div className="bg-slate-800/40 p-5 rounded-xl border border-white/5 print:bg-slate-50">
+                      <p className="text-white font-black uppercase text-xs mb-2 flex items-center gap-2">
+                        <Target className="w-4 h-4 text-red-500" /> Objeción frecuente: "Yo con Instagram me arreglo"
+                      </p>
+                      <p className="text-slate-400 text-xs italic font-medium leading-relaxed print:text-slate-600">
+                        "Instagram es perfecto para que te vean. Pero el que te ve hoy, mañana ya no se acuerda. Con el sistema, ese mismo que te ve lo capturamos en WhatsApp y lo convertimos en cliente. Instagram atrae, el sistema convierte."
+                      </p>
+                    </div>
                   </div>
                 )}
 

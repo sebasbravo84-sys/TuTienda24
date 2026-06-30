@@ -42,10 +42,10 @@ import Partners from './pages/Partners';
 import PartnerManual from './pages/PartnerManual';
 import SplineScene from './components/SplineScene';
 import ErrorBoundary from './components/ErrorBoundary';
-import LogoCube3D from './components/LogoCube3D';
 import Logo from './components/Logo';
 import ScrollToTop from './components/ScrollToTop';
 import TestimonialsSection from './components/sections/TestimonialsSection';
+import SistemaVentasSection from './components/sections/SistemaVentasSection';
 import PricingSection from './components/sections/PricingSection';
 import AliadosSection from './components/sections/AliadosSection';
 import FAQSection from './components/sections/FAQSection';
@@ -54,9 +54,14 @@ import NewsletterSection from './components/sections/NewsletterSection';
 
 
 const projectImages = {
-  lipipalu: "/lipipalu-preview.png",
-  voltax: "/voltax-preview.png",
-  dentista: "/corcent-preview.png",
+  lipipalu:   "/lipipalu-preview.jpg",
+  voltax:     "/voltax-preview.jpg",
+  dentista:   "/corcent-preview.jpg",
+  finnex:     "/finnex-preview.jpg",
+  precision:  "/precision-preview.jpg",
+  medialunas: "/medialunas-preview.jpg",
+  buba:       "/buba-preview.jpg",
+  caylle:     "/caylle-preview.jpg",
 };
 
 const fadeIn = {
@@ -66,13 +71,14 @@ const fadeIn = {
 
 
 const projects = [
-  { id: 1, title: "Lipipalu Concept", category: "Accesorios de Autor", image: projectImages.lipipalu, featured: true, url: "https://lipipalu.netlify.app/", description: "Una experiencia de lujo minimalista con diseño de alta costura digital y animaciones fluidas." },
-  { id: 2, title: "Voltax Baterías", category: "Servicios 24/7", image: projectImages.voltax, url: "https://voltaxbaterias.com.ar/", description: "Solución digital de alto rendimiento para servicios de asistencia inmediata. Interfaz optimizada para una respuesta rápida y conversión directa de usuarios en situaciones de emergencia." },
-  { id: 3, title: "CorCent | Clínica Dental", category: "Salud Premium", image: projectImages.dentista, url: "https://corcent.netlify.app/", description: "Presencia digital de élite para el sector odontológico. Diseño limpio y profesional orientado a generar confianza y captar nuevos pacientes desde el primer clic." },
-  { id: 4, title: "Finnex", category: "App de Finanzas Personal", url: "https://finnex.site/", livePreview: true, description: "PWA de gestión financiera personal: registro de gastos e ingresos, metas de ahorro, seguimiento de deudas y reportes visuales. Sin cuentas, sin servidores, 100% offline y gratuita." },
-  { id: 5, title: "Precision Quiropráctica", category: "Salud Premium", url: "https://precision-quiropractica.netlify.app/", livePreview: true, description: "Presencia digital de élite para quiropráctica especializada con método Gonstead. Diseño enfocado en transmitir confianza médica y convertir visitantes en pacientes desde el primer clic." },
-  { id: 6, title: "Las Medialunas de Gre", category: "Panadería Artesanal", url: "https://lasmedialunasdegre.netlify.app/", livePreview: true, description: "Catálogo digital artesanal para panadería local de Catamarca. Diseño cálido y directo orientado a pedidos por WhatsApp con packs predefinidos y servicio de eventos." },
-  { id: 7, title: "Buba Pet Shop", category: "Tienda de Mascotas", url: "https://bubapetshop.netlify.app/", livePreview: true, description: "Tienda online moderna para pet shop con catálogo de productos, diseño amigable y accesible. Experiencia de compra fluida orientada a dueños de mascotas." },
+  { id: 1, title: "Lipipalu Concept",        category: "Accesorios de Autor",      image: projectImages.lipipalu,   url: "https://lipipalu.netlify.app/",                description: "Tienda de joyería y accesorios de autor con estética minimalista de lujo. Catálogo completo con colecciones exclusivas y experiencia de compra premium." },
+  { id: 2, title: "Voltax Baterías",          category: "Servicios 24/7",           image: projectImages.voltax,     url: "https://voltaxbaterias.com.ar/",               description: "Solución digital de alto rendimiento para servicios de asistencia inmediata. Interfaz optimizada para conversión directa en situaciones de emergencia." },
+  { id: 3, title: "CorCent | Clínica Dental", category: "Salud Premium",            image: projectImages.dentista,   url: "https://corcent.netlify.app/",                 description: "Presencia digital de élite para el sector odontológico. Diseño limpio y profesional orientado a captar nuevos pacientes desde el primer clic." },
+  { id: 4, title: "Finnex",                   category: "App de Finanzas Personal", image: projectImages.finnex,     url: "https://finnex.site/",                         description: "PWA de gestión financiera personal: gastos, ingresos, metas de ahorro y reportes visuales. Sin cuentas, sin servidores, 100% offline y gratuita." },
+  { id: 5, title: "Precision Quiropráctica",  category: "Salud Premium",            image: projectImages.precision,  url: "https://precision-quiropractica.netlify.app/", description: "Presencia digital de élite para quiropráctica especializada con método Gonstead. Diseño enfocado en transmitir confianza médica y convertir visitantes en pacientes." },
+  { id: 6, title: "Las Medialunas de Gre",    category: "Panadería Artesanal",      image: projectImages.medialunas, url: "https://lasmedialunasdegre.netlify.app/",      description: "Catálogo digital para panadería local de Catamarca. Diseño cálido orientado a pedidos por WhatsApp con packs predefinidos y servicio de eventos." },
+  { id: 7, title: "Buba Pet Shop",            category: "Tienda de Mascotas",       image: projectImages.buba,       url: "https://bubapetshop.netlify.app/",             description: "Tienda online moderna para pet shop con catálogo de productos y diseño amigable. Experiencia de compra fluida orientada a dueños de mascotas." },
+  { id: 8, title: "Caylle Mish",              category: "DJ & Productora Musical",  image: projectImages.caylle,     url: "https://caylle-mish.netlify.app/",             description: "Presencia digital inmersiva para DJ y productora de música electrónica de Catamarca. Diseño oscuro y cinematográfico con agenda de shows, sets en vivo y contrataciones." },
 ];
 
 
@@ -113,8 +119,9 @@ function Home() {
   }, []);
 
   const openWhatsApp = (subject = "") => {
-    const baseMsg = "Hola TuTienda24! Vengo de la web y me interesa ";
-    const finalMsg = subject ? `${baseMsg} la *${subject}*.` : "Hola TuTienda24! Vengo de la web y tengo una consulta.";
+    const finalMsg = subject
+      ? `Hola! Vi la web de TuTienda24 y me interesa saber más sobre *${subject}*. ¿Podés asesorarme?`
+      : `Hola! Vi la web de TuTienda24 y quiero consultar sobre sus servicios. ¿Podés asesorarme?`;
     window.open(`https://wa.me/543460406121?text=${encodeURIComponent(finalMsg)}`, '_blank');
     
     // Redirigimos a la página de gracias después de un pequeño delay
@@ -295,7 +302,7 @@ function Home() {
                       Quiero algo similar
                     </motion.button>
                     <p className="text-center text-[10px] text-slate-500 font-bold uppercase tracking-widest">
-                      Presupuesto estimado: {selectedProject.featured ? `$${pricingPlans[0].price}+` : `$${PROMO_PRICE}+`}
+                      Presupuesto estimado: ${PROMO_PRICE}+
                     </p>
                   </div>
                 </div>
@@ -315,7 +322,7 @@ function Home() {
             <Logo size={0.85} dark onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
           </motion.div>
           <nav className="hidden md:flex gap-10 text-sm font-semibold tracking-wide uppercase">
-            {['proyectos', 'servicios', 'testimonios'].map((item) => (
+            {['proyectos', 'servicios', 'precios', 'testimonios'].map((item) => (
               <a key={item} href={`#${item}`} className="text-slate-400 hover:text-white transition-colors relative group">
                 {item}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
@@ -398,9 +405,12 @@ function Home() {
                 Empezar mi transformación
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </motion.button>
-              <a href="#proyectos" className="px-10 py-5 rounded-2xl font-bold text-slate-300 hover:text-white hover:bg-white/5 transition-all border border-slate-700 w-full sm:w-auto justify-center flex text-lg">
+              <button
+                onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                className="px-10 py-5 rounded-2xl font-bold text-slate-300 hover:text-white hover:bg-white/5 transition-all border border-slate-700 w-full sm:w-auto justify-center flex text-lg"
+              >
                 Ver Proyectos Reales
-              </a>
+              </button>
             </div>
           </motion.div>
         </div>
@@ -434,16 +444,16 @@ function Home() {
             <p className="text-xl text-slate-400 max-w-2xl">Diseños únicos desarrollados para elevar el estándar de comercios y emprendedores en toda Argentina.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, i) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -10, rotateX: 2, rotateY: -2 }}
+                whileHover={{ y: -8 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className={`group cursor-pointer relative rounded-xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl transition-all duration-500 ${project.featured ? 'md:col-span-2 lg:col-span-2' : ''}`}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="group cursor-pointer relative rounded-2xl overflow-hidden bg-slate-900 border border-white/5 hover:border-white/10 shadow-2xl hover:shadow-[0_40px_80px_rgba(59,130,246,0.12)] transition-all duration-500"
                 onClick={() => {
                   if (project.url) {
                     window.open(project.url, '_blank');
@@ -452,26 +462,23 @@ function Home() {
                   }
                 }}
               >
-                <div className={`${project.featured ? 'h-full min-h-[600px]' : 'aspect-[4/5]'} overflow-hidden relative group-hover:shadow-[0_40px_100px_rgba(59,130,246,0.15)] bg-[#0f172a]`}>
+                <div className="aspect-[4/5] overflow-hidden relative bg-[#0f172a]">
 
-                  {/* Browser Mockup Header - Unified for all projects */}
-                  <div className="absolute top-0 left-0 right-0 h-8 bg-slate-900 flex items-center px-4 gap-1.5 border-b border-white/10 z-30">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/40"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500/40"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/40"></div>
-                    <div className="flex-1 text-[10px] text-white/30 text-center font-mono truncate px-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      {project.url ? project.url.replace('https://', '') : `tutienda24.com.ar/${project.title.toLowerCase().replace(/ /g, '-')}`}
+                  {/* Browser chrome */}
+                  <div className="absolute top-0 left-0 right-0 h-8 bg-slate-900/90 flex items-center px-4 gap-1.5 border-b border-white/10 z-30">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500/50"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/50"></div>
+                    <div className="flex-1 text-[10px] text-white/30 text-center font-mono truncate px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {project.url ? project.url.replace('https://', '') : 'tutienda24.com.ar'}
                     </div>
                   </div>
 
-                  {/* Image / Live Preview Container */}
-                  <div className="w-full h-full pt-8 overflow-hidden relative">
+                  {/* Visual content */}
+                  <div className="absolute top-8 inset-x-0 bottom-0 overflow-hidden">
                     {project.livePreview ? (
-                      /* Live preview: iframe ocupa solo el 58% superior */
-                      <div className="absolute top-8 left-0 right-0 overflow-hidden" style={{ height: '58%' }}>
-                        <div
-                          className="transition-transform duration-[5s] ease-in-out group-hover:-translate-y-[6%]"
-                        >
+                      <div className="absolute top-0 left-0 right-0 overflow-hidden" style={{ height: '65%' }}>
+                        <div className="transition-transform duration-[5s] ease-in-out group-hover:-translate-y-[6%]">
                           <iframe
                             src={project.url}
                             title={project.title}
@@ -491,53 +498,31 @@ function Home() {
                         src={project.image}
                         alt={project.title}
                         loading="lazy"
-                        className={`w-full h-auto object-top transform ${project.featured ? 'group-hover:-translate-y-[20%]' : 'group-hover:-translate-y-[40%]'} transition-transform duration-[5s] ease-in-out opacity-85 group-hover:opacity-100`}
+                        className="w-full h-auto object-top transform group-hover:-translate-y-[35%] transition-transform duration-[5s] ease-in-out"
                       />
                     )}
-                    {/* Shadow for top-edge realism */}
-                    <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-black/20 to-transparent pointer-events-none"></div>
                   </div>
 
-                  {/* Interior Shadow for depth */}
-                  <div className="absolute inset-0 shadow-[inset_0_20px_40px_rgba(0,0,0,0.4)] pointer-events-none rounded-t-xl"></div>
+                  {/* Gradient overlay — igual para todos */}
+                  <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-[#0f172a] via-[#0f172a]/90 to-transparent z-10 pointer-events-none"></div>
 
-                  {/* Gradient — sólido para livePreview, se desvanece en hover para imágenes */}
-                  <div className={`absolute inset-x-0 bottom-0 transition-opacity duration-700 z-10 ${
-                    project.livePreview
-                      ? 'h-[48%] bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent'
-                      : 'h-1/2 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/20 to-transparent group-hover:opacity-0'
-                  }`}></div>
-
-                  {/* Floating Action Button */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100">
-                    <div className="bg-white text-slate-900 px-8 py-4 rounded-full font-black flex items-center gap-3 shadow-[0_20px_40px_rgba(255,255,255,0.2)]">
+                  {/* CTA hover */}
+                  <div className="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-400">
+                    <div className="bg-white text-slate-900 px-6 py-3 rounded-full font-black text-sm flex items-center gap-2 shadow-[0_8px_30px_rgba(255,255,255,0.15)]">
                       {project.url ? 'VISITAR WEB' : 'VER DETALLES'}
-                      {project.url ? <ExternalLink className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                      {project.url ? <ExternalLink className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </div>
                   </div>
 
-
-                  {/* Bottom Info Bar */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 z-20 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
-                    <div className="flex items-end justify-between gap-4">
-                      <div className="flex-1 min-w-0">
-                        <span className="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em] mb-2 block">{project.category}</span>
-                        <h3 className={`font-black text-white leading-tight mb-2 ${project.featured ? 'text-4xl md:text-5xl italic tracking-tighter' : 'text-2xl'}`}>
-                          {project.title}
-                        </h3>
-                        {project.description && (
-                          <p className="text-slate-400 text-xs font-medium leading-relaxed line-clamp-2">
-                            {project.description}
-                          </p>
-                        )}
-                      </div>
-                      {project.url && (
-                        <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform flex-shrink-0">
-                          <ExternalLink className="w-7 h-7 text-white" />
-                        </div>
-                      )}
-                    </div>
+                  {/* Info bar — igual para todos */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                    <span className="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em] mb-1.5 block">{project.category}</span>
+                    <h3 className="text-2xl font-black text-white leading-tight mb-2">{project.title}</h3>
+                    {project.description && (
+                      <p className="text-slate-400 text-xs font-medium leading-relaxed line-clamp-2">{project.description}</p>
+                    )}
                   </div>
+
                 </div>
               </motion.div>
             ))}
@@ -558,7 +543,7 @@ function Home() {
               className="order-2 lg:order-1 h-[500px]"
             >
               <div className="w-full h-full glass-card rounded-[3rem] overflow-hidden ring-1 ring-white/10 shadow-[0_0_100px_rgba(59,130,246,0.15)] relative">
-                <LogoCube3D />
+                <SplineScene scene="https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode" />
 
                 {/* Floating Micro-UI for aesthetic */}
                 <div className="absolute bottom-8 left-8 right-8 glass p-6 rounded-2xl flex items-center justify-between border border-white/10 backdrop-blur-xl z-10">
@@ -775,6 +760,8 @@ function Home() {
         </div>
       </section>
 
+
+      <SistemaVentasSection openWhatsApp={openWhatsApp} />
 
       <TestimonialsSection />
 

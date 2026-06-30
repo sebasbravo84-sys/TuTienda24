@@ -18,6 +18,10 @@
   color-scheme: dark;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--color-dark);
   color: #f8fafc;

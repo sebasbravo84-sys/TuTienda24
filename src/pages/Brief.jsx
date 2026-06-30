@@ -64,8 +64,9 @@ const sections = [
     title: "5. Logística e Inversión",
     icon: <Clock className="w-6 h-6" />,
     fields: [
-      { id: "deadline", label: "¿Para cuándo lo necesita?",  placeholder: "Fecha aproximada de lanzamiento",      type: "text" },
-      { id: "plan",     label: "Plan de Interés",             placeholder: "Catálogo / Corporativo / Élite 3D",    type: "text" },
+      { id: "deadline",       label: "¿Para cuándo lo necesita?",                          placeholder: "Fecha aproximada de lanzamiento",                                              type: "text" },
+      { id: "plan",           label: "Plan de Interés",                                      placeholder: "Catálogo / Corporativo / Élite 3D / Sistema de Ventas Completo",           type: "text" },
+      { id: "sistemaVentas",  label: "¿Le interesa el Sistema de Ventas Digital?",           placeholder: "Sí / No / Consultar — incluye Manychat + WhatsApp Business + Linktree",   type: "text" },
     ]
   },
   {
