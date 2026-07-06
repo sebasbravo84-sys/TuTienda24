@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { useNavigate, Routes, Route, Link } from 'react-router-dom';
 import Guide from './pages/Guide';
@@ -50,6 +50,10 @@ import PricingSection from './components/sections/PricingSection';
 import AliadosSection from './components/sections/AliadosSection';
 import FAQSection from './components/sections/FAQSection';
 import NewsletterSection from './components/sections/NewsletterSection';
+import CustomCursor from './components/CustomCursor';
+import SocialProofToast from './components/SocialProofToast';
+import CounterStat from './components/CounterStat';
+import ResultsSection from './components/sections/ResultsSection';
 
 
 
@@ -90,6 +94,7 @@ const methodology = [
 ];
 
 const techStack = ["React 19", "Vite", "Tailwind CSS", "Framer Motion", "Three.js", "Spline", "Lucide", "SEO Pro"];
+
 
 
 function Home() {
@@ -133,6 +138,8 @@ function Home() {
 
   return (
     <div className="min-h-screen text-slate-50 bg-[#0f172a] selection:bg-blue-500/30 overflow-x-hidden">
+      <CustomCursor />
+      <SocialProofToast />
       <ScrollToTop />
       {/* Preloader following Lipipalu style */}
       <AnimatePresence>
@@ -341,21 +348,25 @@ function Home() {
 
       {/* Hero Section */}
       <section id="inicio" className="relative pt-32 pb-20 md:pt-56 md:pb-40 px-6 overflow-hidden min-h-[90vh] flex items-center">
-        {/* Video Background (TuTienda24_fondo_inicio.mp4) */}
+        {/* Aurora Background */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
-            className="w-full h-full object-cover opacity-60 scale-105 hidden md:block"
-          >
-            <source src="/TuTienda24_fondo_inicio.mp4" type="video/mp4" />
-          </video>
-          {/* Advanced Overlay for depth and readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a]/40 via-[#0f172a]/80 to-[#0f172a]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.1),transparent_50%)]"></div>
+
+          {/* Capa base: gradiente mesh animado */}
+          <div className="aurora-mesh absolute inset-0 opacity-80" />
+
+          {/* Blobs de luz encima para más profundidad */}
+          <div className="aurora-blob-1 absolute top-[-30%] left-[-15%] w-[80%] h-[80%] rounded-full blur-[60px]"
+               style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.7) 0%, transparent 70%)' }} />
+          <div className="aurora-blob-2 absolute top-[0%] right-[-20%] w-[70%] h-[70%] rounded-full blur-[70px]"
+               style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.6) 0%, transparent 70%)' }} />
+          <div className="aurora-blob-3 absolute bottom-[-20%] left-[10%] w-[65%] h-[65%] rounded-full blur-[60px]"
+               style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.5) 0%, transparent 70%)' }} />
+
+          {/* Grain para textura premium */}
+          <div className="aurora-noise absolute inset-0 opacity-[0.06] mix-blend-overlay pointer-events-none" />
+
+          {/* Fade hacia abajo para legibilidad del texto */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#0f172a]" />
         </div>
 
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden z-1">
@@ -365,10 +376,16 @@ function Home() {
 
         <div className="container mx-auto max-w-6xl text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <div className="flex flex-col items-center mb-10">
-              <span className="inline-block py-1.5 px-4 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold tracking-widest uppercase border border-blue-500/20 mb-6">
-                ✨ Agencia Digital de Élite · Argentina
-              </span>
+            <div className="flex flex-col items-center mb-10 gap-4">
+              {/* Badge de diferenciación principal */}
+              <div className="flex flex-wrap justify-center gap-3">
+                <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-black tracking-widest uppercase border border-emerald-500/20">
+                  ⚡ Entrega en 14–21 días
+                </span>
+                <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-blue-500/10 text-blue-400 text-xs font-black tracking-widest uppercase border border-blue-500/20">
+                  🎨 Diseño único · No usamos templates
+                </span>
+              </div>
               <motion.div
                 whileHover={{ y: -5 }}
                 animate={{ y: [0, -5, 0] }}
@@ -385,14 +402,14 @@ function Home() {
             </div>
 
             <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-10">
-              Transformamos tu negocio <br className="hidden md:block" />
+              Tu web lista en <span className="text-emerald-400">3 semanas.</span><br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400">
-                en una Marca de Élite
+                Con diseño que no existe en otro lugar.
               </span>
             </h1>
             <p className="text-lg md:text-2xl text-slate-400 max-w-3xl mx-auto mb-14 leading-relaxed font-medium">
-              No dejes tus ventas al azar de las redes sociales.
-              Diseñamos experiencias digitales que proyectan confianza y escalan resultados.
+              No usamos templates. Cada web es diseñada desde cero para tu negocio —
+              con la velocidad de una agencia y la atención de un equipo dedicado.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -420,18 +437,10 @@ function Home() {
       <section className="py-20 border-y border-white/5">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-            {[
-              { label: "Proyectos Entregados", value: "25+", icon: <Award className="w-6 h-6 text-blue-500" /> },
-              { label: "Satisfacción Cliente", value: "100%", icon: <Users className="w-6 h-6 text-emerald-500" /> },
-              { label: "Velocidad de Carga", value: "< 2s", icon: <Zap className="h-6 h-6 text-yellow-500" /> },
-              { label: "Atención CAT", value: "24/7", icon: <MessageCircle className="w-6 h-6 text-purple-500" /> },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="flex justify-center mb-4">{stat.icon}</div>
-                <div className="text-4xl font-black text-white mb-2">{stat.value}</div>
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">{stat.label}</p>
-              </div>
-            ))}
+            <CounterStat value="25+" label="Proyectos Entregados" icon={<Award className="w-6 h-6 text-blue-500" />} />
+            <CounterStat value="100%" label="Satisfacción Cliente" icon={<Users className="w-6 h-6 text-emerald-500" />} />
+            <CounterStat value="< 2s" label="Velocidad de Carga" icon={<Zap className="w-6 h-6 text-yellow-500" />} />
+            <CounterStat value="24/7" label="Atención CAT" icon={<MessageCircle className="w-6 h-6 text-purple-500" />} />
           </div>
         </div>
       </section>
@@ -476,31 +485,12 @@ function Home() {
 
                   {/* Visual content */}
                   <div className="absolute top-8 inset-x-0 bottom-0 overflow-hidden">
-                    {project.livePreview ? (
-                      <div className="absolute top-0 left-0 right-0 overflow-hidden" style={{ height: '65%' }}>
-                        <div className="transition-transform duration-[5s] ease-in-out group-hover:-translate-y-[6%]">
-                          <iframe
-                            src={project.url}
-                            title={project.title}
-                            style={{
-                              width: '1280px',
-                              height: '1200px',
-                              transform: 'scale(0.3)',
-                              transformOrigin: 'top left',
-                              pointerEvents: 'none',
-                              border: 'none',
-                            }}
-                          />
-                        </div>
-                      </div>
-                    ) : (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        loading="lazy"
-                        className="w-full h-auto object-top transform group-hover:-translate-y-[35%] transition-transform duration-[5s] ease-in-out"
-                      />
-                    )}
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      className="w-full h-auto object-top transform group-hover:-translate-y-[65%] transition-transform duration-[8s] ease-in-out"
+                    />
                   </div>
 
                   {/* Gradient overlay — igual para todos */}
@@ -760,6 +750,8 @@ function Home() {
         </div>
       </section>
 
+
+      <ResultsSection />
 
       <SistemaVentasSection openWhatsApp={openWhatsApp} />
 
