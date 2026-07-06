@@ -2,6 +2,7 @@ import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { useState } from 'react';
 import { ShoppingCart, Globe, Zap, Star, CheckCircle2, Instagram, MessageCircle, MapPin, ArrowRight } from 'lucide-react';
 import { pricingPlans, sistemaPlan } from '../../PRECIOS.js';
+import { useIsMobile } from '../../hooks/useIsMobile.js';
 
 const planIcons = [
   <ShoppingCart className="w-6 h-6" />,
@@ -18,8 +19,7 @@ const sistemaTools = [
   { icon: <Zap className="w-4 h-4" />,           label: "Capacitación 1 h"    },
 ];
 
-// Tilt suave para la hero card
-function TiltCard({ children, className }) {
+function TiltCard({ children, className, isMobile }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [7, -7]), { stiffness: 300, damping: 30 });
@@ -30,11 +30,9 @@ function TiltCard({ children, className }) {
     x.set((e.clientX - rect.left) / rect.width - 0.5);
     y.set((e.clientY - rect.top) / rect.height - 0.5);
   }
+  function onMouseLeave() { x.set(0); y.set(0); }
 
-  function onMouseLeave() {
-    x.set(0);
-    y.set(0);
-  }
+  if (isMobile) return <div className={className}>{children}</div>;
 
   return (
     <motion.div
@@ -48,8 +46,7 @@ function TiltCard({ children, className }) {
   );
 }
 
-// Tilt fuerte con reflejo de luz para las cards pequeñas
-function HoloCard({ children, className, isPopular }) {
+function HoloCard({ children, className, isPopular, isMobile }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [18, -18]), { stiffness: 400, damping: 25 });
@@ -65,17 +62,13 @@ function HoloCard({ children, className, isPopular }) {
     y.set(yVal - 0.5);
     setGlare({ x: xVal * 100, y: yVal * 100, opacity: 0.18 });
   }
-
-  function onMouseEnter() {
-    scale.set(1.05);
-  }
-
+  function onMouseEnter() { scale.set(1.05); }
   function onMouseLeave() {
-    x.set(0);
-    y.set(0);
-    scale.set(1);
+    x.set(0); y.set(0); scale.set(1);
     setGlare(g => ({ ...g, opacity: 0 }));
   }
+
+  if (isMobile) return <div className={`relative ${className}`}>{children}</div>;
 
   return (
     <motion.div
@@ -86,7 +79,6 @@ function HoloCard({ children, className, isPopular }) {
       className={`relative ${className}`}
     >
       {children}
-      {/* Reflejo de luz que sigue el mouse */}
       <div
         className="absolute inset-0 rounded-[2.5rem] pointer-events-none transition-opacity duration-300"
         style={{
@@ -99,10 +91,11 @@ function HoloCard({ children, className, isPopular }) {
 }
 
 export default function PricingSection({ openWhatsApp }) {
-  return (
-    <section id="precios" className="py-32 px-6 relative overflow-hidden" style={{ perspective: '1200px' }}>
+  const isMobile = useIsMobile();
 
-      {/* Background glows */}
+  return (
+    <section id="precios" className="py-32 px-6 relative overflow-hidden" style={isMobile ? undefined : { perspective: '1200px' }}>
+
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto max-w-7xl">
@@ -125,52 +118,57 @@ export default function PricingSection({ openWhatsApp }) {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="relative rounded-[2.5rem] p-[2px] overflow-hidden mb-8"
-          style={{ perspective: '1200px' }}
+          style={isMobile ? undefined : { perspective: '1200px' }}
         >
-          {/* Borde giratorio animado */}
-          <motion.div
-            className="absolute"
-            style={{
-              width: '200%',
-              height: '200%',
-              top: '-50%',
-              left: '-50%',
-              background: 'conic-gradient(from 0deg, transparent 0deg, #10b981 60deg, #3b82f6 180deg, #a855f7 260deg, transparent 320deg)',
-            }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-          />
+          {/* Borde: giratorio en desktop, estático en mobile */}
+          {isMobile ? (
+            <div
+              className="absolute inset-0 rounded-[2.5rem]"
+              style={{ background: 'linear-gradient(135deg, rgba(16,185,129,0.5), rgba(59,130,246,0.4), rgba(168,85,247,0.3))' }}
+            />
+          ) : (
+            <motion.div
+              className="absolute"
+              style={{
+                width: '200%',
+                height: '200%',
+                top: '-50%',
+                left: '-50%',
+                background: 'conic-gradient(from 0deg, transparent 0deg, #10b981 60deg, #3b82f6 180deg, #a855f7 260deg, transparent 320deg)',
+              }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+            />
+          )}
 
-          {/* Card con tilt 3D */}
-          <TiltCard className="relative rounded-[calc(2.5rem-2px)] overflow-hidden shadow-[0_30px_80px_rgba(16,185,129,0.2)]">
-            {/* Fondo */}
+          <TiltCard isMobile={isMobile} className="relative rounded-[calc(2.5rem-2px)] overflow-hidden shadow-[0_30px_80px_rgba(16,185,129,0.2)]">
             <div className="absolute inset-0 bg-gradient-to-br from-[#0d2818] via-[#0a1628] to-[#0d1f3a]" />
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-blue-500/10" />
 
-            {/* Efecto shimmer que barre la card */}
-            <motion.div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: 'linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.05) 50%, transparent 65%)',
-                backgroundSize: '300% 100%',
-              }}
-              animate={{ backgroundPosition: ['300% 0', '-100% 0'] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'linear', repeatDelay: 1.5 }}
-            />
+            {/* Shimmer: solo desktop */}
+            {!isMobile && (
+              <motion.div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.05) 50%, transparent 65%)',
+                  backgroundSize: '300% 100%',
+                }}
+                animate={{ backgroundPosition: ['300% 0', '-100% 0'] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: 'linear', repeatDelay: 1.5 }}
+              />
+            )}
 
-            {/* Glows decorativos */}
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px]" />
             <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px]" />
 
             <div className="relative z-10 p-10 md:p-14 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-              {/* Izquierda */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <motion.span
                     className="bg-emerald-500 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg shadow-emerald-500/30"
-                    animate={{ scale: [1, 1.06, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                    animate={isMobile ? {} : { scale: [1, 1.06, 1] }}
+                    transition={isMobile ? {} : { duration: 2, repeat: Infinity }}
                   >
                     ✦ Nuevo
                   </motion.span>
@@ -184,7 +182,6 @@ export default function PricingSection({ openWhatsApp }) {
                   {sistemaPlan.tagline}
                 </p>
 
-                {/* Pills con entrada escalonada */}
                 <motion.div
                   className="flex flex-wrap gap-2 mb-10"
                   initial="hidden"
@@ -214,14 +211,14 @@ export default function PricingSection({ openWhatsApp }) {
                   onClick={() => openWhatsApp(sistemaPlan.name)}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
-                  animate={{
+                  animate={isMobile ? {} : {
                     boxShadow: [
                       '0 0 40px rgba(16,185,129,0.25)',
                       '0 0 70px rgba(16,185,129,0.55)',
                       '0 0 40px rgba(16,185,129,0.25)',
                     ]
                   }}
-                  transition={{ duration: 2.5, repeat: Infinity }}
+                  transition={isMobile ? {} : { duration: 2.5, repeat: Infinity }}
                   className="w-full sm:w-auto flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-400 hover:to-blue-400 text-white px-10 py-5 rounded-2xl font-black text-lg transition-colors"
                 >
                   Quiero este sistema
@@ -229,7 +226,6 @@ export default function PricingSection({ openWhatsApp }) {
                 </motion.button>
               </div>
 
-              {/* Derecha — features con stagger */}
               <motion.div
                 className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                 initial="hidden"
@@ -255,7 +251,7 @@ export default function PricingSection({ openWhatsApp }) {
         </motion.div>
 
         {/* ── Planes Base — 3 cards ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{ perspective: '1200px' }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={isMobile ? undefined : { perspective: '1200px' }}>
           {pricingPlans.map((plan, i) => (
             <motion.div
               key={i}
@@ -265,8 +261,8 @@ export default function PricingSection({ openWhatsApp }) {
               viewport={{ once: true }}
               className="relative"
             >
-              {/* Glow pulsante para la card popular */}
-              {plan.isPopular && (
+              {/* Glow pulsante: solo desktop */}
+              {plan.isPopular && !isMobile && (
                 <motion.div
                   className="absolute inset-0 rounded-[2.5rem] pointer-events-none"
                   animate={{
@@ -282,6 +278,7 @@ export default function PricingSection({ openWhatsApp }) {
 
               <HoloCard
                 isPopular={plan.isPopular}
+                isMobile={isMobile}
                 className={`relative p-10 rounded-[2.5rem] border flex flex-col h-full ${
                   plan.isPopular
                     ? 'bg-blue-600 border-blue-400'
@@ -330,7 +327,6 @@ export default function PricingSection({ openWhatsApp }) {
           ))}
         </div>
 
-        {/* Footer note */}
         <p className="text-center text-slate-600 text-xs font-bold uppercase tracking-widest mt-12">
           Todos los precios incluyen IVA · Pago en pesos argentinos · Sin costos ocultos
         </p>
