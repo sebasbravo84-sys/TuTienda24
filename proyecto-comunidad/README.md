@@ -6,6 +6,13 @@ Documentación del proyecto para formar una comunidad de familias en un terreno 
 
 - **[PROYECTO.md](./PROYECTO.md)** — Documento completo del proyecto: visión, objetivos, criterios del terreno, marco legal, modelo económico, gobernanza, plan de autosuficiencia, etapas y riesgos.
 - **[CONVOCATORIA.md](./CONVOCATORIA.md)** — Textos listos para difundir (versión completa y versión corta), formulario de interés y guion para la primera reunión informativa.
+- **[web/index.html](./web/index.html)** — Landing web de la convocatoria ("Tierra Común"): página autocontenida (un solo archivo, sin dependencias) con la propuesta, calculadora de aporte por familia, hoja de ruta, preguntas frecuentes y formulario de interés que envía por WhatsApp o email.
+
+## La página web
+
+- **Configurar contacto:** abrir `web/index.html` y completar el bloque `CONFIG` al inicio del `<script>` (WhatsApp con código de país, email y zona de búsqueda). Hasta que se configure, el formulario genera el mensaje y ofrece copiarlo.
+- **Publicar:** el archivo funciona tal cual en cualquier hosting estático (GitHub Pages, Netlify, Vercel) o incluso enviado como archivo. No necesita build ni servidor.
+- **Temas:** se adapta automáticamente al modo claro/oscuro del visitante, con botón para alternar.
 
 ## Cómo usar estos documentos
 
