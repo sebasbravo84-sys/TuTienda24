@@ -32,10 +32,10 @@ Estamos formando un grupo de familias para comprar juntos un terreno rural y con
 2. Te invitamos a una reunión informativa donde presentamos el proyecto completo (documento escrito, con marco legal, económico y organizativo).
 3. El grupo se reúne durante unos meses ANTES de comprar: nos conocemos, trabajamos juntos, y recién ahí se compra el terreno entre quienes estén firmes.
 
-📍 Zona de búsqueda: **[COMPLETAR: provincia/región]**
-📞 Contacto: **[COMPLETAR: teléfono/WhatsApp]**
-📧 **[COMPLETAR: email]**
-📋 Formulario: **[COMPLETAR: link]**
+📍 Zona de búsqueda: **Catamarca, a no más de 25 km de la capital, con acequia o río cerca**
+📞 Contacto: **WhatsApp 3460 40-6121**
+📧 **sebastianbravo84@gmail.com**
+📋 Página y lista de espera: **https://sebasbravo84-sys.github.io/TuTienda24/comunidad/**
 
 *Seriedad ante todo: el proyecto tiene documento escrito, reglas de entrada y salida claras, y nada se firma ni se paga sin marco legal revisado por escribano.*
 
@@ -51,8 +51,8 @@ Compramos un terreno entre varias familias. Cada una con su casa, y entre todos:
 ✅ Se necesita: compromiso de trabajo + aporte para el terreno.
 ✅ Primero nos conocemos en reuniones, después se compra.
 
-📍 Zona: [COMPLETAR] | 📞 [COMPLETAR]
-¿Te interesa? Escribinos y te mandamos el proyecto completo.
+📍 Zona: Catamarca (hasta 25 km de la capital) | 📞 WhatsApp 3460 40-6121
+Toda la info y la lista de espera: https://sebasbravo84-sys.github.io/TuTienda24/comunidad/
 
 ---
 

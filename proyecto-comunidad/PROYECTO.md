@@ -37,6 +37,12 @@ Estos principios se firman al ingresar. Sirven para filtrar a quienes se suman y
 
 ## 4. El terreno
 
+### 4.0 Zona definida
+**Catamarca, a no más de ~25 km de la capital**, con **acequia y/o río muy cerca** —
+condición necesaria para la viabilidad del proyecto y la sustentabilidad de las familias.
+La cercanía a la capital garantiza acceso a escuelas, salud, trámites y un mercado
+para vender los excedentes.
+
 ### 4.1 Criterios de búsqueda
 | Criterio | Mínimo deseable |
 |---|---|
