@@ -18,6 +18,9 @@
 > huerta, los animales, el agua y la energía. La idea es depender cada vez menos de
 > un sueldo para vivir.
 >
+> Te lo cuento a vos porque busco gente de bien — con valores, palabra y conciencia —
+> más que gente con plata. Y sé la clase de persona que sos.
+>
 > No es humo: hay proyecto escrito, con etapas, marco legal y reglas claras. Acá está
 > todo explicado, con una calculadora para ver cuánto saldría por familia:
 > 👉 https://sebasbravo84-sys.github.io/TuTienda24/comunidad/
