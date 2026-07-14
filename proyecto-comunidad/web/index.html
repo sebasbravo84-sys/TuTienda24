@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tierra Común — Comunidad rural autosustentable</title>
-<meta name="description" content="Convocatoria abierta: familias para comprar juntos un terreno rural y construir una comunidad autosustentable. Cada familia con su casa; la producción, entre todos.">
+<meta name="description" content="Convocatoria abierta en Catamarca: familias con principios y conciencia para comprar juntos un campo y construir una comunidad autosustentable. Cada familia con su casa; la producción, entre todos.">
 <style>
 /* ============================================================
    TIERRA COMÚN — landing de convocatoria
@@ -101,12 +101,16 @@ header.site{
   border-bottom:1px solid var(--line);
 }
 .site-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.7rem}
-.brand{display:flex;align-items:center;gap:.6rem;font-family:var(--serif);font-weight:700;font-size:1.1rem;color:var(--ink);text-decoration:none}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:var(--serif);font-weight:700;font-size:1.1rem;color:var(--ink);text-decoration:none;white-space:nowrap}
 .brand svg{flex:none}
 nav.main{display:flex;gap:1.4rem;align-items:center}
 nav.main a{font-size:.9rem;color:var(--ink);text-decoration:none;opacity:.85}
 nav.main a:hover{opacity:1;color:var(--accent-deep)}
-@media (max-width:760px){nav.main a:not(.btn){display:none}}
+@media (max-width:760px){
+  nav.main{gap:.7rem}
+  nav.main a:not(.btn){display:none}
+  nav.main .btn{font-size:.85rem;padding:.55rem .85rem;white-space:nowrap}
+}
 
 /* ---- botones ---- */
 .btn{
@@ -126,27 +130,98 @@ nav.main a:hover{opacity:1;color:var(--accent-deep)}
   border-radius:3px;padding:.45rem .6rem;cursor:pointer;line-height:0;
 }
 
+/* ---- escena del hero (paleta propia, claro = día / oscuro = atardecer) ---- */
+:root{
+  --sc-sky1:#C9E0E4; --sc-sky2:#F4EFD8; --sc-sun:#F2B23B;
+  --sc-far:#B9A98B; --sc-near:#A3B585; --sc-grass:#8FAE6E;
+  --sc-river:#79AFC4; --sc-ripple:#D4E7EE;
+  --sc-adobe:#DCAF80; --sc-door:#8A5A33; --sc-window:#F7E9C9; --sc-roof:#4C7C4C;
+  --sc-soil:#7A5A3C; --sc-hen:#F6F1E4; --sc-people:#3A4A3C; --sc-panel:#33527A;
+  --sun-display:block; --moon-display:none; --win-glow:0;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --sc-sky1:#0D1626; --sc-sky2:#6E4832; --sc-sun:#F2B23B;
+    --sc-far:#3B3B4C; --sc-near:#2C4232; --sc-grass:#2B4227;
+    --sc-river:#40708B; --sc-ripple:#5E8FA8;
+    --sc-adobe:#8A6A4A; --sc-door:#4A3220; --sc-window:#FFCB6B; --sc-roof:#33573B;
+    --sc-soil:#4A3A28; --sc-hen:#C9C3B2; --sc-people:#0E1710; --sc-panel:#24405E;
+    --sun-display:none; --moon-display:block; --win-glow:.45;
+  }
+}
+:root[data-theme="light"]{
+  --sc-sky1:#C9E0E4; --sc-sky2:#F4EFD8; --sc-sun:#F2B23B;
+  --sc-far:#B9A98B; --sc-near:#A3B585; --sc-grass:#8FAE6E;
+  --sc-river:#79AFC4; --sc-ripple:#D4E7EE;
+  --sc-adobe:#DCAF80; --sc-door:#8A5A33; --sc-window:#F7E9C9; --sc-roof:#4C7C4C;
+  --sc-soil:#7A5A3C; --sc-hen:#F6F1E4; --sc-people:#3A4A3C; --sc-panel:#33527A;
+  --sun-display:block; --moon-display:none; --win-glow:0;
+}
+:root[data-theme="dark"]{
+  --sc-sky1:#0D1626; --sc-sky2:#6E4832; --sc-sun:#F2B23B;
+  --sc-far:#3B3B4C; --sc-near:#2C4232; --sc-grass:#2B4227;
+  --sc-river:#40708B; --sc-ripple:#5E8FA8;
+  --sc-adobe:#8A6A4A; --sc-door:#4A3220; --sc-window:#FFCB6B; --sc-roof:#33573B;
+  --sc-soil:#4A3A28; --sc-hen:#C9C3B2; --sc-people:#0E1710; --sc-panel:#24405E;
+  --sun-display:none; --moon-display:block; --win-glow:.45;
+}
+
 /* ---- hero ---- */
-.hero{padding-block:clamp(3rem,8vw,6.5rem) clamp(2.5rem,6vw,5rem);overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.hero{
+  position:relative;overflow:hidden;
+  padding-top:clamp(2.8rem,7vw,4.8rem);
+  padding-bottom:clamp(11rem,19vw,14.5rem);
+  background:linear-gradient(180deg, var(--sc-sky1) 0%, var(--sc-sky2) 92%);
+}
+.hero-scene{
+  position:absolute;left:0;right:0;bottom:-1px;z-index:0;pointer-events:none;
+  height:clamp(230px,30vw,430px);
+}
+.hero-scene svg{position:absolute;inset:0;width:100%;height:100%}
+.scene-sun{display:var(--sun-display)}
+.scene-moon{display:var(--moon-display)}
+.hero-veil{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg, color-mix(in srgb,var(--sc-sky1) 45%,transparent) 0%, transparent 45%);
+}
+.hero-content{position:relative;z-index:2}
+.hero .lead{color:var(--ink);opacity:.82}
 .hero h1 em{
   font-style:normal;color:var(--accent-deep);
   background:linear-gradient(color-mix(in srgb,var(--accent) 35%,transparent),color-mix(in srgb,var(--accent) 35%,transparent)) 0 88%/100% .12em no-repeat;
   -webkit-box-decoration-break:clone;box-decoration-break:clone;
 }
-.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:1.7rem}
 .hero-stats{
-  display:flex;flex-wrap:wrap;gap:0;margin-top:2.8rem;
-  border-top:1px solid var(--line);
+  display:inline-flex;flex-wrap:wrap;gap:0;margin-top:2.1rem;
+  background:color-mix(in srgb,var(--paper) 82%,transparent);
+  backdrop-filter:blur(6px);
+  border:1px solid var(--line);border-radius:6px;
+  padding:.9rem 1.4rem;box-shadow:var(--shadow);
 }
-.hero-stats div{padding:1rem 1.6rem 0 0;margin-right:1.6rem;border-right:1px solid var(--line)}
+.hero-stats div{padding:.2rem 1.4rem .2rem 0;margin-right:1.4rem;border-right:1px solid var(--line)}
 .hero-stats div:last-child{border-right:none;margin-right:0;padding-right:0}
-.hero-stats strong{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:1.35rem;color:var(--ink)}
-.hero-stats span{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.hero-stats strong{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:1.25rem;color:var(--ink)}
+.hero-stats span{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+
+/* ---- franja de valores ---- */
+.values{background:var(--leaf);color:#F3F8EF;border-block:1px solid var(--line)}
+.values .eyebrow{color:#EBD9A8}
+.values .eyebrow::after{background:color-mix(in srgb,#F3F8EF 40%,transparent)}
+.values h2{color:#FBFDF6;max-width:22ch}
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1.2rem;margin-top:2rem}
+.values-grid p{margin:0;font-size:.97rem;opacity:.92;line-height:1.55}
+.values-grid strong{display:block;font-family:var(--serif);font-size:1.12rem;margin-bottom:.35rem;color:#FBFDF6}
+.values-grid .v-item{border-top:2px solid color-mix(in srgb,#EBD9A8 65%,transparent);padding-top:.9rem}
+
+.earn-note{
+  margin-top:1.4rem;padding:1rem 1.3rem;border:1px dashed var(--line-strong);border-radius:6px;
+  font-family:var(--serif);font-size:1.08rem;color:var(--accent-deep);text-align:center;
+}
 
 /* mapa de parcelas */
 .map-card{background:var(--paper);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);padding:1.1rem}
+.map-wide{max-width:46rem;margin-top:clamp(2rem,5vw,3.2rem)}
 .map-caption{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.6rem}
 .map-caption .eyebrow{margin:0}
 .map-caption .eyebrow::after{display:none}
@@ -326,6 +401,7 @@ footer.site .fine{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
       Tierra Común
     </a>
     <nav class="main" aria-label="Secciones">
+      <a href="#valores">Valores</a>
       <a href="#idea">La idea</a>
       <a href="#como-funciona">Cómo funciona</a>
       <a href="#etapas">Etapas</a>
@@ -345,15 +421,138 @@ footer.site .fine{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
 
   <!-- ============ HERO ============ -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">Convocatoria abierta · Catamarca · 2026</p>
-        <h1 id="hero-title">Un terreno. Varias familias. <em>Una vida que no depende de un sueldo.</em></h1>
-        <p class="lead" style="margin-top:1.2rem">
-          Estamos formando un grupo de familias para comprar juntos un campo y construir una
-          comunidad autosustentable: cada familia con su casa y su privacidad, y entre todos
-          la huerta, los animales, el agua y la energía. Con proyecto escrito, reglas claras
-          y marco legal — nada de improvisación.
+    <div class="hero-scene" aria-hidden="true">
+      <svg viewBox="0 0 1600 560" preserveAspectRatio="xMidYMax slice" role="img"
+           aria-label="Paisaje ilustrado: casa de bioconstrucción con paneles solares, huerta, gallinas, una familia, un río y las sierras de Catamarca">
+        <!-- sol (día) -->
+        <g class="scene-sun">
+          <circle cx="1235" cy="140" r="72" fill="var(--sc-sun)" opacity=".22"/>
+          <circle cx="1235" cy="140" r="44" fill="var(--sc-sun)"/>
+        </g>
+        <!-- luna y estrellas (atardecer) -->
+        <g class="scene-moon">
+          <path d="M1252 88 a44 44 0 1 0 26 76 a36 36 0 1 1 -26 -76 z" fill="#EFE8CF"/>
+          <g fill="#EFE8CF">
+            <circle cx="180" cy="80" r="2.2"/><circle cx="340" cy="140" r="1.7"/><circle cx="520" cy="70" r="2"/>
+            <circle cx="700" cy="120" r="1.6"/><circle cx="880" cy="60" r="2.1"/><circle cx="1020" cy="150" r="1.5"/>
+            <circle cx="1420" cy="90" r="2"/><circle cx="1530" cy="170" r="1.6"/><circle cx="90" cy="180" r="1.6"/>
+            <circle cx="1330" cy="210" r="1.5"/><circle cx="620" cy="190" r="1.4"/><circle cx="1140" cy="90" r="1.7"/>
+          </g>
+        </g>
+        <!-- sierras lejanas -->
+        <path d="M0 330 L150 245 L290 305 L460 215 L630 295 L810 235 L990 305 L1170 255 L1360 315 L1600 262 V560 H0 Z" fill="var(--sc-far)"/>
+        <!-- lomas cercanas -->
+        <path d="M0 388 Q210 336 430 374 Q650 410 880 380 Q1110 352 1330 384 Q1470 402 1600 378 V560 H0 Z" fill="var(--sc-near)"/>
+        <!-- pradera en primer plano -->
+        <path d="M0 458 Q400 434 800 452 Q1200 468 1600 448 V560 H0 Z" fill="var(--sc-grass)"/>
+        <!-- río -->
+        <path d="M1245 388 C1200 424 1330 442 1270 470 C1215 496 1360 516 1300 560 L1460 560 C1400 512 1520 498 1450 466 C1390 438 1480 416 1425 390 Z" fill="var(--sc-river)"/>
+        <g stroke="var(--sc-ripple)" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7">
+          <path d="M1290 440 q22 -8 44 0"/>
+          <path d="M1330 500 q22 -8 44 0"/>
+        </g>
+        <!-- frutales -->
+        <g>
+          <rect x="404" y="422" width="10" height="46" rx="4" fill="var(--sc-door)"/>
+          <circle cx="409" cy="404" r="34" fill="var(--sc-roof)"/>
+          <circle cx="396" cy="398" r="4" fill="var(--accent)"/><circle cx="420" cy="392" r="4" fill="var(--accent)"/><circle cx="412" cy="416" r="4" fill="var(--accent)"/>
+          <rect x="1508" y="410" width="10" height="52" rx="4" fill="var(--sc-door)"/>
+          <circle cx="1513" cy="392" r="36" fill="var(--sc-roof)"/>
+          <circle cx="1500" cy="386" r="4" fill="var(--accent)"/><circle cx="1526" cy="380" r="4" fill="var(--accent)"/><circle cx="1518" cy="404" r="4" fill="var(--accent)"/>
+        </g>
+        <!-- casa de bioconstrucción -->
+        <g>
+          <!-- techo vivo -->
+          <path d="M540 384 Q660 322 786 384 L774 402 Q660 350 552 402 Z" fill="var(--sc-roof)"/>
+          <path d="M560 388 q8 -10 14 -2 M620 372 q8 -10 14 -2 M690 368 q8 -10 14 -2 M746 382 q8 -10 14 -2" stroke="var(--sc-roof)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- muros de adobe redondeados -->
+          <path d="M556 500 V412 q0 -22 22 -22 h170 q22 0 22 22 v88 z" fill="var(--sc-adobe)"/>
+          <!-- resplandor de ventanas (solo atardecer) -->
+          <circle cx="600" cy="446" r="26" fill="#FFC96B" opacity="var(--win-glow)"/>
+          <circle cx="712" cy="446" r="26" fill="#FFC96B" opacity="var(--win-glow)"/>
+          <!-- puerta de arco y ventanas -->
+          <path d="M642 500 v-56 q0 -18 18 -18 q18 0 18 18 v56 z" fill="var(--sc-door)"/>
+          <rect x="586" y="432" width="28" height="30" rx="6" fill="var(--sc-window)"/>
+          <rect x="698" y="432" width="28" height="30" rx="6" fill="var(--sc-window)"/>
+        </g>
+        <!-- paneles solares -->
+        <g>
+          <path d="M816 466 l64 -26 12 22 -64 26 z" fill="var(--sc-panel)"/>
+          <path d="M836 462 l8 14 M856 454 l8 14 M828 452 l60 -24" stroke="var(--sc-window)" stroke-width="2" fill="none" opacity=".8"/>
+          <rect x="838" y="470" width="6" height="26" fill="var(--sc-door)"/>
+          <rect x="862" y="462" width="6" height="34" fill="var(--sc-door)"/>
+        </g>
+        <!-- huerta en bancales -->
+        <g>
+          <rect x="952" y="486" width="190" height="14" rx="7" fill="var(--sc-soil)"/>
+          <rect x="964" y="514" width="190" height="14" rx="7" fill="var(--sc-soil)"/>
+          <rect x="976" y="542" width="190" height="14" rx="7" fill="var(--sc-soil)"/>
+          <g fill="var(--sc-roof)">
+            <circle cx="972" cy="482" r="7"/><circle cx="1002" cy="480" r="7"/><circle cx="1032" cy="482" r="7"/><circle cx="1062" cy="480" r="7"/><circle cx="1092" cy="482" r="7"/><circle cx="1122" cy="480" r="7"/>
+            <circle cx="986" cy="510" r="7"/><circle cx="1016" cy="508" r="7"/><circle cx="1046" cy="510" r="7"/><circle cx="1076" cy="508" r="7"/><circle cx="1106" cy="510" r="7"/><circle cx="1136" cy="508" r="7"/>
+            <circle cx="998" cy="538" r="7"/><circle cx="1028" cy="536" r="7"/><circle cx="1058" cy="538" r="7"/><circle cx="1088" cy="536" r="7"/><circle cx="1118" cy="538" r="7"/><circle cx="1148" cy="536" r="7"/>
+          </g>
+        </g>
+        <!-- gallinas -->
+        <g>
+          <g transform="translate(508 522)">
+            <path d="M-8 -6 l-9 -8 v12 z" fill="var(--sc-hen)"/>
+            <ellipse cx="0" cy="0" rx="15" ry="11" fill="var(--sc-hen)"/>
+            <circle cx="13" cy="-9" r="6" fill="var(--sc-hen)"/>
+            <path d="M12 -16 l3 -4 3 4 z" fill="#C24B33"/>
+            <path d="M19 -8 l6 2 -6 2 z" fill="var(--accent)"/>
+            <path d="M-3 10 v7 M5 10 v7" stroke="var(--sc-door)" stroke-width="2.4" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(468 540) scale(.85)">
+            <path d="M-8 -6 l-9 -8 v12 z" fill="var(--sc-hen)"/>
+            <ellipse cx="0" cy="0" rx="15" ry="11" fill="var(--sc-hen)"/>
+            <circle cx="13" cy="-9" r="6" fill="var(--sc-hen)"/>
+            <path d="M12 -16 l3 -4 3 4 z" fill="#C24B33"/>
+            <path d="M19 -8 l6 2 -6 2 z" fill="var(--accent)"/>
+            <path d="M-3 10 v7 M5 10 v7" stroke="var(--sc-door)" stroke-width="2.4" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(552 544) scale(.7) rotate(12)">
+            <path d="M-8 -6 l-9 -8 v12 z" fill="var(--sc-hen)"/>
+            <ellipse cx="0" cy="0" rx="15" ry="11" fill="var(--sc-hen)"/>
+            <circle cx="13" cy="-9" r="6" fill="var(--sc-hen)"/>
+            <path d="M12 -16 l3 -4 3 4 z" fill="#C24B33"/>
+            <path d="M19 -8 l6 2 -6 2 z" fill="var(--accent)"/>
+            <path d="M-3 10 v7 M5 10 v7" stroke="var(--sc-door)" stroke-width="2.4" stroke-linecap="round"/>
+          </g>
+        </g>
+        <!-- familia (tomados de la mano) -->
+        <g fill="var(--sc-people)">
+          <g transform="translate(880 492)">
+            <circle cx="0" cy="-44" r="10"/>
+            <path d="M-10 -30 q10 -8 20 0 l4 44 h-8 l-4 -26 h-4 l-4 26 h-8 z"/>
+          </g>
+          <g transform="translate(916 496)">
+            <circle cx="0" cy="-40" r="9"/>
+            <path d="M-11 -26 q11 -8 22 0 l2 40 h-26 z"/>
+          </g>
+          <g transform="translate(946 502)">
+            <circle cx="0" cy="-26" r="7"/>
+            <path d="M-7 -16 q7 -6 14 0 l3 30 h-6 l-4 -18 h-2 l-3 18 h-6 z"/>
+          </g>
+          <path d="M896 470 q8 6 14 2 M930 474 q8 4 12 2" stroke="var(--sc-people)" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </g>
+        <!-- cerco -->
+        <g stroke="var(--sc-door)" stroke-width="4" stroke-linecap="round" opacity=".75">
+          <path d="M120 512 v30 M170 508 v34 M220 512 v30 M270 510 v32"/>
+          <path d="M108 522 h176"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero-veil" aria-hidden="true"></div>
+    <div class="wrap hero-content">
+      <div style="max-width:44rem">
+        <p class="eyebrow">Convocatoria abierta · Catamarca · Para familias con valores</p>
+        <h1 id="hero-title">Volver a la tierra, entre <em>gente de bien</em>.</h1>
+        <p class="lead" style="margin-top:1.1rem">
+          Buscamos familias con principios, palabra y conciencia para comprar juntos un campo
+          cerca de la capital de Catamarca y vivir en comunidad autosustentable: cada familia
+          con su casa, y entre todos la huerta, los animales, el agua y la energía. Una vida
+          con sentido, que no dependa de un sueldo — con proyecto escrito y reglas claras.
         </p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="#sumate">Anotarme en la lista de espera</a>
@@ -363,75 +562,35 @@ footer.site .fine{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
           <div role="listitem"><strong class="num">5–15</strong><span>familias</span></div>
           <div role="listitem"><strong class="num">5–20 ha</strong><span>de terreno</span></div>
           <div role="listitem"><strong class="num">60–70%</strong><span>meta de autosuficiencia</span></div>
-          <div role="listitem"><strong class="num">≤25 km</strong><span>de la capital de Catamarca</span></div>
+          <div role="listitem"><strong class="num">≤25 km</strong><span>de la capital</span></div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <figure class="map-card reveal" aria-label="Plano ilustrativo del terreno compartido">
-        <div class="map-caption">
-          <p class="eyebrow">Plano ilustrativo</p>
-          <span class="num" style="font-size:.72rem;color:var(--muted)">ESC 1:2500</span>
+  <!-- ============ VALORES ============ -->
+  <section class="values" id="valores" aria-labelledby="valores-title">
+    <div class="wrap">
+      <p class="eyebrow">Nuestros valores</p>
+      <h2 id="valores-title">Acá valen más los principios que el capital.</h2>
+      <div class="values-grid">
+        <div class="v-item">
+          <strong>Honestidad y palabra</strong>
+          <p>Lo que se dice, se cumple. Los acuerdos se firman y se honran — la confianza es el primer ladrillo de la comunidad.</p>
         </div>
-        <svg viewBox="0 0 520 400" role="img" aria-label="Vista aérea esquemática: lotes familiares, huerta común, frutales, salón común y monte de reserva">
-          <!-- campo -->
-          <rect x="8" y="8" width="504" height="384" rx="10" fill="var(--ground)" stroke="var(--line-strong)" stroke-width="2" stroke-dasharray="7 5"/>
-          <!-- camino -->
-          <path d="M8 210 H180 Q210 210 210 180 V8" fill="none" stroke="var(--soil)" stroke-width="14" stroke-linecap="round" opacity=".45"/>
-          <!-- lotes familiares (izquierda abajo) -->
-          <g stroke="var(--line-strong)" stroke-width="1.5">
-            <rect x="28" y="238" width="84" height="64" fill="var(--paper)"/>
-            <rect x="120" y="238" width="84" height="64" fill="var(--paper)"/>
-            <rect x="28" y="310" width="84" height="64" fill="var(--paper)"/>
-            <rect x="120" y="310" width="84" height="64" fill="var(--paper)"/>
-            <rect x="212" y="310" width="84" height="64" fill="var(--paper)"/>
-            <rect x="304" y="310" width="84" height="64" fill="var(--paper)"/>
-          </g>
-          <!-- casitas -->
-          <g fill="var(--accent)">
-            <path d="M60 262 l12-10 12 10 v14 h-24z"/><path d="M152 262 l12-10 12 10 v14 h-24z"/>
-            <path d="M60 334 l12-10 12 10 v14 h-24z"/><path d="M152 334 l12-10 12 10 v14 h-24z"/>
-            <path d="M244 334 l12-10 12 10 v14 h-24z"/><path d="M336 334 l12-10 12 10 v14 h-24z"/>
-          </g>
-          <!-- huerta común (surcos) -->
-          <g>
-            <rect x="240" y="28" width="150" height="160" fill="var(--leaf)" opacity=".22" stroke="var(--leaf)" stroke-width="1.5"/>
-            <g stroke="var(--leaf)" stroke-width="3" stroke-linecap="round" opacity=".7">
-              <line x1="256" y1="44" x2="256" y2="172"/><line x1="278" y1="44" x2="278" y2="172"/>
-              <line x1="300" y1="44" x2="300" y2="172"/><line x1="322" y1="44" x2="322" y2="172"/>
-              <line x1="344" y1="44" x2="344" y2="172"/><line x1="366" y1="44" x2="366" y2="172"/>
-            </g>
-          </g>
-          <!-- frutales (grilla de copas) -->
-          <g fill="var(--leaf)" opacity=".55">
-            <circle cx="252" cy="222" r="9"/><circle cx="284" cy="222" r="9"/><circle cx="316" cy="222" r="9"/><circle cx="348" cy="222" r="9"/><circle cx="380" cy="222" r="9"/>
-            <circle cx="268" cy="252" r="9"/><circle cx="300" cy="252" r="9"/><circle cx="332" cy="252" r="9"/><circle cx="364" cy="252" r="9"/>
-          </g>
-          <!-- salón común -->
-          <rect x="128" y="120" width="72" height="56" fill="var(--accent)" opacity=".9" rx="3"/>
-          <path d="M128 120 h72 l-36 -18 z" fill="var(--accent-deep)"/>
-          <!-- monte de reserva -->
-          <g>
-            <rect x="404" y="24" width="96" height="352" fill="var(--leaf)" opacity=".14"/>
-            <g fill="var(--leaf)" opacity=".8">
-              <circle cx="430" cy="60" r="12"/><circle cx="470" cy="92" r="14"/><circle cx="436" cy="140" r="11"/>
-              <circle cx="478" cy="184" r="13"/><circle cx="432" cy="226" r="13"/><circle cx="472" cy="270" r="11"/>
-              <circle cx="438" cy="312" r="14"/><circle cx="478" cy="350" r="11"/>
-            </g>
-          </g>
-          <!-- agua -->
-          <g stroke="#4A8FB5" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8">
-            <path d="M30 60 q18 -10 36 0 t36 0"/>
-            <path d="M30 78 q18 -10 36 0 t36 0"/>
-          </g>
-          <text x="30" y="112" font-family="ui-monospace,monospace" font-size="11" fill="var(--muted)">AGUA</text>
-        </svg>
-        <figcaption class="legend">
-          <span><i style="background:var(--paper)"></i>Lotes familiares</span>
-          <span><i style="background:var(--leaf);opacity:.5"></i>Huerta y frutales</span>
-          <span><i style="background:var(--accent)"></i>Espacios comunes</span>
-          <span><i style="background:var(--leaf);opacity:.2"></i>Monte de reserva</span>
-        </figcaption>
-      </figure>
+        <div class="v-item">
+          <strong>Respeto por la vida</strong>
+          <p>Por la tierra, el agua, los animales y las personas. Cuidamos lo que nos da de comer y se lo dejamos mejor a nuestros hijos.</p>
+        </div>
+        <div class="v-item">
+          <strong>Conciencia que crece</strong>
+          <p>Venimos a crecer como personas, no solo como huerta: aprender, compartir, mirar hacia adentro y elevar la forma en que vivimos.</p>
+        </div>
+        <div class="v-item">
+          <strong>Sin especulación</strong>
+          <p>Quien llega preguntando solo qué gana, y nunca qué aporta, no pasa de la primera reunión. Esto se construye dando.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -513,6 +672,63 @@ footer.site .fine{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
           </ul>
         </div>
       </div>
+
+      <figure class="map-card map-wide reveal" aria-label="Plano ilustrativo del terreno compartido">
+        <div class="map-caption">
+          <p class="eyebrow">Plano ilustrativo del terreno</p>
+          <span class="num" style="font-size:.72rem;color:var(--muted)">ESC 1:2500</span>
+        </div>
+        <svg viewBox="0 0 520 400" role="img" aria-label="Vista aérea esquemática: lotes familiares, huerta común, frutales, salón común y monte de reserva">
+          <rect x="8" y="8" width="504" height="384" rx="10" fill="var(--ground)" stroke="var(--line-strong)" stroke-width="2" stroke-dasharray="7 5"/>
+          <path d="M8 210 H180 Q210 210 210 180 V8" fill="none" stroke="var(--soil)" stroke-width="14" stroke-linecap="round" opacity=".45"/>
+          <g stroke="var(--line-strong)" stroke-width="1.5">
+            <rect x="28" y="238" width="84" height="64" fill="var(--paper)"/>
+            <rect x="120" y="238" width="84" height="64" fill="var(--paper)"/>
+            <rect x="28" y="310" width="84" height="64" fill="var(--paper)"/>
+            <rect x="120" y="310" width="84" height="64" fill="var(--paper)"/>
+            <rect x="212" y="310" width="84" height="64" fill="var(--paper)"/>
+            <rect x="304" y="310" width="84" height="64" fill="var(--paper)"/>
+          </g>
+          <g fill="var(--accent)">
+            <path d="M60 262 l12-10 12 10 v14 h-24z"/><path d="M152 262 l12-10 12 10 v14 h-24z"/>
+            <path d="M60 334 l12-10 12 10 v14 h-24z"/><path d="M152 334 l12-10 12 10 v14 h-24z"/>
+            <path d="M244 334 l12-10 12 10 v14 h-24z"/><path d="M336 334 l12-10 12 10 v14 h-24z"/>
+          </g>
+          <g>
+            <rect x="240" y="28" width="150" height="160" fill="var(--leaf)" opacity=".22" stroke="var(--leaf)" stroke-width="1.5"/>
+            <g stroke="var(--leaf)" stroke-width="3" stroke-linecap="round" opacity=".7">
+              <line x1="256" y1="44" x2="256" y2="172"/><line x1="278" y1="44" x2="278" y2="172"/>
+              <line x1="300" y1="44" x2="300" y2="172"/><line x1="322" y1="44" x2="322" y2="172"/>
+              <line x1="344" y1="44" x2="344" y2="172"/><line x1="366" y1="44" x2="366" y2="172"/>
+            </g>
+          </g>
+          <g fill="var(--leaf)" opacity=".55">
+            <circle cx="252" cy="222" r="9"/><circle cx="284" cy="222" r="9"/><circle cx="316" cy="222" r="9"/><circle cx="348" cy="222" r="9"/><circle cx="380" cy="222" r="9"/>
+            <circle cx="268" cy="252" r="9"/><circle cx="300" cy="252" r="9"/><circle cx="332" cy="252" r="9"/><circle cx="364" cy="252" r="9"/>
+          </g>
+          <rect x="128" y="120" width="72" height="56" fill="var(--accent)" opacity=".9" rx="3"/>
+          <path d="M128 120 h72 l-36 -18 z" fill="var(--accent-deep)"/>
+          <g>
+            <rect x="404" y="24" width="96" height="352" fill="var(--leaf)" opacity=".14"/>
+            <g fill="var(--leaf)" opacity=".8">
+              <circle cx="430" cy="60" r="12"/><circle cx="470" cy="92" r="14"/><circle cx="436" cy="140" r="11"/>
+              <circle cx="478" cy="184" r="13"/><circle cx="432" cy="226" r="13"/><circle cx="472" cy="270" r="11"/>
+              <circle cx="438" cy="312" r="14"/><circle cx="478" cy="350" r="11"/>
+            </g>
+          </g>
+          <g stroke="#4A8FB5" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8">
+            <path d="M30 60 q18 -10 36 0 t36 0"/>
+            <path d="M30 78 q18 -10 36 0 t36 0"/>
+          </g>
+          <text x="30" y="112" font-family="ui-monospace,monospace" font-size="11" fill="var(--muted)">AGUA</text>
+        </svg>
+        <figcaption class="legend">
+          <span><i style="background:var(--paper)"></i>Lotes familiares</span>
+          <span><i style="background:var(--leaf);opacity:.5"></i>Huerta y frutales</span>
+          <span><i style="background:var(--accent)"></i>Espacios comunes</span>
+          <span><i style="background:var(--leaf);opacity:.2"></i>Monte de reserva</span>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -609,6 +825,7 @@ footer.site .fine{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
         <div class="panel reveal">
           <h3>Lo que sí hace falta</h3>
           <ul class="checklist">
+            <li><strong>Principios y palabra:</strong> gente buena de verdad, con moral y conciencia. Lo que prometés, lo cumplís — acá eso vale más que el capital.</li>
             <li><strong>Ganas de trabajar en serio:</strong> el campo es esfuerzo físico y constancia, no unas vacaciones largas.</li>
             <li><strong>Algún oficio o habilidad:</strong> huerta, construcción, electricidad, cocina, salud, educación, administración — todo suma.</li>
             <li><strong>Capacidad de aporte:</strong> económico para el terreno, o más horas de trabajo si el capital no alcanza (por contrato escrito).</li>
@@ -626,6 +843,7 @@ footer.site .fine{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
           </ul>
         </div>
       </div>
+      <p class="earn-note reveal">Los lugares no se compran: se ganan con compromiso, presencia y palabra cumplida.</p>
     </div>
   </section>
 
@@ -637,6 +855,10 @@ footer.site .fine{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
         <h2 id="faq-title">Las dudas que todos tienen (y está bien tenerlas)</h2>
       </div>
       <div class="faq reveal">
+        <details>
+          <summary>¿Qué clase de personas buscan?</summary>
+          <p>Gente buena de verdad. Familias con principios, moral y palabra cumplida, que quieran vivir con más conciencia: del cuidado de la tierra, de cómo se cría a los hijos, de lo que comemos y de cómo tratamos al otro. No importa tu religión ni tu origen — importa cómo vivís. Y no hace falta ser perfecto: hace falta ser honesto y tener ganas de crecer.</p>
+        </details>
         <details>
           <summary>¿Esto es una comuna donde todo es de todos?</summary>
           <p>No. Cada familia tiene su casa, su espacio y su economía propia. Lo compartido es la infraestructura (agua, energía, salón, herramientas) y la producción de alimentos. Es un modelo mixto: autonomía en lo privado, colaboración en lo común.</p>
@@ -753,8 +975,9 @@ footer.site .fine{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
       <p>
         Este proyecto lleva años, no meses. Va a haber esfuerzo físico, asambleas largas y
         aprendizaje a los tropezones. Lo que ofrecemos no es un paraíso instantáneo: es un plan
-        serio, por etapas y con reglas claras, para construir entre familias una vida más libre.
-        Si llegaste hasta acá y te sigue interesando, probablemente seas de los nuestros.
+        serio, por etapas y con reglas claras, para construir entre gente de bien una vida más
+        libre y más consciente. Si llegaste hasta acá y algo se te movió adentro, probablemente
+        seas de los nuestros. La tierra está esperando — lo que falta sos vos.
       </p>
       <p class="fine">Tierra Común · Proyecto de comunidad rural autosustentable · 2026</p>
     </div>

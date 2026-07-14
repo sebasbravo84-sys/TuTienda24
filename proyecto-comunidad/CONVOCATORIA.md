@@ -18,6 +18,7 @@ Estamos formando un grupo de familias para comprar juntos un terreno rural y con
 - 💰 Aporte inicial para la compra del terreno + trabajo semanal en lo común.
 
 **Buscamos familias que:**
+- Sean gente de bien: principios, palabra cumplida y conciencia. Acá vale más cómo vivís que cuánto tenés.
 - Tengan compromiso real de trabajo (el campo es esfuerzo, no vacaciones).
 - Aporten algún oficio o habilidad: huerta, construcción, electricidad, salud, cocina, educación, administración, lo que sea.
 - Puedan hacer un aporte económico para la compra del terreno (el monto se define entre todos según el terreno; hay opciones para quien puede aportar más trabajo que dinero).
