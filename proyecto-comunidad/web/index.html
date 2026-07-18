@@ -130,62 +130,6 @@ nav.main a:hover{opacity:1;color:var(--accent-deep)}
   border-radius:3px;padding:.45rem .6rem;cursor:pointer;line-height:0;
 }
 
-/* ---- escena del hero (paleta atmosférica, claro = atardecer dorado / oscuro = noche) ---- */
-:root{
-  --sky-top:#5D93BE; --sky-mid:#E8A868; --sky-horizon:#FBDFA0;
-  --cloud:#FFF1D6; --cloud-shade:#E3B678;
-  --mtn-far:#93A6C0; --mtn-mid:#7C8F6E; --hill:#5E7F49; --treeline:#3E6238;
-  --river:#3E7EA0; --river-light:#CFE7EC;
-  --path:#B08A5C; --soil:#5A3C24; --crop:#4B7A3C; --crop-light:#7CAE58;
-  --wood:#8B5A35; --wood-dark:#5E3A20; --sign-ink:#3A2413;
-  --cob:#CC9868; --cob-shade:#A8744C; --sc-roof:#3E6238; --roof-light:#5A8548;
-  --sc-window:#FFDE9A; --window-strong:#FFC363;
-  --sc-panel:#25405E; --panel-light:#3C5C82; --glass:#CFE6E2;
-  --sc-hen:#F5EEDD; --hen-comb:#C0392E; --sc-people:#241C12; --rim:#FFD98A;
-  --sun-display:block; --moon-display:none; --win-glow:0; --warm-wash:.16;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --sky-top:#141B33; --sky-mid:#5B3F58; --sky-horizon:#B5673F;
-    --cloud:#6E5E77; --cloud-shade:#3D3446;
-    --mtn-far:#2B3350; --mtn-mid:#333F2E; --hill:#28381F; --treeline:#16230F;
-    --river:#2C4A63; --river-light:#5D8AA0;
-    --path:#4A3826; --soil:#2A1D11; --crop:#20351A; --crop-light:#324E29;
-    --wood:#6B4B30; --wood-dark:#3F2A19; --sign-ink:#2A1B0E;
-    --cob:#8C6A48; --cob-shade:#5F452E; --sc-roof:#1F3A22; --roof-light:#2C4A2C;
-    --sc-window:#FFCB6B; --window-strong:#FFB454;
-    --sc-panel:#16283D; --panel-light:#22405E; --glass:#3C5560;
-    --sc-hen:#C9C3B2; --hen-comb:#8B3A2E; --sc-people:#0D0B07; --rim:#FFCB6B;
-    --sun-display:none; --moon-display:block; --win-glow:.6; --warm-wash:.1;
-  }
-}
-:root[data-theme="light"]{
-  --sky-top:#5D93BE; --sky-mid:#E8A868; --sky-horizon:#FBDFA0;
-  --cloud:#FFF1D6; --cloud-shade:#E3B678;
-  --mtn-far:#93A6C0; --mtn-mid:#7C8F6E; --hill:#5E7F49; --treeline:#3E6238;
-  --river:#3E7EA0; --river-light:#CFE7EC;
-  --path:#B08A5C; --soil:#5A3C24; --crop:#4B7A3C; --crop-light:#7CAE58;
-  --wood:#8B5A35; --wood-dark:#5E3A20; --sign-ink:#3A2413;
-  --cob:#CC9868; --cob-shade:#A8744C; --sc-roof:#3E6238; --roof-light:#5A8548;
-  --sc-window:#FFDE9A; --window-strong:#FFC363;
-  --sc-panel:#25405E; --panel-light:#3C5C82; --glass:#CFE6E2;
-  --sc-hen:#F5EEDD; --hen-comb:#C0392E; --sc-people:#241C12; --rim:#FFD98A;
-  --sun-display:block; --moon-display:none; --win-glow:0; --warm-wash:.16;
-}
-:root[data-theme="dark"]{
-  --sky-top:#141B33; --sky-mid:#5B3F58; --sky-horizon:#B5673F;
-  --cloud:#6E5E77; --cloud-shade:#3D3446;
-  --mtn-far:#2B3350; --mtn-mid:#333F2E; --hill:#28381F; --treeline:#16230F;
-  --river:#2C4A63; --river-light:#5D8AA0;
-  --path:#4A3826; --soil:#2A1D11; --crop:#20351A; --crop-light:#324E29;
-  --wood:#6B4B30; --wood-dark:#3F2A19; --sign-ink:#2A1B0E;
-  --cob:#8C6A48; --cob-shade:#5F452E; --sc-roof:#1F3A22; --roof-light:#2C4A2C;
-  --sc-window:#FFCB6B; --window-strong:#FFB454;
-  --sc-panel:#16283D; --panel-light:#22405E; --glass:#3C5560;
-  --sc-hen:#C9C3B2; --hen-comb:#8B3A2E; --sc-people:#0D0B07; --rim:#FFCB6B;
-  --sun-display:none; --moon-display:block; --win-glow:.6; --warm-wash:.1;
-}
-
 /* ---- hero (escena a pantalla completa) ---- */
 .hero{
   position:relative;overflow:hidden;isolation:isolate;
@@ -193,17 +137,26 @@ nav.main a:hover{opacity:1;color:var(--accent-deep)}
   display:flex;align-items:center;
   padding-block:clamp(6.5rem,14vw,7.5rem) clamp(3rem,7vw,4rem);
 }
-.hero-scene{position:absolute;inset:0;z-index:0;pointer-events:none}
-.hero-scene svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.scene-sun{display:var(--sun-display)}
-.scene-moon{display:var(--moon-display)}
-.hero-scrim{
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    linear-gradient(100deg, rgba(8,10,6,.76) 0%, rgba(8,10,6,.58) 34%, rgba(8,10,6,.2) 62%, rgba(8,10,6,0) 82%),
-    linear-gradient(180deg, rgba(8,10,6,.28) 0%, rgba(8,10,6,0) 26%, rgba(8,10,6,0) 68%, rgba(8,10,6,.4) 100%);
+.hero-scene{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('hero-familia.jpg');
+  background-size:cover;
+  background-position:60% 38%;
 }
-.hero-content{position:relative;z-index:2;width:100%}
+.hero-night{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:rgba(8,14,30,.55);
+  opacity:0;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero-night{opacity:1}}
+:root[data-theme="dark"] .hero-night{opacity:1}
+.hero-scrim{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(100deg, rgba(8,10,6,.8) 0%, rgba(8,10,6,.6) 34%, rgba(8,10,6,.22) 62%, rgba(8,10,6,0) 82%),
+    linear-gradient(180deg, rgba(8,10,6,.3) 0%, rgba(8,10,6,0) 26%, rgba(8,10,6,0) 68%, rgba(8,10,6,.42) 100%);
+}
+.hero-content{position:relative;z-index:3;width:100%}
 .hero .eyebrow{color:#F2CB7E}
 .hero .eyebrow::after{background:rgba(255,255,255,.4)}
 .hero h1{color:#FBF7EC;text-shadow:0 3px 18px rgba(0,0,0,.4)}
@@ -446,271 +399,10 @@ footer.site .fine{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
 
   <!-- ============ HERO ============ -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-scene" aria-hidden="true">
-      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img"
-           aria-label="Paisaje de atardecer: casa de bioconstrucción con techo vivo y paneles solares, huerta, gallinas, una familia caminando hacia su hogar, un río, las sierras de Catamarca y un cartel de madera que dice Tierra, Familia, Libertad, Comunidad">
-        <defs>
-          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="var(--sky-top)"/>
-            <stop offset="55%" stop-color="var(--sky-mid)"/>
-            <stop offset="100%" stop-color="var(--sky-horizon)"/>
-          </linearGradient>
-          <radialGradient id="sunHalo" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#FFE9B0" stop-opacity=".55"/>
-            <stop offset="100%" stop-color="#FFE9B0" stop-opacity="0"/>
-          </radialGradient>
-          <linearGradient id="riverG" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="var(--sky-horizon)" stop-opacity=".7"/>
-            <stop offset="100%" stop-color="var(--river)"/>
-          </linearGradient>
-          <linearGradient id="panelG" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="var(--panel-light)"/>
-            <stop offset="100%" stop-color="var(--sc-panel)"/>
-          </linearGradient>
-          <radialGradient id="warmWash" cx="30%" cy="26%" r="75%">
-            <stop offset="0%" stop-color="#FFCD7C" stop-opacity="var(--warm-wash)"/>
-            <stop offset="100%" stop-color="#FFCD7C" stop-opacity="0"/>
-          </radialGradient>
-          <filter id="haze" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="7"/>
-          </filter>
-        </defs>
-
-        <!-- cielo -->
-        <rect x="0" y="0" width="1600" height="900" fill="url(#skyG)"/>
-
-        <!-- sol de atardecer -->
-        <g class="scene-sun">
-          <circle cx="330" cy="290" r="190" fill="url(#sunHalo)"/>
-          <circle cx="330" cy="290" r="58" fill="#FFD873"/>
-        </g>
-        <!-- luna y estrellas -->
-        <g class="scene-moon">
-          <circle cx="330" cy="290" r="150" fill="url(#sunHalo)" opacity=".5"/>
-          <path d="M348 246 a44 44 0 1 0 22 78 a36 36 0 1 1 -22 -78 z" fill="#F2ECD6"/>
-          <g fill="#F2ECD6">
-            <circle cx="120" cy="120" r="2.2"/><circle cx="230" cy="90" r="1.6"/><circle cx="520" cy="70" r="2"/>
-            <circle cx="640" cy="130" r="1.6"/><circle cx="760" cy="60" r="2.1"/><circle cx="900" cy="110" r="1.5"/>
-            <circle cx="1040" cy="70" r="1.8"/><circle cx="1180" cy="130" r="1.5"/><circle cx="1320" cy="80" r="2"/>
-            <circle cx="1460" cy="140" r="1.6"/><circle cx="70" cy="220" r="1.5"/><circle cx="1550" cy="200" r="1.7"/>
-          </g>
-        </g>
-
-        <!-- nubes -->
-        <g opacity=".9">
-          <g>
-            <ellipse cx="820" cy="128" rx="86" ry="30" fill="var(--cloud-shade)" opacity=".55"/>
-            <circle cx="760" cy="118" r="30" fill="var(--cloud)"/><circle cx="800" cy="104" r="38" fill="var(--cloud)"/>
-            <circle cx="846" cy="112" r="32" fill="var(--cloud)"/><circle cx="884" cy="122" r="26" fill="var(--cloud)"/>
-          </g>
-          <g>
-            <ellipse cx="1290" cy="168" rx="70" ry="24" fill="var(--cloud-shade)" opacity=".5"/>
-            <circle cx="1244" cy="160" r="24" fill="var(--cloud)"/><circle cx="1276" cy="148" r="30" fill="var(--cloud)"/>
-            <circle cx="1312" cy="156" r="25" fill="var(--cloud)"/>
-          </g>
-        </g>
-
-        <!-- sierras lejanas (con neblina atmosférica) -->
-        <g filter="url(#haze)" opacity=".9">
-          <path d="M0 430 L140 340 L300 400 L480 300 L660 390 L860 320 L1060 400 L1260 330 L1460 410 L1600 350 V620 H0 Z" fill="var(--mtn-far)"/>
-        </g>
-        <!-- sierras medias, con línea de monte -->
-        <path d="M0 486 Q220 420 460 462 Q700 502 940 458 Q1180 418 1420 468 Q1520 486 1600 460 V620 H0 Z" fill="var(--mtn-mid)"/>
-        <g fill="var(--treeline)" opacity=".85">
-          <circle cx="120" cy="470" r="16"/><circle cx="150" cy="460" r="20"/><circle cx="185" cy="472" r="15"/>
-          <circle cx="900" cy="440" r="17"/><circle cx="935" cy="430" r="21"/><circle cx="972" cy="444" r="16"/>
-          <circle cx="1330" cy="450" r="16"/><circle cx="1365" cy="440" r="20"/><circle cx="1400" cy="454" r="15"/>
-        </g>
-
-        <!-- árbol alto en primer plano izquierdo (marco de la escena) -->
-        <g>
-          <path d="M46 900 V520" stroke="#3E2C1B" stroke-width="20" stroke-linecap="round"/>
-          <path d="M46 560 q-46 -30 -70 -90 M46 540 q50 -26 78 -80 M46 610 q-56 -18 -92 -8" stroke="#3E2C1B" stroke-width="10" fill="none" stroke-linecap="round"/>
-          <g fill="var(--treeline)">
-            <circle cx="-40" cy="430" r="60"/><circle cx="30" cy="390" r="78"/><circle cx="110" cy="430" r="64"/>
-            <circle cx="10" cy="470" r="66"/><circle cx="90" cy="480" r="50"/>
-          </g>
-          <g fill="var(--hill)" opacity=".55">
-            <circle cx="-10" cy="410" r="30"/><circle cx="60" cy="380" r="34"/><circle cx="80" cy="450" r="26"/>
-          </g>
-        </g>
-
-        <!-- pradera intermedia -->
-        <path d="M0 560 Q400 528 800 552 Q1200 574 1600 544 V900 H0 Z" fill="var(--hill)"/>
-
-        <!-- río -->
-        <path d="M0 470 C130 500 90 540 180 566 C270 592 210 630 300 654 C360 670 340 700 400 712 L400 900 L120 900 C110 780 40 760 0 700 Z" fill="url(#riverG)"/>
-        <g stroke="var(--river-light)" stroke-width="4" fill="none" stroke-linecap="round" opacity=".55">
-          <path d="M60 560 q26 -10 50 0"/>
-          <path d="M140 630 q26 -10 50 0"/>
-          <path d="M230 690 q26 -10 50 0"/>
-        </g>
-
-        <!-- pradera de primer plano -->
-        <path d="M0 636 Q420 600 820 628 Q1220 656 1600 614 V900 H0 Z" fill="var(--hill)"/>
-
-        <!-- cerco y cartel de valores -->
-        <g>
-          <g stroke="var(--wood-dark)" stroke-width="7" stroke-linecap="round" opacity=".85">
-            <path d="M40 900 V760 M96 900 V748 M0 820 H150"/>
-          </g>
-          <g transform="translate(58 620)">
-            <rect x="-10" y="40" width="14" height="220" fill="var(--wood-dark)"/>
-            <rect x="-34" y="0" width="150" height="150" rx="4" fill="var(--wood)" stroke="var(--wood-dark)" stroke-width="4"/>
-            <g stroke="var(--wood-dark)" stroke-width="2" opacity=".45">
-              <path d="M-30 26 H112 M-30 54 H112 M-30 82 H112 M-30 110 H112 M-30 138 H112"/>
-            </g>
-            <text x="38" y="34" text-anchor="middle" font-family="var(--serif)" font-weight="700" font-size="20" letter-spacing="1" fill="var(--sign-ink)">TIERRA</text>
-            <text x="38" y="66" text-anchor="middle" font-family="var(--serif)" font-weight="700" font-size="20" letter-spacing="1" fill="var(--sign-ink)">FAMILIA</text>
-            <text x="38" y="98" text-anchor="middle" font-family="var(--serif)" font-weight="700" font-size="20" letter-spacing="1" fill="var(--sign-ink)">LIBERTAD</text>
-            <text x="38" y="130" text-anchor="middle" font-family="var(--serif)" font-weight="700" font-size="19" letter-spacing=".5" fill="var(--sign-ink)">COMUNIDAD</text>
-          </g>
-        </g>
-
-        <!-- camino de tierra -->
-        <path d="M260 900 C380 760 470 700 590 660 C690 632 770 630 830 650 L790 900 Z" fill="var(--path)" opacity=".9"/>
-
-        <!-- tonel de agua -->
-        <g transform="translate(826 758)">
-          <rect x="0" y="0" width="46" height="66" rx="8" fill="var(--wood)" stroke="var(--wood-dark)" stroke-width="3"/>
-          <path d="M0 14 H46 M0 30 H46 M0 46 H46" stroke="var(--wood-dark)" stroke-width="2" opacity=".5"/>
-        </g>
-
-        <!-- gallinas -->
-        <g>
-          <g transform="translate(700 838)">
-            <path d="M-10 -8 l-11 -9 v14 z" fill="var(--sc-hen)"/>
-            <ellipse cx="0" cy="0" rx="19" ry="14" fill="var(--sc-hen)"/>
-            <ellipse cx="6" cy="4" rx="11" ry="7" fill="var(--cob)" opacity=".35"/>
-            <circle cx="17" cy="-11" r="7.5" fill="var(--sc-hen)"/>
-            <path d="M16 -20 l4 -5 4 5 z" fill="var(--hen-comb)"/>
-            <path d="M25 -10 l7 2.5 -7 2.5 z" fill="#E8A23B"/>
-            <path d="M-4 13 v9 M6 13 v9" stroke="#8A5A33" stroke-width="3" stroke-linecap="round"/>
-          </g>
-          <g transform="translate(640 862) scale(.82)">
-            <path d="M-10 -8 l-11 -9 v14 z" fill="var(--sc-hen)"/>
-            <ellipse cx="0" cy="0" rx="19" ry="14" fill="var(--sc-hen)"/>
-            <circle cx="17" cy="-11" r="7.5" fill="var(--sc-hen)"/>
-            <path d="M16 -20 l4 -5 4 5 z" fill="var(--hen-comb)"/>
-            <path d="M25 -10 l7 2.5 -7 2.5 z" fill="#E8A23B"/>
-            <path d="M-4 13 v9 M6 13 v9" stroke="#8A5A33" stroke-width="3" stroke-linecap="round"/>
-          </g>
-          <g transform="translate(770 872) scale(.7) rotate(10)">
-            <path d="M-10 -8 l-11 -9 v14 z" fill="var(--sc-hen)"/>
-            <ellipse cx="0" cy="0" rx="19" ry="14" fill="var(--sc-hen)"/>
-            <circle cx="17" cy="-11" r="7.5" fill="var(--sc-hen)"/>
-            <path d="M16 -20 l4 -5 4 5 z" fill="var(--hen-comb)"/>
-            <path d="M25 -10 l7 2.5 -7 2.5 z" fill="#E8A23B"/>
-            <path d="M-4 13 v9 M6 13 v9" stroke="#8A5A33" stroke-width="3" stroke-linecap="round"/>
-          </g>
-        </g>
-
-        <!-- familia caminando hacia la casa, a contraluz -->
-        <g fill="var(--sc-people)">
-          <!-- madre con bebé -->
-          <g transform="translate(558 790)">
-            <path d="M4 -132 q22 8 14 40 q-4 18 -20 20 l-4 46" fill="none" stroke="var(--sc-people)" stroke-width="10" stroke-linecap="round" opacity=".9"/>
-            <circle cx="0" cy="-96" r="15"/>
-            <path d="M-15 -74 q15 -12 30 0 l6 96 q-20 8 -42 0 z"/>
-            <circle cx="20" cy="-48" r="9"/>
-            <path d="M13 -38 q9 -6 16 2 l2 30 h-20 z"/>
-          </g>
-          <!-- niño -->
-          <g transform="translate(612 840)">
-            <circle cx="0" cy="-58" r="11"/>
-            <path d="M-10 -42 q10 -8 20 0 l4 66 h-9 l-4 -34 h-2 l-4 34 h-9 z"/>
-          </g>
-          <!-- padre -->
-          <g transform="translate(654 800)">
-            <circle cx="0" cy="-104" r="16"/>
-            <path d="M-17 -80 q17 -12 34 0 l6 104 h-11 l-5 -52 h-6 l-5 52 h-11 z"/>
-          </g>
-          <path d="M622 838 q10 6 18 0 M640 806 q10 6 20 -2" stroke="var(--sc-people)" stroke-width="5" fill="none" stroke-linecap="round"/>
-        </g>
-        <g fill="none" stroke="var(--rim)" stroke-width="2" opacity=".55">
-          <path d="M543 716 q15 -12 30 0 l6 96" transform="translate(558 790)"/>
-          <path d="M637 720 q17 -12 34 0 l6 104" transform="translate(654 800)"/>
-        </g>
-
-        <!-- frutales junto a la casa -->
-        <g>
-          <rect x="828" y="612" width="12" height="66" rx="5" fill="var(--wood-dark)"/>
-          <circle cx="834" cy="580" r="46" fill="var(--sc-roof)"/>
-          <circle cx="816" cy="570" r="6" fill="var(--accent)"/><circle cx="848" cy="562" r="6" fill="var(--accent)"/><circle cx="838" cy="596" r="6" fill="var(--accent)"/><circle cx="858" cy="588" r="5" fill="var(--accent)"/>
-        </g>
-
-        <!-- invernadero / lean-to -->
-        <g>
-          <path d="M1200 700 L1340 660 L1340 830 L1200 830 Z" fill="var(--glass)" opacity=".8" stroke="var(--wood-dark)" stroke-width="4"/>
-          <g stroke="var(--wood-dark)" stroke-width="2.5" opacity=".7">
-            <path d="M1235 690 V830 M1270 680 V830 M1305 668 V830 M1200 740 H1340 M1200 780 H1340"/>
-          </g>
-        </g>
-
-        <!-- casa de bioconstrucción -->
-        <g>
-          <!-- sombra proyectada -->
-          <ellipse cx="1020" cy="836" rx="230" ry="26" fill="#000" opacity=".14"/>
-          <!-- techo vivo -->
-          <path d="M860 664 Q1010 566 1180 664 L1162 694 Q1010 606 878 694 Z" fill="var(--sc-roof)"/>
-          <g stroke="var(--roof-light)" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8">
-            <path d="M890 668 q7 -9 12 -2 M940 642 q7 -9 12 -2 M1000 630 q7 -9 12 -2 M1060 636 q7 -9 12 -2 M1120 656 q7 -9 12 -2"/>
-          </g>
-          <!-- muro principal con volumen (cara clara + sombra) -->
-          <path d="M880 828 V690 q0 -34 34 -34 h230 q34 0 34 34 v138 z" fill="var(--cob)"/>
-          <path d="M1070 828 V690 q0 -34 -14 -34 q22 4 22 34 v138 z" fill="var(--cob-shade)" opacity=".55"/>
-          <!-- resplandor cálido de ventanas -->
-          <circle cx="936" cy="768" r="34" fill="var(--window-strong)" opacity="var(--win-glow)"/>
-          <circle cx="1086" cy="768" r="34" fill="var(--window-strong)" opacity="var(--win-glow)"/>
-          <!-- puerta en arco -->
-          <path d="M992 828 v-84 q0 -26 26 -26 q26 0 26 26 v84 z" fill="var(--wood-dark)"/>
-          <circle cx="1026" cy="782" r="3" fill="var(--sc-window)"/>
-          <!-- ventanas con parteluz -->
-          <g>
-            <rect x="912" y="726" width="48" height="50" rx="8" fill="var(--sc-window)"/>
-            <path d="M936 726 V776 M912 751 H960" stroke="var(--cob-shade)" stroke-width="2.5"/>
-            <rect x="1062" y="726" width="48" height="50" rx="8" fill="var(--sc-window)"/>
-            <path d="M1086 726 V776 M1062 751 H1110" stroke="var(--cob-shade)" stroke-width="2.5"/>
-          </g>
-          <!-- enredaderas -->
-          <g stroke="var(--roof-light)" stroke-width="3" fill="none" opacity=".7" stroke-linecap="round">
-            <path d="M880 700 q14 30 -4 66 q-10 20 6 40"/>
-            <path d="M1180 706 q-16 26 2 60"/>
-          </g>
-        </g>
-
-        <!-- paneles solares sobre el faldón derecho -->
-        <g>
-          <path d="M1110 640 L1240 610 L1262 654 L1130 686 Z" fill="url(#panelG)" stroke="var(--wood-dark)" stroke-width="2"/>
-          <g stroke="rgba(255,255,255,.35)" stroke-width="2">
-            <path d="M1140 678 L1164 626 M1170 670 L1194 618 M1200 662 L1224 610"/>
-            <path d="M1120 660 L1252 630"/>
-          </g>
-          <rect x="1160" y="686" width="8" height="30" fill="var(--wood-dark)"/>
-          <rect x="1200" y="674" width="8" height="42" fill="var(--wood-dark)"/>
-        </g>
-
-        <!-- huerta en bancales, a la derecha de la casa junto al invernadero -->
-        <g>
-          <rect x="1310" y="700" width="230" height="18" rx="9" fill="var(--soil)"/>
-          <rect x="1330" y="742" width="230" height="18" rx="9" fill="var(--soil)"/>
-          <rect x="1350" y="784" width="230" height="18" rx="9" fill="var(--soil)"/>
-          <rect x="1370" y="826" width="220" height="18" rx="9" fill="var(--soil)"/>
-          <g fill="var(--crop)">
-            <circle cx="1330" cy="694" r="9"/><circle cx="1366" cy="691" r="10"/><circle cx="1402" cy="694" r="9"/><circle cx="1438" cy="691" r="10"/><circle cx="1474" cy="694" r="9"/><circle cx="1510" cy="691" r="9"/><circle cx="1540" cy="694" r="8"/>
-            <circle cx="1348" cy="736" r="9"/><circle cx="1384" cy="733" r="10"/><circle cx="1420" cy="736" r="9"/><circle cx="1456" cy="733" r="10"/><circle cx="1492" cy="736" r="9"/><circle cx="1528" cy="733" r="9"/><circle cx="1558" cy="736" r="8"/>
-            <circle cx="1368" cy="778" r="9"/><circle cx="1404" cy="775" r="10"/><circle cx="1440" cy="778" r="9"/><circle cx="1476" cy="775" r="10"/><circle cx="1512" cy="778" r="9"/><circle cx="1548" cy="775" r="9"/><circle cx="1578" cy="778" r="8"/>
-          </g>
-          <g fill="var(--crop-light)" opacity=".4">
-            <circle cx="1340" cy="690" r="4"/><circle cx="1412" cy="690" r="4"/><circle cx="1484" cy="690" r="4"/>
-            <circle cx="1358" cy="732" r="4"/><circle cx="1430" cy="732" r="4"/><circle cx="1502" cy="732" r="4"/>
-          </g>
-        </g>
-
-        <!-- velo cálido general (unifica la luz de atardecer) -->
-        <rect x="0" y="0" width="1600" height="900" fill="url(#warmWash)"/>
-      </svg>
+    <div class="hero-scene" aria-hidden="true" role="img"
+         aria-label="Una familia caminando de la mano hacia su casa de bioconstrucción con techo vivo y paneles solares, entre gallinas y huerta, con un río y las sierras al fondo en un atardecer dorado, junto a un cartel de madera que dice Tierra, Familia, Libertad, Comunidad">
     </div>
+    <div class="hero-night" aria-hidden="true"></div>
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="wrap hero-content">
       <div style="max-width:44rem">
