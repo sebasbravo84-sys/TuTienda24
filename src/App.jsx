@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 
 import { useNavigate, Routes, Route, Link } from 'react-router-dom';
-import Guide from './pages/Guide';
-import NotFound from './pages/NotFound';
-import Brief from './pages/Brief';
-import Thanks from './pages/Thanks';
+const Guide = lazy(() => import('./pages/Guide'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+const Brief = lazy(() => import('./pages/Brief'));
+const Thanks = lazy(() => import('./pages/Thanks'));
 import { pricingPlans, PROMO_PRICE, PROMO_ORIGINAL_PRICE, PROMO_FEATURES, PROMO_MES, PROMO_CUPOS } from './PRECIOS.js';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -35,11 +35,11 @@ import {
 } from 'lucide-react';
 
 // Paginas legales
-import Terminos from './pages/legal/terminos';
-import Privacidad from './pages/legal/privacidad';
-import Cookies from './pages/legal/cookies';
-import Partners from './pages/Partners';
-import PartnerManual from './pages/PartnerManual';
+const Terminos = lazy(() => import('./pages/legal/terminos'));
+const Privacidad = lazy(() => import('./pages/legal/privacidad'));
+const Cookies = lazy(() => import('./pages/legal/cookies'));
+const Partners = lazy(() => import('./pages/Partners'));
+const PartnerManual = lazy(() => import('./pages/PartnerManual'));
 import SplineScene from './components/SplineScene';
 import ErrorBoundary from './components/ErrorBoundary';
 import Logo from './components/Logo';
@@ -836,17 +836,19 @@ function Home() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/guia-pro" element={<Guide />} />
-      <Route path="/terminos" element={<Terminos />} />
-      <Route path="/privacidad" element={<Privacidad />} />
-      <Route path="/cookies" element={<Cookies />} />
-      <Route path="/aliados" element={<Partners />} />
-      <Route path="/aliados/manual" element={<PartnerManual />} />
-      <Route path="/brief" element={<Brief />} />
-      <Route path="/gracias" element={<Thanks />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/guia-pro" element={<Guide />} />
+        <Route path="/terminos" element={<Terminos />} />
+        <Route path="/privacidad" element={<Privacidad />} />
+        <Route path="/cookies" element={<Cookies />} />
+        <Route path="/aliados" element={<Partners />} />
+        <Route path="/aliados/manual" element={<PartnerManual />} />
+        <Route path="/brief" element={<Brief />} />
+        <Route path="/gracias" element={<Thanks />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 }
