@@ -3,8 +3,9 @@ name: Deploy static content to Pages
 
 on:
   # Runs on pushes targeting the default branch
+  # (la rama del proyecto comunidad se incluye hasta que se mergee a main)
   push:
-    branches: ["main"]
+    branches: ["main", "claude/community-land-project-t0lije"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -40,6 +41,11 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+      - name: Add landing Tierra Común en /comunidad/
+        run: |
+          mkdir -p dist/comunidad
+          cp proyecto-comunidad/web/index.html dist/comunidad/
+          cp proyecto-comunidad/PROYECTO.md proyecto-comunidad/CONVOCATORIA.md dist/comunidad/
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

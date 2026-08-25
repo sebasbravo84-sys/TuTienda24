@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tierra Común — Comunidad rural autosustentable</title>
+<meta name="description" content="Convocatoria abierta en Catamarca: familias con principios y conciencia para comprar juntos un campo y construir una comunidad autosustentable. Cada familia con su casa; la producción, entre todos.">
+<style>
+/* ============================================================
+   TIERRA COMÚN — landing de convocatoria
+   Estética: almanaque agrícola contemporáneo
+   ============================================================ */
+
+:root{
+  --ground:#EFF3E6;
+  --paper:#F9FBF3;
+  --ink:#16241B;
+  --muted:#57685A;
+  --accent:#B67818;
+  --accent-deep:#8F5D0F;
+  --leaf:#2E6B3E;
+  --soil:#5C4128;
+  --line:#C7D2B8;
+  --line-strong:#9FB08D;
+  --shadow:0 1px 2px rgba(22,36,27,.06), 0 8px 24px rgba(22,36,27,.07);
+  --serif:Charter,'Bitstream Charter','Iowan Old Style',Georgia,'Times New Roman',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
+  --mono:ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ground:#101B14;
+    --paper:#182A1E;
+    --ink:#E8EDDF;
+    --muted:#9DB09E;
+    --accent:#D89B33;
+    --accent-deep:#E7B45C;
+    --leaf:#5FA36F;
+    --soil:#B08A63;
+    --line:#2C4033;
+    --line-strong:#3E5A47;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="light"]{
+  --ground:#EFF3E6; --paper:#F9FBF3; --ink:#16241B; --muted:#57685A;
+  --accent:#B67818; --accent-deep:#8F5D0F; --leaf:#2E6B3E; --soil:#5C4128;
+  --line:#C7D2B8; --line-strong:#9FB08D;
+  --shadow:0 1px 2px rgba(22,36,27,.06), 0 8px 24px rgba(22,36,27,.07);
+}
+:root[data-theme="dark"]{
+  --ground:#101B14; --paper:#182A1E; --ink:#E8EDDF; --muted:#9DB09E;
+  --accent:#D89B33; --accent-deep:#E7B45C; --leaf:#5FA36F; --soil:#B08A63;
+  --line:#2C4033; --line-strong:#3E5A47;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;height:auto}
+a{color:var(--accent-deep)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:72rem;margin-inline:auto;padding-inline:clamp(1.25rem,4vw,3rem)}
+.prose{max-width:65ch}
+
+/* ---- tipografía ---- */
+h1,h2,h3{font-family:var(--serif);line-height:1.12;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.4rem,6.5vw,4.4rem);font-weight:700;letter-spacing:-.015em}
+h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:700}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0 0 1rem}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.72rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  color:var(--accent-deep);
+  display:flex;align-items:center;gap:.75rem;
+  margin:0 0 1rem;
+}
+.eyebrow::after{content:"";flex:0 0 3rem;height:1px;background:var(--line-strong)}
+.lead{font-size:clamp(1.1rem,2vw,1.3rem);color:var(--muted);max-width:56ch}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---- header ---- */
+header.site{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.site-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.7rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:var(--serif);font-weight:700;font-size:1.1rem;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand svg{flex:none}
+nav.main{display:flex;gap:1.4rem;align-items:center}
+nav.main a{font-size:.9rem;color:var(--ink);text-decoration:none;opacity:.85}
+nav.main a:hover{opacity:1;color:var(--accent-deep)}
+@media (max-width:760px){
+  nav.main{gap:.7rem}
+  nav.main a:not(.btn){display:none}
+  nav.main .btn{font-size:.85rem;padding:.55rem .85rem;white-space:nowrap}
+}
+
+/* ---- botones ---- */
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--sans);font-weight:600;font-size:.95rem;
+  padding:.72rem 1.3rem;border-radius:3px;text-decoration:none;
+  border:1px solid transparent;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn-primary{background:var(--accent);color:#FFF9EC;box-shadow:var(--shadow)}
+:root[data-theme="dark"] .btn-primary{color:#1B1406}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn-primary{color:#1B1406}}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line-strong);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep)}
+.theme-toggle{
+  border:1px solid var(--line-strong);background:transparent;color:var(--ink);
+  border-radius:3px;padding:.45rem .6rem;cursor:pointer;line-height:0;
+}
+
+/* ---- hero (escena a pantalla completa) ---- */
+.hero{
+  position:relative;overflow:hidden;isolation:isolate;
+  min-height:clamp(600px,88vw,860px);
+  display:flex;align-items:center;
+  padding-block:clamp(6.5rem,14vw,7.5rem) clamp(3rem,7vw,4rem);
+}
+.hero-scene{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('hero-familia.jpg');
+  background-size:cover;
+  background-position:60% 38%;
+}
+.hero-night{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:rgba(8,14,30,.55);
+  opacity:0;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero-night{opacity:1}}
+:root[data-theme="dark"] .hero-night{opacity:1}
+.hero-scrim{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(100deg, rgba(8,10,6,.8) 0%, rgba(8,10,6,.6) 34%, rgba(8,10,6,.22) 62%, rgba(8,10,6,0) 82%),
+    linear-gradient(180deg, rgba(8,10,6,.3) 0%, rgba(8,10,6,0) 26%, rgba(8,10,6,0) 68%, rgba(8,10,6,.42) 100%);
+}
+.hero-content{position:relative;z-index:3;width:100%}
+.hero .eyebrow{color:#F2CB7E}
+.hero .eyebrow::after{background:rgba(255,255,255,.4)}
+.hero h1{color:#FBF7EC;text-shadow:0 3px 18px rgba(0,0,0,.4)}
+.hero .lead{color:#F1EADA;opacity:.94;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.hero h1 em{
+  font-style:normal;color:#FFC94D;
+  background:linear-gradient(rgba(255,201,77,.4),rgba(255,201,77,.4)) 0 88%/100% .12em no-repeat;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:1.7rem}
+.hero .btn-ghost{border-color:rgba(255,255,255,.6);color:#FBF7EC;background:rgba(10,14,10,.28)}
+.hero .btn-ghost:hover{border-color:#FFC94D;color:#FFC94D}
+.hero-stats{
+  display:inline-flex;flex-wrap:wrap;gap:0;margin-top:2.1rem;
+  background:rgba(14,18,12,.5);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.22);border-radius:6px;
+  padding:.9rem 1.4rem;box-shadow:0 8px 28px rgba(0,0,0,.28);
+}
+.hero-stats div{padding:.2rem 1.4rem .2rem 0;margin-right:1.4rem;border-right:1px solid rgba(255,255,255,.25)}
+.hero-stats div:last-child{border-right:none;margin-right:0;padding-right:0}
+.hero-stats strong{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:1.25rem;color:#FBF7EC}
+.hero-stats span{font-size:.75rem;color:#D8CFB8;text-transform:uppercase;letter-spacing:.08em}
+@media (max-width:640px){.hero{min-height:clamp(640px,158vw,760px)}}
+
+/* ---- franja de valores ---- */
+.values{background:var(--leaf);color:#F3F8EF;border-block:1px solid var(--line)}
+.values .eyebrow{color:#EBD9A8}
+.values .eyebrow::after{background:color-mix(in srgb,#F3F8EF 40%,transparent)}
+.values h2{color:#FBFDF6;max-width:22ch}
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1.2rem;margin-top:2rem}
+.values-grid p{margin:0;font-size:.97rem;opacity:.92;line-height:1.55}
+.values-grid strong{display:block;font-family:var(--serif);font-size:1.12rem;margin-bottom:.35rem;color:#FBFDF6}
+.values-grid .v-item{border-top:2px solid color-mix(in srgb,#EBD9A8 65%,transparent);padding-top:.9rem}
+
+.earn-note{
+  margin-top:1.4rem;padding:1rem 1.3rem;border:1px dashed var(--line-strong);border-radius:6px;
+  font-family:var(--serif);font-size:1.08rem;color:var(--accent-deep);text-align:center;
+}
+
+/* mapa de parcelas */
+.map-card{background:var(--paper);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);padding:1.1rem}
+.map-wide{max-width:46rem;margin-top:clamp(2rem,5vw,3.2rem)}
+.map-caption{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.6rem}
+.map-caption .eyebrow{margin:0}
+.map-caption .eyebrow::after{display:none}
+.legend{display:flex;flex-wrap:wrap;gap:.5rem .9rem;margin-top:.8rem;font-size:.78rem;color:var(--muted)}
+.legend i{display:inline-block;width:.7rem;height:.7rem;border-radius:2px;margin-right:.35rem;vertical-align:-1px;border:1px solid rgba(0,0,0,.12)}
+
+/* ---- secciones ---- */
+section{padding-block:clamp(3rem,7vw,5.5rem)}
+section.alt{background:var(--paper);border-block:1px solid var(--line)}
+.section-head{margin-bottom:clamp(1.8rem,4vw,3rem)}
+
+/* tarjetas "la idea" */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.card{
+  background:var(--paper);border:1px solid var(--line);border-radius:6px;
+  padding:1.5rem 1.4rem;box-shadow:var(--shadow);
+}
+section.alt .card{background:var(--ground)}
+.card svg{color:var(--leaf);margin-bottom:.9rem}
+.card h3{margin-bottom:.5rem}
+.card p{margin:0;font-size:.95rem;color:var(--muted)}
+
+/* pilares */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(19rem,1fr));gap:clamp(1.2rem,3vw,2.4rem)}
+.pillar h3{display:flex;align-items:baseline;gap:.6rem;margin-bottom:.8rem}
+.pillar h3 .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--accent-deep);text-transform:uppercase}
+.pillar ul{margin:.4rem 0 0;padding-left:1.1rem}
+.pillar li{margin-bottom:.45rem;font-size:.97rem}
+.pillar li::marker{color:var(--accent)}
+
+/* barra de distribución del terreno */
+.dist{margin-top:1rem}
+.dist-bar{display:flex;height:2.6rem;border-radius:4px;overflow:hidden;border:1px solid var(--line-strong)}
+.dist-bar span{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.78rem;font-weight:600;color:#FFF9EC;min-width:2.2rem;transition:filter .15s}
+.dist-bar span:hover{filter:brightness(1.12)}
+.dist-key{display:grid;gap:.35rem;margin-top:.9rem;font-size:.85rem;color:var(--muted)}
+.dist-key i{display:inline-block;width:.7rem;height:.7rem;border-radius:2px;margin-right:.45rem}
+
+/* ---- calculadora ---- */
+.calc{
+  background:var(--paper);border:1px solid var(--line-strong);border-radius:6px;
+  box-shadow:var(--shadow);overflow:hidden;
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);
+}
+@media (max-width:820px){.calc{grid-template-columns:1fr}}
+.calc-controls{padding:clamp(1.4rem,3vw,2.2rem)}
+.calc-field{margin-bottom:1.5rem}
+.calc-field label{display:flex;justify-content:space-between;align-items:baseline;font-size:.9rem;font-weight:600;margin-bottom:.5rem}
+.calc-field output{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--accent-deep);font-size:1rem}
+input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer}
+.calc-result{
+  background:var(--leaf);color:#F3F8EF;
+  padding:clamp(1.4rem,3vw,2.2rem);
+  display:flex;flex-direction:column;justify-content:center;gap:.4rem;
+}
+.calc-result .big{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:clamp(2.2rem,5vw,3.2rem);font-weight:700;line-height:1}
+.calc-result small{opacity:.85;font-size:.82rem;line-height:1.5}
+.calc-note{font-size:.8rem;color:var(--muted);margin-top:.8rem}
+
+/* ---- timeline ---- */
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:1.35rem;top:.5rem;bottom:.5rem;width:1px;background:var(--line-strong)}
+.timeline li{position:relative;padding:0 0 1.9rem 4rem}
+.timeline li:last-child{padding-bottom:0}
+.t-num{
+  position:absolute;left:0;top:0;
+  width:2.7rem;height:2.7rem;border-radius:50%;
+  background:var(--paper);border:1px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-weight:700;color:var(--accent-deep);
+}
+section.alt .t-num{background:var(--ground)}
+.timeline h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:.7rem}
+.t-dur{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:.15rem .6rem}
+.timeline p{margin:.4rem 0 0;color:var(--muted);font-size:.97rem;max-width:60ch}
+.t-hito{font-size:.85rem;color:var(--leaf);font-weight:600;margin-top:.3rem;display:block}
+
+/* ---- perfil ---- */
+.two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1.2rem}
+.panel{border:1px solid var(--line);border-radius:6px;padding:1.6rem;background:var(--paper)}
+section.alt .panel{background:var(--ground)}
+.panel h3{margin-bottom:1rem}
+.checklist{list-style:none;margin:0;padding:0}
+.checklist li{position:relative;padding-left:1.7rem;margin-bottom:.7rem;font-size:.97rem}
+.checklist li::before{
+  content:"";position:absolute;left:0;top:.42em;width:.65em;height:.35em;
+  border-left:2px solid var(--leaf);border-bottom:2px solid var(--leaf);
+  transform:rotate(-45deg);
+}
+.checklist.no li::before{
+  border:none;width:.6em;height:2px;background:var(--soil);top:.62em;transform:none;
+}
+
+/* ---- FAQ ---- */
+.faq{max-width:46rem}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-of-type{border-top:1px solid var(--line)}
+.faq summary{
+  cursor:pointer;list-style:none;
+  padding:1.1rem .3rem;font-family:var(--serif);font-weight:700;font-size:1.1rem;
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";font-family:var(--mono);color:var(--accent-deep);font-size:1.3rem;
+  transition:transform .2s;flex:none;
+}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--muted);padding:0 .3rem 1.2rem;max-width:60ch}
+
+/* ---- formulario ---- */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:680px){.form-grid{grid-template-columns:1fr}}
+.f-field{display:flex;flex-direction:column;gap:.35rem}
+.f-field.full{grid-column:1/-1}
+.f-field label{font-size:.85rem;font-weight:600}
+.f-field input,.f-field select,.f-field textarea{
+  font:inherit;color:var(--ink);
+  background:var(--ground);
+  border:1px solid var(--line-strong);border-radius:4px;
+  padding:.65rem .8rem;
+}
+section.alt .f-field input,section.alt .f-field select,section.alt .f-field textarea{background:var(--paper)}
+.f-field textarea{resize:vertical;min-height:6.5rem}
+.form-card{
+  background:var(--paper);border:1px solid var(--line-strong);border-radius:6px;
+  box-shadow:var(--shadow);padding:clamp(1.4rem,3.5vw,2.4rem);max-width:52rem;
+}
+.form-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.4rem;align-items:center}
+.config-note{
+  display:none;margin-top:1rem;font-size:.85rem;
+  border:1px dashed var(--accent);border-radius:4px;padding:.8rem 1rem;color:var(--accent-deep);
+}
+.config-note.show{display:block}
+.msg-preview{display:none;margin-top:1.4rem}
+.msg-preview.show{display:block}
+.msg-preview pre{
+  white-space:pre-wrap;word-break:break-word;
+  background:var(--ground);border:1px solid var(--line);border-radius:4px;
+  padding:1rem;font-family:var(--mono);font-size:.82rem;line-height:1.55;
+  max-height:16rem;overflow:auto;
+}
+
+/* ---- footer ---- */
+footer.site{background:var(--ink);color:var(--ground);padding-block:clamp(2.5rem,6vw,4rem)}
+footer.site .wrap{display:grid;gap:2rem;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+@media (max-width:760px){footer.site .wrap{grid-template-columns:1fr}}
+footer.site h2{font-size:1.5rem;margin-bottom:.8rem}
+footer.site p{opacity:.8;font-size:.95rem;max-width:52ch}
+footer.site a{color:inherit}
+footer.site .fine{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.55;margin-top:2rem}
+.doc-links{list-style:none;margin:0;padding:0}
+.doc-links li{border-bottom:1px solid color-mix(in srgb,var(--ground) 20%,transparent);padding-block:.7rem}
+.doc-links a{text-decoration:none;display:flex;justify-content:space-between;gap:1rem}
+.doc-links a:hover{text-decoration:underline}
+.doc-links span{opacity:.6;font-family:var(--mono);font-size:.75rem}
+
+/* ---- reveal ---- */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .btn,.dist-bar span{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap site-inner">
+    <a class="brand" href="#top" aria-label="Tierra Común — inicio">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="24" height="24" rx="3" stroke="var(--leaf)" stroke-width="2"/>
+        <path d="M13 19v-6M13 13c0-3 2-5 5-5 0 3-2 5-5 5ZM13 15c0-2.4-1.6-4-4-4 0 2.4 1.6 4 4 4Z" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      Tierra Común
+    </a>
+    <nav class="main" aria-label="Secciones">
+      <a href="#valores">Valores</a>
+      <a href="#idea">La idea</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#etapas">Etapas</a>
+      <a href="#faq">Preguntas</a>
+      <a class="btn btn-primary" href="#sumate">Lista de espera</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="8" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M13 3l-1.4 1.4M4.4 11.6 3 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-scene" aria-hidden="true" role="img"
+         aria-label="Una familia caminando de la mano hacia su casa de bioconstrucción con techo vivo y paneles solares, entre gallinas y huerta, con un río y las sierras al fondo en un atardecer dorado, junto a un cartel de madera que dice Tierra, Familia, Libertad, Comunidad">
+    </div>
+    <div class="hero-night" aria-hidden="true"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="wrap hero-content">
+      <div style="max-width:44rem">
+        <p class="eyebrow">Convocatoria abierta · Catamarca · Para familias con valores</p>
+        <h1 id="hero-title">Volver a la tierra, entre <em>gente de bien</em>.</h1>
+        <p class="lead" style="margin-top:1.1rem">
+          Buscamos familias con principios, palabra y conciencia para comprar juntos un campo
+          cerca de la capital de Catamarca y vivir en comunidad autosustentable: cada familia
+          con su casa, y entre todos la huerta, los animales, el agua y la energía. Una vida
+          con sentido, que no dependa de un sueldo — con proyecto escrito y reglas claras.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#sumate">Anotarme en la lista de espera</a>
+          <a class="btn btn-ghost" href="#como-funciona">Ver cómo funciona</a>
+        </div>
+        <div class="hero-stats" role="list" aria-label="Datos del proyecto">
+          <div role="listitem"><strong class="num">5–15</strong><span>familias</span></div>
+          <div role="listitem"><strong class="num">5–20 ha</strong><span>de terreno</span></div>
+          <div role="listitem"><strong class="num">60–70%</strong><span>meta de autosuficiencia</span></div>
+          <div role="listitem"><strong class="num">≤25 km</strong><span>de la capital</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VALORES ============ -->
+  <section class="values" id="valores" aria-labelledby="valores-title">
+    <div class="wrap">
+      <p class="eyebrow">Nuestros valores</p>
+      <h2 id="valores-title">Acá valen más los principios que el capital.</h2>
+      <div class="values-grid">
+        <div class="v-item">
+          <strong>Honestidad y palabra</strong>
+          <p>Lo que se dice, se cumple. Los acuerdos se firman y se honran — la confianza es el primer ladrillo de la comunidad.</p>
+        </div>
+        <div class="v-item">
+          <strong>Respeto por la vida</strong>
+          <p>Por la tierra, el agua, los animales y las personas. Cuidamos lo que nos da de comer y se lo dejamos mejor a nuestros hijos.</p>
+        </div>
+        <div class="v-item">
+          <strong>Conciencia que crece</strong>
+          <p>Venimos a crecer como personas, no solo como huerta: aprender, compartir, mirar hacia adentro y elevar la forma en que vivimos.</p>
+        </div>
+        <div class="v-item">
+          <strong>Sin especulación</strong>
+          <p>Quien llega preguntando solo qué gana, y nunca qué aporta, no pasa de la primera reunión. Esto se construye dando.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LA IDEA ============ -->
+  <section class="alt" id="idea" aria-labelledby="idea-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">La idea en 60 segundos</p>
+        <h2 id="idea-title">No es una comuna. Es una comunidad con reglas claras.</h2>
+        <p class="lead" style="margin-top:.8rem">Autonomía familiar en lo privado, colaboración en lo común. Ese equilibrio es el corazón del proyecto.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M4 14 15 5l11 9M8 12v12h14V12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M13 24v-6h4v6" stroke="currentColor" stroke-width="2"/></svg>
+          <h3>Tu casa es tuya</h3>
+          <p>Cada familia tiene su vivienda, su espacio privado y su economía propia. La comunidad no opina sobre tu vida puertas adentro.</p>
+        </article>
+        <article class="card reveal">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 26V14M15 14c0-5 3.5-8 8-8 0 5-3.5 8-8 8ZM15 18c0-4-2.8-6.5-7-6.5 0 4 2.8 6.5 7 6.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>La comida, entre todos</h3>
+          <p>Huerta grande, gallinas, frutales y conservas producidas en conjunto. La meta: cubrir el 60–70% de la alimentación sin pasar por el supermercado.</p>
+        </article>
+        <article class="card reveal">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="9" r="3.2" stroke="currentColor" stroke-width="2"/><circle cx="7" cy="14" r="3.2" stroke="currentColor" stroke-width="2"/><circle cx="23" cy="14" r="3.2" stroke="currentColor" stroke-width="2"/><path d="M15 26c0-4 3.5-6.5 8-6.5M15 26c0-4-3.5-6.5-8-6.5M15 26v-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Un voto por familia</h3>
+          <p>Lo común se decide en asamblea mensual. Roles rotativos, cuentas abiertas y nadie es dueño del proyecto: el poder no se concentra.</p>
+        </article>
+        <article class="card reveal">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M8 4h11l5 5v17H8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M19 4v5h5M12 14h7M12 18h7M12 22h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Todo por escrito</h3>
+          <p>Reglas de entrada, de salida, de trabajo y de convivencia firmadas antes de mudarse. Los proyectos que duran son los que se ordenan primero.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CÓMO FUNCIONA ============ -->
+  <section id="como-funciona" aria-labelledby="cf-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2 id="cf-title">Tres pilares: la tierra, la economía y las decisiones</h2>
+      </div>
+      <div class="pillars">
+        <div class="pillar reveal">
+          <h3><span class="tag">Pilar 1</span> La tierra</h3>
+          <p style="color:var(--muted);font-size:.97rem">Buscamos 5 a 20 hectáreas en <strong>Catamarca, a no más de 25 km de la capital</strong>, con acequia o río muy cerca — el agua es el criterio excluyente —, suelo apto para huerta y acceso todo el año. Distribución del terreno:</p>
+          <div class="dist" aria-label="Distribución del terreno">
+            <div class="dist-bar">
+              <span style="flex:45;background:var(--soil)" title="Lotes familiares: 45%">45</span>
+              <span style="flex:30;background:var(--leaf)" title="Producción común: 30%">30</span>
+              <span style="flex:10;background:var(--accent)" title="Espacios comunes: 10%">10</span>
+              <span style="flex:15;background:color-mix(in srgb,var(--leaf) 55%,var(--ink))" title="Monte de reserva: 15%">15</span>
+            </div>
+            <div class="dist-key">
+              <span><i style="background:var(--soil)"></i><strong>45%</strong> lotes familiares — casa y huerta propia</span>
+              <span><i style="background:var(--leaf)"></i><strong>30%</strong> producción común — huerta grande, frutales, animales</span>
+              <span><i style="background:var(--accent)"></i><strong>10%</strong> espacios comunes — salón, taller, depósito</span>
+              <span><i style="background:color-mix(in srgb,var(--leaf) 55%,var(--ink))"></i><strong>15%</strong> monte de reserva — leña, naturaleza, crecimiento futuro</span>
+            </div>
+          </div>
+        </div>
+        <div class="pillar reveal">
+          <h3><span class="tag">Pilar 2</span> La economía</h3>
+          <ul>
+            <li><strong>Aporte inicial:</strong> el costo del terreno e infraestructura se divide entre las familias. Quien no llega con capital puede compensar con más horas de trabajo, por contrato escrito.</li>
+            <li><strong>Fondo común mensual:</strong> cubre impuestos, herramientas, semillas y una reserva de emergencia. Rendición de cuentas abierta todos los meses.</li>
+            <li><strong>Ingresos comunitarios:</strong> venta de excedentes, bolsones semanales, agroturismo y oficios. Un porcentaje al fondo, el resto según horas trabajadas.</li>
+            <li><strong>Reglas de salida justas:</strong> quien se va recupera su aporte según reglas firmadas de antemano — sin sorpresas ni conflictos.</li>
+          </ul>
+        </div>
+        <div class="pillar reveal">
+          <h3><span class="tag">Pilar 3</span> Las decisiones</h3>
+          <ul>
+            <li><strong>Asamblea mensual:</strong> un voto por familia. Lo cotidiano por mayoría simple; lo estructural por dos tercios.</li>
+            <li><strong>Cinco comisiones rotativas:</strong> producción, infraestructura, administración, convivencia y comercialización. Los roles cambian cada 6–12 meses.</li>
+            <li><strong>Marco legal formal:</strong> cooperativa o fideicomiso, definido con abogado y escribano antes de poner un peso. El terreno nunca queda a nombre de una sola persona.</li>
+            <li><strong>Conflictos con protocolo:</strong> conversación directa, mediación interna y, si hace falta, mediador externo neutral acordado de antemano.</li>
+          </ul>
+        </div>
+      </div>
+
+      <figure class="map-card map-wide reveal" aria-label="Plano ilustrativo del terreno compartido">
+        <div class="map-caption">
+          <p class="eyebrow">Plano ilustrativo del terreno</p>
+          <span class="num" style="font-size:.72rem;color:var(--muted)">ESC 1:2500</span>
+        </div>
+        <svg viewBox="0 0 520 400" role="img" aria-label="Vista aérea esquemática: lotes familiares, huerta común, frutales, salón común y monte de reserva">
+          <rect x="8" y="8" width="504" height="384" rx="10" fill="var(--ground)" stroke="var(--line-strong)" stroke-width="2" stroke-dasharray="7 5"/>
+          <path d="M8 210 H180 Q210 210 210 180 V8" fill="none" stroke="var(--soil)" stroke-width="14" stroke-linecap="round" opacity=".45"/>
+          <g stroke="var(--line-strong)" stroke-width="1.5">
+            <rect x="28" y="238" width="84" height="64" fill="var(--paper)"/>
+            <rect x="120" y="238" width="84" height="64" fill="var(--paper)"/>
+            <rect x="28" y="310" width="84" height="64" fill="var(--paper)"/>
+            <rect x="120" y="310" width="84" height="64" fill="var(--paper)"/>
+            <rect x="212" y="310" width="84" height="64" fill="var(--paper)"/>
+            <rect x="304" y="310" width="84" height="64" fill="var(--paper)"/>
+          </g>
+          <g fill="var(--accent)">
+            <path d="M60 262 l12-10 12 10 v14 h-24z"/><path d="M152 262 l12-10 12 10 v14 h-24z"/>
+            <path d="M60 334 l12-10 12 10 v14 h-24z"/><path d="M152 334 l12-10 12 10 v14 h-24z"/>
+            <path d="M244 334 l12-10 12 10 v14 h-24z"/><path d="M336 334 l12-10 12 10 v14 h-24z"/>
+          </g>
+          <g>
+            <rect x="240" y="28" width="150" height="160" fill="var(--leaf)" opacity=".22" stroke="var(--leaf)" stroke-width="1.5"/>
+            <g stroke="var(--leaf)" stroke-width="3" stroke-linecap="round" opacity=".7">
+              <line x1="256" y1="44" x2="256" y2="172"/><line x1="278" y1="44" x2="278" y2="172"/>
+              <line x1="300" y1="44" x2="300" y2="172"/><line x1="322" y1="44" x2="322" y2="172"/>
+              <line x1="344" y1="44" x2="344" y2="172"/><line x1="366" y1="44" x2="366" y2="172"/>
+            </g>
+          </g>
+          <g fill="var(--leaf)" opacity=".55">
+            <circle cx="252" cy="222" r="9"/><circle cx="284" cy="222" r="9"/><circle cx="316" cy="222" r="9"/><circle cx="348" cy="222" r="9"/><circle cx="380" cy="222" r="9"/>
+            <circle cx="268" cy="252" r="9"/><circle cx="300" cy="252" r="9"/><circle cx="332" cy="252" r="9"/><circle cx="364" cy="252" r="9"/>
+          </g>
+          <rect x="128" y="120" width="72" height="56" fill="var(--accent)" opacity=".9" rx="3"/>
+          <path d="M128 120 h72 l-36 -18 z" fill="var(--accent-deep)"/>
+          <g>
+            <rect x="404" y="24" width="96" height="352" fill="var(--leaf)" opacity=".14"/>
+            <g fill="var(--leaf)" opacity=".8">
+              <circle cx="430" cy="60" r="12"/><circle cx="470" cy="92" r="14"/><circle cx="436" cy="140" r="11"/>
+              <circle cx="478" cy="184" r="13"/><circle cx="432" cy="226" r="13"/><circle cx="472" cy="270" r="11"/>
+              <circle cx="438" cy="312" r="14"/><circle cx="478" cy="350" r="11"/>
+            </g>
+          </g>
+          <g stroke="#4A8FB5" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8">
+            <path d="M30 60 q18 -10 36 0 t36 0"/>
+            <path d="M30 78 q18 -10 36 0 t36 0"/>
+          </g>
+          <text x="30" y="112" font-family="ui-monospace,monospace" font-size="11" fill="var(--muted)">AGUA</text>
+        </svg>
+        <figcaption class="legend">
+          <span><i style="background:var(--paper)"></i>Lotes familiares</span>
+          <span><i style="background:var(--leaf);opacity:.5"></i>Huerta y frutales</span>
+          <span><i style="background:var(--accent)"></i>Espacios comunes</span>
+          <span><i style="background:var(--leaf);opacity:.2"></i>Monte de reserva</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ CALCULADORA ============ -->
+  <section class="alt" id="calculadora" aria-labelledby="calc-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Hacé números</p>
+        <h2 id="calc-title">¿Cuánto costaría entrar?</h2>
+        <p class="lead" style="margin-top:.8rem">La compra colectiva vuelve accesible lo que en soledad es imposible. Movete los valores y mirá cómo cambia el aporte por familia.</p>
+      </div>
+      <div class="calc reveal">
+        <div class="calc-controls">
+          <div class="calc-field">
+            <label for="cPrecio">Precio del terreno <output id="oPrecio" for="cPrecio">USD 60.000</output></label>
+            <input type="range" id="cPrecio" min="20000" max="200000" step="5000" value="60000">
+          </div>
+          <div class="calc-field">
+            <label for="cInfra">Infraestructura inicial (agua, acceso, salón) <output id="oInfra" for="cInfra">USD 15.000</output></label>
+            <input type="range" id="cInfra" min="5000" max="60000" step="2500" value="15000">
+          </div>
+          <div class="calc-field" style="margin-bottom:0">
+            <label for="cFam">Cantidad de familias <output id="oFam" for="cFam">10</output></label>
+            <input type="range" id="cFam" min="5" max="15" step="1" value="10">
+          </div>
+          <p class="calc-note">Estimación ilustrativa para conversar en grupo. Los valores reales dependen de la zona, y todo aporte se hace recién con marco legal firmado.</p>
+        </div>
+        <div class="calc-result" aria-live="polite">
+          <span style="font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85">Aporte estimado por familia</span>
+          <span class="big" id="rAporte">USD 7.500</span>
+          <small id="rDetalle">USD 75.000 en total, entre 10 familias — menos que un lote urbano en muchas ciudades.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ETAPAS ============ -->
+  <section id="etapas" aria-labelledby="etapas-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Hoja de ruta</p>
+        <h2 id="etapas-title">Seis etapas, sin saltear ninguna</h2>
+        <p class="lead" style="margin-top:.8rem">La regla de oro: el grupo se prueba <strong>antes</strong> de comprar. Nadie pone dinero en un terreno hasta que las familias se conocieron trabajando juntas.</p>
+      </div>
+      <ol class="timeline">
+        <li class="reveal">
+          <span class="t-num" aria-hidden="true">0</span>
+          <h3>Convocatoria <span class="t-dur">2–4 meses</span></h3>
+          <p>Difusión, reuniones informativas y formulario de interés. Se arma un grupo amplio de familias interesadas.</p>
+          <span class="t-hito">✓ Hito: 8–15 familias interesadas</span>
+        </li>
+        <li class="reveal">
+          <span class="t-num" aria-hidden="true">1</span>
+          <h3>Conformación del grupo <span class="t-dur">3–6 meses</span></h3>
+          <p>Reuniones quincenales, redacción de principios y reglamento, elección del marco legal y apertura del fondo común. Acá se filtra el entusiasmo del compromiso.</p>
+          <span class="t-hito">✓ Hito: 5+ familias firman compromiso y aportan al fondo</span>
+        </li>
+        <li class="reveal">
+          <span class="t-num" aria-hidden="true">2</span>
+          <h3>El terreno <span class="t-dur">3–12 meses</span></h3>
+          <p>Búsqueda, visitas, análisis de agua, suelo y títulos. Sin agua verificada no se compra: es el criterio excluyente.</p>
+          <span class="t-hito">✓ Hito: escritura o contrato firmado</span>
+        </li>
+        <li class="reveal">
+          <span class="t-num" aria-hidden="true">3</span>
+          <h3>La base <span class="t-dur">6–12 meses</span></h3>
+          <p>Agua, acceso, cerco, huerta madre, frutales (van primero: tardan años en producir) y un galpón común. Primeras familias en vivienda transitoria.</p>
+          <span class="t-hito">✓ Hito: primera cosecha y espacio común techado</span>
+        </li>
+        <li class="reveal">
+          <span class="t-num" aria-hidden="true">4</span>
+          <h3>Las viviendas <span class="t-dur">1–3 años</span></h3>
+          <p>Construcción natural por mingas: todas las familias ayudan a levantar la casa de cada una, por turnos sorteados. El costo baja 40–60%.</p>
+          <span class="t-hito">✓ Hito: todas las familias viviendo en el terreno</span>
+        </li>
+        <li class="reveal">
+          <span class="t-num" aria-hidden="true">5</span>
+          <h3>Consolidación <span class="t-dur">continuo</span></h3>
+          <p>Venta de excedentes, bolsones, talleres y agroturismo. Ingreso ordenado de nuevas familias con período de prueba.</p>
+          <span class="t-hito">✓ Hito: 60–70% de autosuficiencia alimentaria</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ PERFIL ============ -->
+  <section class="alt" id="perfil" aria-labelledby="perfil-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">¿Es para vos?</p>
+        <h2 id="perfil-title">Buscamos compromiso, no perfección</h2>
+      </div>
+      <div class="two-col">
+        <div class="panel reveal">
+          <h3>Lo que sí hace falta</h3>
+          <ul class="checklist">
+            <li><strong>Principios y palabra:</strong> gente buena de verdad, con moral y conciencia. Lo que prometés, lo cumplís — acá eso vale más que el capital.</li>
+            <li><strong>Ganas de trabajar en serio:</strong> el campo es esfuerzo físico y constancia, no unas vacaciones largas.</li>
+            <li><strong>Algún oficio o habilidad:</strong> huerta, construcción, electricidad, cocina, salud, educación, administración — todo suma.</li>
+            <li><strong>Capacidad de aporte:</strong> económico para el terreno, o más horas de trabajo si el capital no alcanza (por contrato escrito).</li>
+            <li><strong>Mirada de largo plazo:</strong> esto lleva años, no meses. Quien busca solución habitacional urgente va a frustrarse.</li>
+            <li><strong>Disposición a convivir:</strong> asambleas, acuerdos y paciencia. La comunidad se construye tanto como las casas.</li>
+          </ul>
+        </div>
+        <div class="panel reveal">
+          <h3>Lo que no hace falta</h3>
+          <ul class="checklist no">
+            <li><strong>Ser experto en nada.</strong> Se aprende haciendo y entre todos: mingas, talleres y práctica.</li>
+            <li><strong>Ser rico.</strong> La compra colectiva divide el costo entre 5 y 15 familias; hay caminos para quien aporta más trabajo que dinero.</li>
+            <li><strong>Haber vivido en el campo.</strong> La experiencia rural suma pero no es excluyente — la constancia vale más.</li>
+            <li><strong>Compartirlo todo.</strong> Tu casa, tu economía y tu vida privada siguen siendo tuyas. Solo lo común es de todos.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="earn-note reveal">Los lugares no se compran: se ganan con compromiso, presencia y palabra cumplida.</p>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 id="faq-title">Las dudas que todos tienen (y está bien tenerlas)</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>¿Qué clase de personas buscan?</summary>
+          <p>Gente buena de verdad. Familias con principios, moral y palabra cumplida, que quieran vivir con más conciencia: del cuidado de la tierra, de cómo se cría a los hijos, de lo que comemos y de cómo tratamos al otro. No importa tu religión ni tu origen — importa cómo vivís. Y no hace falta ser perfecto: hace falta ser honesto y tener ganas de crecer.</p>
+        </details>
+        <details>
+          <summary>¿Esto es una comuna donde todo es de todos?</summary>
+          <p>No. Cada familia tiene su casa, su espacio y su economía propia. Lo compartido es la infraestructura (agua, energía, salón, herramientas) y la producción de alimentos. Es un modelo mixto: autonomía en lo privado, colaboración en lo común.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa si en unos años me quiero ir?</summary>
+          <p>Las reglas de salida se firman antes de empezar: qué se recupera del aporte inicial, cómo se tasan las mejoras de tu vivienda y en qué plazos devuelve la comunidad. Además, la comunidad tiene prioridad de recompra — nadie puede venderle su lugar a un desconocido sin aprobación de la asamblea.</p>
+        </details>
+        <details>
+          <summary>¿A nombre de quién queda el terreno?</summary>
+          <p>Nunca de una sola persona. Las opciones (cooperativa, fideicomiso, condominio) se evalúan con abogado y escribano antes de aportar dinero, y se elige la que mejor proteja a todas las familias. La transparencia legal es innegociable.</p>
+        </details>
+        <details>
+          <summary>¿Necesito mucha plata para entrar?</summary>
+          <p>El aporte depende del terreno y de cuántas familias seamos — usá la calculadora de arriba para darte una idea. Quien no llega con el capital completo puede compensar con más horas de trabajo o pagar en cuotas, siempre por contrato escrito.</p>
+        </details>
+        <details>
+          <summary>¿De qué vamos a vivir? ¿Nadie trabaja afuera?</summary>
+          <p>La autosuficiencia reduce lo que necesitás ganar, no lo elimina. Muchas familias mantienen trabajos remotos o de medio tiempo, y la comunidad genera ingresos propios: venta de excedentes, bolsones semanales, talleres y agroturismo. La meta es que el sueldo sea una opción, no una condena.</p>
+        </details>
+        <details>
+          <summary>¿Y si no me llevo bien con alguien?</summary>
+          <p>Va a pasar — en toda comunidad pasa. Por eso el protocolo de convivencia se firma antes: conversación directa, mediación de la comisión de convivencia, asamblea y, como última instancia, un mediador externo neutral. Los conflictos no se improvisan: se administran.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FORMULARIO ============ -->
+  <section class="alt" id="sumate" aria-labelledby="form-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Lista de espera</p>
+        <h2 id="form-title">Anotate en la lista de espera</h2>
+        <p class="lead" style="margin-top:.8rem">
+          El cupo es de 5 a 15 familias. Completá el formulario y tu mensaje nos llega directo
+          por WhatsApp: te contactamos para invitarte a la próxima reunión informativa.
+          Los lugares se asignan por compromiso demostrado — participación en reuniones y
+          jornadas — no por orden de llegada.
+        </p>
+      </div>
+      <form class="form-card reveal" id="interesForm" novalidate>
+        <div class="form-grid">
+          <div class="f-field">
+            <label for="fNombre">Nombre y apellido *</label>
+            <input id="fNombre" name="nombre" type="text" required autocomplete="name">
+          </div>
+          <div class="f-field">
+            <label for="fContacto">Teléfono o email de contacto *</label>
+            <input id="fContacto" name="contacto" type="text" required autocomplete="tel">
+          </div>
+          <div class="f-field">
+            <label for="fFamilia">¿Cuántos son en la familia?</label>
+            <input id="fFamilia" name="familia" type="text" placeholder="Ej: 2 adultos y 2 niños (5 y 8)">
+          </div>
+          <div class="f-field">
+            <label for="fUbicacion">¿Dónde viven ahora?</label>
+            <input id="fUbicacion" name="ubicacion" type="text" placeholder="Ciudad / provincia">
+          </div>
+          <div class="f-field full">
+            <label for="fOficios">Oficios, habilidades o conocimientos que aportan</label>
+            <input id="fOficios" name="oficios" type="text" placeholder="Ej: huerta, carpintería, enfermería, cocina, administración…">
+          </div>
+          <div class="f-field">
+            <label for="fHoras">Horas semanales para lo común</label>
+            <select id="fHoras" name="horas">
+              <option value="">Elegir…</option>
+              <option>Hasta 10 hs</option>
+              <option>10 a 15 hs</option>
+              <option>15 a 25 hs</option>
+              <option>Dedicación completa</option>
+            </select>
+          </div>
+          <div class="f-field">
+            <label for="fPlazo">¿En cuánto podrían mudarse?</label>
+            <select id="fPlazo" name="plazo">
+              <option value="">Elegir…</option>
+              <option>De inmediato</option>
+              <option>En 6 meses</option>
+              <option>En 1 a 2 años</option>
+              <option>Todavía no lo sé</option>
+            </select>
+          </div>
+          <div class="f-field full">
+            <label for="fMotivo">¿Por qué les interesa vivir en comunidad?</label>
+            <textarea id="fMotivo" name="motivo" placeholder="Contanos con tus palabras…"></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="btnEnviar">Anotarme en la lista de espera</button>
+          <span style="font-size:.8rem;color:var(--muted)">* campos obligatorios · tu mensaje se abre en WhatsApp, listo para enviar</span>
+        </div>
+        <div class="config-note" id="configNote">
+          <strong>Página en configuración:</strong> todavía no hay un WhatsApp o email de contacto cargado.
+          Tu mensaje se generó igual — copialo y envialo por el medio que tengas. (Organizadores: completar el bloque <code>CONFIG</code> al inicio del archivo.)
+        </div>
+        <div class="msg-preview" id="msgPreview">
+          <p style="font-size:.85rem;font-weight:600;margin-bottom:.4rem">Tu mensaje:</p>
+          <pre id="msgText"></pre>
+          <div class="form-actions" style="margin-top:.8rem">
+            <button type="button" class="btn btn-ghost" id="btnCopiar">Copiar mensaje</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div>
+      <h2>Una aclaración honesta</h2>
+      <p>
+        Este proyecto lleva años, no meses. Va a haber esfuerzo físico, asambleas largas y
+        aprendizaje a los tropezones. Lo que ofrecemos no es un paraíso instantáneo: es un plan
+        serio, por etapas y con reglas claras, para construir entre gente de bien una vida más
+        libre y más consciente. Si llegaste hasta acá y algo se te movió adentro, probablemente
+        seas de los nuestros. La tierra está esperando — lo que falta sos vos.
+      </p>
+      <p class="fine">Tierra Común · Proyecto de comunidad rural autosustentable · 2026</p>
+    </div>
+    <div>
+      <h2 style="font-size:1.1rem">Documentos del proyecto</h2>
+      <ul class="doc-links">
+        <li><a href="./PROYECTO.md"><span>Proyecto completo</span><span>PROYECTO.md</span></a></li>
+        <li><a href="./CONVOCATORIA.md"><span>Textos de convocatoria</span><span>CONVOCATORIA.md</span></a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG — completar por los organizadores antes de difundir
+   ============================================================ */
+const CONFIG = {
+  // WhatsApp con código de país, solo números
+  whatsapp: "5493460406121",
+  // Email del grupo organizador (fallback si WhatsApp no está disponible)
+  email: "sebastianbravo84@gmail.com",
+  // Zona de búsqueda del terreno
+  zona: "Catamarca — hasta 25 km de la capital"
+};
+
+/* ---- tema claro/oscuro ---- */
+const root = document.documentElement;
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const dark = root.dataset.theme
+    ? root.dataset.theme === 'dark'
+    : matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme = dark ? 'light' : 'dark';
+});
+
+/* ---- reveal on scroll ---- */
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduced && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+}
+
+/* ---- calculadora de aporte ---- */
+const fmt = n => 'USD ' + n.toLocaleString('es-AR');
+const cPrecio = document.getElementById('cPrecio');
+const cInfra  = document.getElementById('cInfra');
+const cFam    = document.getElementById('cFam');
+function calc() {
+  const precio = +cPrecio.value, infra = +cInfra.value, fam = +cFam.value;
+  const total = precio + infra;
+  const porFamilia = Math.round(total / fam / 100) * 100;
+  document.getElementById('oPrecio').textContent = fmt(precio);
+  document.getElementById('oInfra').textContent  = fmt(infra);
+  document.getElementById('oFam').textContent    = fam;
+  document.getElementById('rAporte').textContent = fmt(porFamilia);
+  document.getElementById('rDetalle').textContent =
+    `${fmt(total)} en total, entre ${fam} familias — la compra colectiva divide el esfuerzo.`;
+}
+[cPrecio, cInfra, cFam].forEach(el => el.addEventListener('input', calc));
+calc();
+
+/* ---- formulario → WhatsApp / email / copiar ---- */
+const form = document.getElementById('interesForm');
+form.addEventListener('submit', ev => {
+  ev.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  if (!v('fNombre') || !v('fContacto')) {
+    (v('fNombre') ? document.getElementById('fContacto') : document.getElementById('fNombre')).focus();
+    return;
+  }
+  const lineas = [
+    `Nombre: ${v('fNombre')}`,
+    `Contacto: ${v('fContacto')}`,
+    v('fFamilia')   && `Familia: ${v('fFamilia')}`,
+    v('fUbicacion') && `Vivimos en: ${v('fUbicacion')}`,
+    v('fOficios')   && `Aportamos: ${v('fOficios')}`,
+    v('fHoras')     && `Horas semanales: ${v('fHoras')}`,
+    v('fPlazo')     && `Podríamos mudarnos: ${v('fPlazo')}`,
+    v('fMotivo')    && `Por qué nos interesa: ${v('fMotivo')}`
+  ].filter(Boolean);
+  const mensaje = 'Hola! Quiero anotarme en la lista de espera del proyecto Tierra Común 🌱\n\n' + lineas.join('\n');
+
+  document.getElementById('msgText').textContent = mensaje;
+  document.getElementById('msgPreview').classList.add('show');
+
+  if (CONFIG.whatsapp) {
+    window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(mensaje), '_blank', 'noopener');
+  } else if (CONFIG.email) {
+    location.href = 'mailto:' + CONFIG.email
+      + '?subject=' + encodeURIComponent('Interés en Tierra Común')
+      + '&body=' + encodeURIComponent(mensaje);
+  } else {
+    document.getElementById('configNote').classList.add('show');
+  }
+});
+
+document.getElementById('btnCopiar').addEventListener('click', async ev => {
+  const texto = document.getElementById('msgText').textContent;
+  try {
+    await navigator.clipboard.writeText(texto);
+    ev.target.textContent = '¡Copiado!';
+  } catch {
+    const r = document.createRange();
+    r.selectNodeContents(document.getElementById('msgText'));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    ev.target.textContent = 'Seleccionado — copiá con Ctrl+C';
+  }
+  setTimeout(() => { ev.target.textContent = 'Copiar mensaje'; }, 2500);
+});
+
+/* ---- zona configurable ---- */
+if (CONFIG.zona) {
+  document.querySelectorAll('[data-zona]').forEach(el => { el.textContent = CONFIG.zona; });
+}
+</script>
+</body>
+</html>
