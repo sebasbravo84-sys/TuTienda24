@@ -1,9 +1,42 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { TrendingUp, Users, MessageCircle, ArrowUpRight } from 'lucide-react';
-import CounterStat from '../CounterStat';
+import { ArrowUpRight, Check } from 'lucide-react';
 
+// Cada tarjeta dice lo que se entregó, que se comprueba abriendo la web del
+// cliente. El número grande aparece solo cuando hay uno real: antes había
+// porcentajes y citas de dueños que nadie había dicho, en una sección titulada
+// "Resultados Reales". Si mañana conseguís la frase textual de un cliente,
+// agregale `quote` y `author` y la tarjeta la muestra sola.
 const cases = [
+  {
+    client: 'Las Medialunas de Gre',
+    category: 'Panadería Artesanal',
+    url: 'https://lasmedialunasdegre.netlify.app/',
+    color: 'from-amber-500/20 to-orange-500/10',
+    border: 'border-amber-500/20',
+    accent: 'text-amber-400',
+    glow: 'rgba(245,158,11,0.15)',
+    metric: { value: '8 → 20', label: 'Pedidos por semana' },
+    delivered: [
+      'Catálogo digital con packs predefinidos',
+      'Pedidos directos por WhatsApp',
+      'Ficha de negocio para Google',
+    ],
+  },
+  {
+    client: 'Buba Pet Shop',
+    category: 'Tienda de Mascotas',
+    url: 'https://bubapetshop.com.ar/',
+    color: 'from-emerald-500/20 to-teal-500/10',
+    border: 'border-emerald-500/20',
+    accent: 'text-emerald-400',
+    glow: 'rgba(16,185,129,0.15)',
+    delivered: [
+      'Tienda online con catálogo de productos',
+      'Dominio propio .com.ar y hosting',
+      'Diseño adaptado a celular',
+    ],
+  },
   {
     client: 'Voltax Baterías',
     category: 'Servicios 24/7',
@@ -12,44 +45,10 @@ const cases = [
     border: 'border-yellow-500/20',
     accent: 'text-yellow-400',
     glow: 'rgba(234,179,8,0.15)',
-    quote: 'Antes dependíamos del boca en boca. Ahora el 70% de nuestros clientes nos encuentran por Google.',
-    author: 'Propietario, Voltax',
-    stats: [
-      { value: '70%', label: 'Clientes desde Google', icon: <TrendingUp className="w-5 h-5 text-yellow-400" /> },
-      { value: '3x', label: 'Consultas por mes',     icon: <MessageCircle className="w-5 h-5 text-yellow-400" /> },
-      { value: '21',  label: 'Días de entrega',      icon: <Users className="w-5 h-5 text-yellow-400" /> },
-    ],
-  },
-  {
-    client: 'CorCent Odontología',
-    category: 'Salud Premium',
-    url: 'https://corcent.netlify.app/',
-    color: 'from-blue-500/20 to-indigo-500/10',
-    border: 'border-blue-500/20',
-    accent: 'text-blue-400',
-    glow: 'rgba(59,130,246,0.15)',
-    quote: 'La web nos dio una imagen profesional que ningún otro consultorio de la zona tiene. Los pacientes llegan convencidos.',
-    author: 'Directora, CorCent',
-    stats: [
-      { value: '55%', label: 'Nuevos pacientes',    icon: <TrendingUp className="w-5 h-5 text-blue-400" /> },
-      { value: '4.9', label: 'Reseñas en Google',   icon: <Users className="w-5 h-5 text-blue-400" /> },
-      { value: '18',  label: 'Días de entrega',     icon: <MessageCircle className="w-5 h-5 text-blue-400" /> },
-    ],
-  },
-  {
-    client: 'Lipipalu',
-    category: 'Accesorios de Autor',
-    url: 'https://lipipalu.netlify.app/',
-    color: 'from-purple-500/20 to-pink-500/10',
-    border: 'border-purple-500/20',
-    accent: 'text-purple-400',
-    glow: 'rgba(168,85,247,0.15)',
-    quote: 'Multiplicamos las ventas por WhatsApp. El catálogo online nos ahorra horas de respuestas y la gente llega lista para comprar.',
-    author: 'Fundadora, Lipipalu',
-    stats: [
-      { value: '4x',  label: 'Ventas por WhatsApp', icon: <TrendingUp className="w-5 h-5 text-purple-400" /> },
-      { value: '80%', label: 'Menos consultas repetidas', icon: <MessageCircle className="w-5 h-5 text-purple-400" /> },
-      { value: '14',  label: 'Días de entrega',     icon: <Users className="w-5 h-5 text-purple-400" /> },
+    delivered: [
+      'Web orientada a la urgencia del cliente',
+      'Dominio propio .com.ar y hosting',
+      'Contacto inmediato desde cualquier página',
     ],
   },
 ];
@@ -80,28 +79,38 @@ function CaseCard({ c, i }) {
           href={c.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors border border-white/10"
+          aria-label={`Ver la web de ${c.client}`}
+          className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors border border-white/10 flex-shrink-0"
         >
           <ArrowUpRight className="w-4 h-4 text-white" />
         </a>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 relative z-10">
-        {c.stats.map((s, j) => (
-          <div key={j} className="text-center bg-white/5 rounded-2xl p-4 border border-white/5">
-            <div className="flex justify-center mb-2">{s.icon}</div>
-            <div className="text-2xl font-black text-white tabular-nums">{s.value}</div>
-            <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider mt-1 leading-tight">{s.label}</p>
-          </div>
+      {/* Qué se entregó */}
+      <ul className="relative z-10 flex flex-col gap-3 flex-1">
+        {c.delivered.map((d, j) => (
+          <li key={j} className="flex items-start gap-3">
+            <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${c.accent}`} />
+            <span className="text-slate-300 text-sm font-medium leading-snug">{d}</span>
+          </li>
         ))}
-      </div>
+      </ul>
 
-      {/* Quote */}
-      <div className="relative z-10 border-t border-white/5 pt-6">
-        <p className="text-slate-300 text-sm font-medium leading-relaxed italic mb-3">"{c.quote}"</p>
-        <p className={`text-[10px] font-black uppercase tracking-widest ${c.accent}`}>— {c.author}</p>
-      </div>
+      {/* El número solo si existe */}
+      {c.metric && (
+        <div className="relative z-10 border-t border-white/5 pt-6">
+          <div className={`text-4xl font-black tabular-nums tracking-tighter ${c.accent}`}>{c.metric.value}</div>
+          <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest mt-1">{c.metric.label}</p>
+        </div>
+      )}
+
+      {/* La cita solo si el cliente la dijo */}
+      {c.quote && (
+        <div className="relative z-10 border-t border-white/5 pt-6">
+          <p className="text-slate-300 text-sm font-medium leading-relaxed italic mb-3">"{c.quote}"</p>
+          <p className={`text-[10px] font-black uppercase tracking-widest ${c.accent}`}>— {c.author}</p>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -115,14 +124,14 @@ export default function ResultsSection() {
         {/* Header */}
         <div className="text-center mb-20">
           <span className="inline-block py-1.5 px-4 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-black tracking-[0.2em] mb-6 border border-emerald-500/20 uppercase">
-            📈 Resultados Reales
+            📈 Trabajos Entregados
           </span>
           <h2 className="text-4xl md:text-7xl font-black text-white italic tracking-tighter">
             Negocios que crecieron <br />
             <span className="text-slate-500">con TuTienda24</span>
           </h2>
           <p className="text-slate-400 text-xl max-w-2xl mx-auto mt-6 font-medium">
-            No solo entregamos webs. Entregamos resultados medibles en semanas, no meses.
+            Cada web está en línea y se puede visitar. Mirá lo que entregamos y juzgá vos.
           </p>
         </div>
 
@@ -139,7 +148,7 @@ export default function ResultsSection() {
           className="text-center mt-16"
         >
           <p className="text-slate-500 text-sm font-bold uppercase tracking-widest">
-            ¿Querés resultados como estos para tu negocio?
+            ¿Querés una web así para tu negocio?
           </p>
         </motion.div>
       </div>

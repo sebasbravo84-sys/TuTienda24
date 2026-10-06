@@ -51,7 +51,6 @@ import AliadosSection from './components/sections/AliadosSection';
 import FAQSection from './components/sections/FAQSection';
 import NewsletterSection from './components/sections/NewsletterSection';
 import CustomCursor from './components/CustomCursor';
-import SocialProofToast from './components/SocialProofToast';
 import CounterStat from './components/CounterStat';
 import ResultsSection from './components/sections/ResultsSection';
 
@@ -141,7 +140,6 @@ function Home() {
   return (
     <div className="min-h-screen text-slate-50 bg-[#0f172a] selection:bg-blue-500/30 overflow-x-hidden">
       <CustomCursor />
-      <SocialProofToast />
       <ScrollToTop />
       {/* Preloader following Lipipalu style */}
       <AnimatePresence>
