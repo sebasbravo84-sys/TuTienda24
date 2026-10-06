@@ -10,7 +10,7 @@
 // ---------------------------------------------------------------
 export const PROMO_PRICE          = "129.000";  // precio promocional
 export const PROMO_ORIGINAL_PRICE = "159.000";  // precio tachado (el "antes")
-export const PROMO_MES            = "Julio";     // mes que aparece en el cartel y el popup
+export const PROMO_MES            = "Octubre";   // mes que aparece en el cartel y el popup
 export const PROMO_CUPOS          = "10";        // cupos disponibles que aparecen en el cartel
 
 export const PROMO_FEATURES = [
