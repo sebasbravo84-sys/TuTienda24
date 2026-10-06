@@ -58,6 +58,7 @@ import ResultsSection from './components/sections/ResultsSection';
 
 
 const projectImages = {
+  glow:       "/glow-preview.jpg",
   lipipalu:   "/lipipalu-preview.jpg",
   voltax:     "/voltax-preview.jpg",
   dentista:   "/corcent-preview.jpg",
@@ -75,14 +76,15 @@ const fadeIn = {
 
 
 const projects = [
-  { id: 1, title: "Lipipalu Concept",        category: "Accesorios de Autor",      image: projectImages.lipipalu,   url: "https://lipipalu.netlify.app/",                description: "Tienda de joyería y accesorios de autor con estética minimalista de lujo. Catálogo completo con colecciones exclusivas y experiencia de compra premium." },
+  { id: 1, title: "Glow",                     category: "App de Dictado por Voz",   image: projectImages.glow,       url: "https://getglow.pro/",                         description: "Aplicación nativa para macOS que convierte la voz en texto dentro de cualquier programa. Transcripción con IA en quince idiomas y refinado automático según el tono elegido." },
   { id: 2, title: "Voltax Baterías",          category: "Servicios 24/7",           image: projectImages.voltax,     url: "https://voltaxbaterias.com.ar/",               description: "Solución digital de alto rendimiento para servicios de asistencia inmediata. Interfaz optimizada para conversión directa en situaciones de emergencia." },
   { id: 3, title: "CorCent | Clínica Dental", category: "Salud Premium",            image: projectImages.dentista,   url: "https://corcent.netlify.app/",                 description: "Presencia digital de élite para el sector odontológico. Diseño limpio y profesional orientado a captar nuevos pacientes desde el primer clic." },
   { id: 4, title: "Finnex",                   category: "App de Finanzas Personal", image: projectImages.finnex,     url: "https://finnex.site/",                         description: "PWA de gestión financiera personal: gastos, ingresos, metas de ahorro y reportes visuales. Sin cuentas, sin servidores, 100% offline y gratuita." },
   { id: 5, title: "Precision Quiropráctica",  category: "Salud Premium",            image: projectImages.precision,  url: "https://precision-quiropractica.netlify.app/", description: "Presencia digital de élite para quiropráctica especializada con método Gonstead. Diseño enfocado en transmitir confianza médica y convertir visitantes en pacientes." },
   { id: 6, title: "Las Medialunas de Gre",    category: "Panadería Artesanal",      image: projectImages.medialunas, url: "https://lasmedialunasdegre.netlify.app/",      description: "Catálogo digital para panadería local de Catamarca. Diseño cálido orientado a pedidos por WhatsApp con packs predefinidos y servicio de eventos." },
-  { id: 7, title: "Buba Pet Shop",            category: "Tienda de Mascotas",       image: projectImages.buba,       url: "https://bubapetshop.netlify.app/",             description: "Tienda online moderna para pet shop con catálogo de productos y diseño amigable. Experiencia de compra fluida orientada a dueños de mascotas." },
+  { id: 7, title: "Buba Pet Shop",            category: "Tienda de Mascotas",       image: projectImages.buba,       url: "https://bubapetshop.com.ar/",             description: "Tienda online moderna para pet shop con catálogo de productos y diseño amigable. Experiencia de compra fluida orientada a dueños de mascotas." },
   { id: 8, title: "Caylle Mish",              category: "DJ & Productora Musical",  image: projectImages.caylle,     url: "https://caylle-mish.netlify.app/",             description: "Presencia digital inmersiva para DJ y productora de música electrónica de Catamarca. Diseño oscuro y cinematográfico con agenda de shows, sets en vivo y contrataciones." },
+  { id: 9, title: "Lipipalu Concept",         category: "Accesorios de Autor",      image: projectImages.lipipalu,   url: "https://lipipalu.netlify.app/",                description: "Tienda de joyería y accesorios de autor con estética minimalista de lujo. Catálogo completo con colecciones exclusivas y experiencia de compra premium." },
 ];
 
 
@@ -455,18 +457,25 @@ function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, i) => (
-              <motion.div
+              // Esto era un div con onClick: para una persona funcionaba igual,
+              // pero Google no sigue un onClick. Los nueve proyectos no recibían
+              // ni un enlace desde acá. Ahora cada tarjeta es un <a> de verdad,
+              // que además se puede abrir en otra pestaña y recorrer con el
+              // teclado. Los que no tienen url siguen abriendo el modal.
+              <motion.a
                 key={project.id}
+                href={project.url || undefined}
+                target={project.url ? "_blank" : undefined}
+                rel={project.url ? "noopener" : undefined}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -8 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group cursor-pointer relative rounded-2xl overflow-hidden bg-slate-900 border border-white/5 hover:border-white/10 shadow-2xl hover:shadow-[0_40px_80px_rgba(59,130,246,0.12)] transition-all duration-500"
-                onClick={() => {
-                  if (project.url) {
-                    window.open(project.url, '_blank');
-                  } else {
+                className="group cursor-pointer relative block rounded-2xl overflow-hidden bg-slate-900 border border-white/5 hover:border-white/10 shadow-2xl hover:shadow-[0_40px_80px_rgba(59,130,246,0.12)] transition-all duration-500"
+                onClick={(e) => {
+                  if (!project.url) {
+                    e.preventDefault();
                     setSelectedProject(project);
                   }
                 }}
@@ -514,7 +523,7 @@ function Home() {
                   </div>
 
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 
