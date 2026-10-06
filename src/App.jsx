@@ -407,8 +407,12 @@ function Home() {
                 Con diseño que no existe en otro lugar.
               </span>
             </h1>
+            {/* El H1 es la frase que vende y no se toca, pero no contiene ni
+                "diseño web" ni "Catamarca", que es lo que la gente escribe en
+                Google. Van acá, en la bajada, dichas con naturalidad. */}
             <p className="text-lg md:text-2xl text-slate-400 max-w-3xl mx-auto mb-14 leading-relaxed font-medium">
-              No usamos templates. Cada web es diseñada desde cero para tu negocio —
+              Diseño web en Catamarca para comercios y PYMES de toda Argentina.
+              No usamos templates: cada web es diseñada desde cero para tu negocio,
               con la velocidad de una agencia y la atención de un equipo dedicado.
             </p>
 
@@ -657,7 +661,7 @@ function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
               <h2 className="text-4xl md:text-7xl font-black mb-8 leading-tight">Soluciones de <span className="text-blue-500">Próxima Generación</span></h2>
-              <p className="text-xl text-slate-400 mb-12 max-w-lg">No solo hacemos webs. Creamos los cimientos digitales de tu éxito comercial.</p>
+              <p className="text-xl text-slate-400 mb-12 max-w-lg">No solo hacemos páginas web para comercios de Catamarca. Creamos los cimientos digitales de tu éxito comercial.</p>
               <div className="space-y-6">
                 {[
                   { title: "Sitios Corporativos", desc: "La cara profesional que tu empresa necesita.", icon: <Globe className="w-6 h-6 text-blue-500" /> },
