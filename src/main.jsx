@@ -13,8 +13,9 @@ const app = (
   </StrictMode>
 )
 
-// Solo el home viene prerenderizado; en el resto de las rutas se descarta ese HTML.
-if (root.hasChildNodes() && window.location.pathname === '/') {
+// Las rutas prerenderizadas se hidratan; el resto parte de un shell vacío.
+const path = window.location.pathname.replace(/\/$/, '') || '/'
+if (root.dataset.prerendered === path) {
   hydrateRoot(root, app)
 } else {
   root.replaceChildren()

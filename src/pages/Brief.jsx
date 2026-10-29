@@ -15,6 +15,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import Logo from '../components/Logo';
 import PinGate from '../components/PinGate';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 const sections = [
   {
@@ -86,6 +87,7 @@ const sections = [
 export default function Brief() {
   const navigate = useNavigate();
 
+  usePageMeta({ noindex: true });
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = 'Brief de Proyecto | TuTienda24';
