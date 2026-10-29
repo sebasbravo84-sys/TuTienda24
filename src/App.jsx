@@ -5,7 +5,7 @@ const Guide = lazy(() => import('./pages/Guide'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Brief = lazy(() => import('./pages/Brief'));
 const Thanks = lazy(() => import('./pages/Thanks'));
-import { pricingPlans, PROMO_PRICE, PROMO_ORIGINAL_PRICE, PROMO_FEATURES, PROMO_MES, PROMO_CUPOS } from './PRECIOS.js';
+import { pricingPlans, PROMO_PRICE, PROMO_ORIGINAL_PRICE, PROMO_FEATURES, PROMO_CUPOS } from './PRECIOS.js';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Globe,
@@ -59,6 +59,7 @@ const CustomCursor = deferred(() => import('./components/CustomCursor'));
 
 
 import { projects } from './data/projects.js';
+import { usePromoMes } from './hooks/usePromoMes';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -81,6 +82,7 @@ const techStack = ["React 19", "Vite", "Tailwind CSS", "Framer Motion", "Three.j
 
 function Home() {
   const navigate = useNavigate();
+  const promoMes = usePromoMes();
   const [loading, setLoading] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -186,7 +188,7 @@ function Home() {
                   ⚡ Oportunidad Limitada
                 </span>
                 <h3 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight italic tracking-tighter">
-                  ¡Gran Promoción <span className="text-blue-400">Hasta {PROMO_MES}!</span>
+                  ¡Gran Promoción <span className="text-blue-400">Hasta {promoMes}!</span>
                 </h3>
                 <p className="text-lg text-slate-400 font-medium mb-10 leading-relaxed">
                   Llevamos tu negocio al siguiente nivel con una web informativa de élite.
@@ -737,7 +739,7 @@ function Home() {
                   <div className="mt-8 flex items-center justify-center lg:justify-end gap-3">
                     <div className="w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
                     <p className="text-[10px] text-cyan-500 font-black uppercase tracking-widest italic">
-                      Últimos {PROMO_CUPOS} cupos bonificados para {PROMO_MES}
+                      Últimos {PROMO_CUPOS} cupos bonificados para {promoMes}
                     </p>
                   </div>
                 </div>

@@ -10,7 +10,12 @@
 // ---------------------------------------------------------------
 export const PROMO_PRICE          = "129.000";  // precio promocional
 export const PROMO_ORIGINAL_PRICE = "159.000";  // precio tachado (el "antes")
-export const PROMO_MES            = "Noviembre";   // mes que aparece en el cartel y el popup
+// El mes de la promo se calcula solo (hora de Argentina): no hace falta editarlo.
+export function getPromoMes(date = new Date()) {
+  const mes = new Intl.DateTimeFormat("es-AR", { month: "long", timeZone: "America/Argentina/Buenos_Aires" }).format(date);
+  return mes.charAt(0).toUpperCase() + mes.slice(1);
+}
+export const PROMO_MES            = getPromoMes();  // mes que aparece en el cartel y el popup
 export const PROMO_CUPOS          = "10";        // cupos disponibles que aparecen en el cartel
 
 export const PROMO_FEATURES = [
