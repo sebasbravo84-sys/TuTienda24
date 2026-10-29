@@ -62,7 +62,7 @@ export default function AliadosSection({ navigate }) {
                     {step.icon}
                   </div>
                   <div>
-                    <h4 className="text-xl font-black text-white mb-2 italic uppercase tracking-tighter">{step.title}</h4>
+                    <h3 className="text-xl font-black text-white mb-2 italic uppercase tracking-tighter">{step.title}</h3>
                     <p className="text-slate-400 font-medium leading-relaxed">{step.desc}</p>
                   </div>
                 </motion.div>

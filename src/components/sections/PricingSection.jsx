@@ -107,7 +107,7 @@ export default function PricingSection({ openWhatsApp }) {
           </span>
           <h2 className="text-4xl md:text-7xl font-black text-white italic tracking-tighter">
             Planes diseñados <br />
-            <span className="text-slate-500">para dominar el mercado</span>
+            <span className="text-slate-400">para dominar el mercado</span>
           </h2>
         </div>
 
@@ -172,7 +172,7 @@ export default function PricingSection({ openWhatsApp }) {
                   >
                     ✦ Nuevo
                   </motion.span>
-                  <span className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Producto estrella</span>
+                  <span className="text-slate-400 text-[10px] font-black uppercase tracking-widest">Producto estrella</span>
                 </div>
 
                 <h3 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tighter mb-4">
@@ -205,7 +205,7 @@ export default function PricingSection({ openWhatsApp }) {
                   <span className="text-slate-400 text-sm font-black">Desde $</span>
                   <span className="text-5xl md:text-6xl font-black text-white tracking-tighter">{sistemaPlan.price}</span>
                 </div>
-                <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-8">{sistemaPlan.setup}</p>
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-8">{sistemaPlan.setup}</p>
 
                 <motion.button
                   onClick={() => openWhatsApp(sistemaPlan.name)}
@@ -296,7 +296,7 @@ export default function PricingSection({ openWhatsApp }) {
                 </div>
 
                 <h3 className="text-xl font-black mb-1 italic uppercase tracking-tighter text-white">{plan.name}</h3>
-                <p className={`text-xs mb-8 font-bold ${plan.isPopular ? 'text-blue-100' : 'text-slate-500'}`}>{plan.setup}</p>
+                <p className={`text-xs mb-8 font-bold ${plan.isPopular ? 'text-blue-100' : 'text-slate-400'}`}>{plan.setup}</p>
 
                 <div className="flex items-baseline gap-1 mb-8">
                   <span className="text-sm font-black opacity-60">$</span>

@@ -94,7 +94,7 @@ export default function SistemaVentasSection({ openWhatsApp }) {
                   {step.icon}
                 </div>
                 <p className="font-black text-white text-sm mb-1">{step.label}</p>
-                <p className="text-slate-500 text-[11px] leading-snug">{step.desc}</p>
+                <p className="text-slate-400 text-[11px] leading-snug">{step.desc}</p>
               </motion.div>
               {i < steps.length - 1 && (
                 <ArrowRight className="w-5 h-5 text-slate-600 flex-shrink-0 rotate-90 lg:rotate-0" />
@@ -110,7 +110,7 @@ export default function SistemaVentasSection({ openWhatsApp }) {
           viewport={{ once: true }}
           className="mb-20"
         >
-          <p className="text-center text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-10">
+          <p className="text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-10">
             Herramientas incluidas en el sistema
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -145,7 +145,7 @@ export default function SistemaVentasSection({ openWhatsApp }) {
             ].map((s, i) => (
               <div key={i} className="text-center md:text-left">
                 <div className="flex items-center gap-2 justify-center md:justify-start mb-1">{s.icon}<span className="text-3xl font-black text-white">{s.val}</span></div>
-                <p className="text-slate-500 text-xs font-bold uppercase tracking-wider">{s.label}</p>
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">{s.label}</p>
               </div>
             ))}
           </div>

@@ -128,7 +128,7 @@ export default function ResultsSection() {
           </span>
           <h2 className="text-4xl md:text-7xl font-black text-white italic tracking-tighter">
             Negocios que crecieron <br />
-            <span className="text-slate-500">con TuTienda24</span>
+            <span className="text-slate-400">con TuTienda24</span>
           </h2>
           <p className="text-slate-400 text-xl max-w-2xl mx-auto mt-6 font-medium">
             Cada web está en línea y se puede visitar. Mirá lo que entregamos y juzgá vos.
@@ -147,7 +147,7 @@ export default function ResultsSection() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-slate-500 text-sm font-bold uppercase tracking-widest">
+          <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">
             ¿Querés una web así para tu negocio?
           </p>
         </motion.div>

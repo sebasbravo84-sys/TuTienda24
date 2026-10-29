@@ -53,7 +53,7 @@ export default function CounterStat({ value, label, icon }) {
     <div ref={ref} className="text-center">
       <div className="flex justify-center mb-4">{icon}</div>
       <div className="text-4xl font-black text-white mb-2 tabular-nums">{displayed}</div>
-      <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">{label}</p>
+      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{label}</p>
     </div>
   );
 }

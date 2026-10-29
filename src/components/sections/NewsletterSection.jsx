@@ -73,7 +73,7 @@ export default function NewsletterSection() {
                   className="w-full bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-8 flex flex-col items-center"
                 >
                   <CheckCircle2 className="w-12 h-12 text-emerald-500 mb-4" />
-                  <h4 className="text-2xl font-black text-white mb-2 italic">¡Bienvenido al Club!</h4>
+                  <h3 className="text-2xl font-black text-white mb-2 italic">¡Bienvenido al Club!</h3>
                   <p className="text-emerald-100/70 mb-6 font-medium">Hemos preparado tu acceso de élite.</p>
                   <button
                     onClick={() => navigate('/guia-pro')}

@@ -22,7 +22,7 @@ export default function TestimonialsSection() {
     <section id="testimonios" className="py-32 bg-[#0f172a] overflow-hidden">
       <div className="container mx-auto px-6 mb-20 text-center">
         <h2 className="text-4xl md:text-6xl font-black mb-6 italic">Clientes que ganan</h2>
-        <p className="text-xl text-slate-500">Nuestra mejor garantía es tu éxito.</p>
+        <p className="text-xl text-slate-400">Nuestra mejor garantía es tu éxito.</p>
       </div>
 
       <div className="relative">
@@ -52,8 +52,8 @@ export default function TestimonialsSection() {
                   {t.avatar}
                 </div>
                 <div>
-                  <h4 className="font-black text-xl text-white">{t.name}</h4>
-                  <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">{t.role}</p>
+                  <h3 className="font-black text-xl text-white">{t.name}</h3>
+                  <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">{t.role}</p>
                 </div>
               </div>
             </div>

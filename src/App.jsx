@@ -217,12 +217,12 @@ function Home() {
                 <div className="bg-white/5 border border-white/10 rounded-3xl p-8 mb-10 relative overflow-hidden group">
                   <div className="relative z-10 flex items-center justify-between">
                     <div>
-                      <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px] mb-2">Desde solo</p>
+                      <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mb-2">Desde solo</p>
                       <div className="text-5xl font-black text-white">${PROMO_PRICE}</div>
                     </div>
                     <div className="text-right">
                       <p className="text-blue-400 font-black italic text-xl">PROMO PRO</p>
-                      <p className="text-[10px] text-slate-500 font-bold uppercase mt-1">Sujeto a cupos</p>
+                      <p className="text-[10px] text-slate-400 font-bold uppercase mt-1">Sujeto a cupos</p>
                     </div>
                   </div>
                 </div>
@@ -312,7 +312,7 @@ function Home() {
                     >
                       Quiero algo similar
                     </motion.button>
-                    <p className="text-center text-[10px] text-slate-500 font-bold uppercase tracking-widest">
+                    <p className="text-center text-[10px] text-slate-400 font-bold uppercase tracking-widest">
                       Presupuesto estimado: ${PROMO_PRICE}+
                     </p>
                   </div>
@@ -612,7 +612,7 @@ function Home() {
             ⚡ El Camino al Éxito
           </span>
           <h2 className="text-4xl md:text-7xl font-black text-white italic tracking-tighter">
-            Nuestra Metodología <br /> <span className="text-slate-500">de Alto Rendimiento</span>
+            Nuestra Metodología <br /> <span className="text-slate-400">de Alto Rendimiento</span>
           </h2>
         </div>
 
@@ -652,7 +652,7 @@ function Home() {
             {[...techStack, ...techStack].map((tech, i) => (
               <div key={i} className="flex items-center gap-4 group">
                 <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></div>
-                <span className="text-4xl md:text-6xl font-black text-slate-700 group-hover:text-white transition-colors tracking-tighter italic">
+                <span className="text-4xl md:text-6xl font-black text-slate-500 group-hover:text-white transition-colors tracking-tighter italic">
                   {tech}
                 </span>
               </div>
@@ -681,8 +681,8 @@ function Home() {
                       {s.icon}
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold mb-1">{s.title}</h4>
-                      <p className="text-slate-500 font-medium">{s.desc}</p>
+                      <h3 className="text-xl font-bold mb-1">{s.title}</h3>
+                      <p className="text-slate-400 font-medium">{s.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -697,7 +697,7 @@ function Home() {
                 { label: "Hosting & Dominio", color: "pink", list: ["Hosting incluido", "Dominio .com.ar", "1 año bonificado"] }
               ].map((card, i) => (
                 <div key={i} className="glass-card p-10 rounded-[2.5rem] border border-white/5 shadow-2xl">
-                  <h4 className="text-2xl font-black mb-6">{card.label}</h4>
+                  <h3 className="text-2xl font-black mb-6">{card.label}</h3>
                   <ul className="space-y-4">
                     {card.list.map((l, j) => (
                       <li key={j} className="flex items-center gap-3 text-sm text-slate-400 font-bold">
@@ -742,9 +742,9 @@ function Home() {
 
                 <div className="text-center lg:text-right border-t lg:border-t-0 lg:border-l border-white/5 pt-12 lg:pt-0 lg:pl-16">
                   <div className="mb-10">
-                    <span className="text-slate-500 line-through text-2xl font-bold uppercase tracking-widest block mb-4 opacity-40">${PROMO_ORIGINAL_PRICE}</span>
+                    <span className="text-slate-400 line-through text-2xl font-bold uppercase tracking-widest block mb-4 opacity-60">${PROMO_ORIGINAL_PRICE}</span>
                     <div className="text-7xl md:text-9xl font-black text-white tracking-tighter">${PROMO_PRICE.split('.')[0]}<span className="text-3xl text-cyan-400">.{PROMO_PRICE.split('.')[1]}</span></div>
-                    <p className="text-slate-500 font-black uppercase tracking-[0.2em] mt-6 text-xs">Pago único inicial</p>
+                    <p className="text-slate-400 font-black uppercase tracking-[0.2em] mt-6 text-xs">Pago único inicial</p>
                   </div>
 
                   <motion.button
@@ -791,13 +791,13 @@ function Home() {
               <div className="mb-8">
                 <Logo size={0.9} dark />
               </div>
-              <p className="text-slate-500 font-medium text-lg leading-relaxed mb-10">
+              <p className="text-slate-400 font-medium text-lg leading-relaxed mb-10">
                 Líderes en transformación digital para comercios locales. Orgullosamente radicados en Catamarca.
               </p>
             </div>
 
             <div>
-              <h4 className="font-black text-sm uppercase tracking-[0.2em] text-slate-500 mb-10">Servicios</h4>
+              <h3 className="font-black text-sm uppercase tracking-[0.2em] text-slate-400 mb-10">Servicios</h3>
               <ul className="space-y-6 text-lg text-slate-400 font-bold">
                 {['Sitios Corporativos', 'Catálogos WhatsApp', 'Mantenimiento Web', 'Hosting & Dominio'].map((item) => (
                   <li key={item}><a href="#servicios" className="hover:text-blue-500 transition-colors uppercase text-sm tracking-widest">{item}</a></li>
@@ -806,7 +806,7 @@ function Home() {
             </div>
 
             <div>
-              <h4 className="font-black text-sm uppercase tracking-[0.2em] text-slate-500 mb-10">Contacto</h4>
+              <h3 className="font-black text-sm uppercase tracking-[0.2em] text-slate-400 mb-10">Contacto</h3>
               <ul className="space-y-6 text-lg text-slate-400 font-bold">
                 <li className="flex items-center gap-4">
                   <Mail className="w-5 h-5 text-blue-500" /> 
@@ -817,7 +817,7 @@ function Home() {
             </div>
 
             <div>
-              <h4 className="font-black text-sm uppercase tracking-[0.2em] text-slate-500 mb-10">Legales</h4>
+              <h3 className="font-black text-sm uppercase tracking-[0.2em] text-slate-400 mb-10">Legales</h3>
               <ul className="space-y-6 text-sm text-slate-400 font-bold uppercase tracking-widest">
                 <li><Link to="/terminos" className="hover:text-blue-500 transition-colors">Términos</Link></li>
                 <li><Link to="/privacidad" className="hover:text-blue-500 transition-colors">Privacidad</Link></li>
