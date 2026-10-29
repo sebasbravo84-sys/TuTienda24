@@ -328,7 +328,7 @@ function Home() {
       <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'glass py-4 shadow-lg shadow-black/30' : 'bg-transparent py-8'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <motion.div
-            initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
+            initial={false} animate={{ opacity: 1, x: 0 }}
           >
             <Logo size={0.85} dark onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
           </motion.div>
@@ -379,7 +379,7 @@ function Home() {
         </div>
 
         <div className="container mx-auto max-w-6xl text-center relative z-10">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <motion.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <div className="flex flex-col items-center mb-10 gap-4">
               {/* Badge de diferenciación principal */}
               <div className="flex flex-wrap justify-center gap-3">

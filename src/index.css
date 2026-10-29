@@ -142,6 +142,20 @@ h4,
   .aurora-noise {
     display: none;
   }
+  /* Los desenfoques grandes son decorativos y muy caros de pintar en celulares */
+  [class*="blur-["]:not([class*="aurora-blob"]),
+  .blur-3xl {
+    display: none;
+  }
+  .aurora-blob-1,
+  .aurora-blob-2,
+  .aurora-blob-3 {
+    filter: none;
+  }
+  [class*="backdrop-blur"] {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
   .whatsapp-pulse::before {
     animation: none;
     opacity: 0;
