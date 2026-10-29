@@ -365,7 +365,7 @@ function Home() {
               {/* Badge de diferenciación principal */}
               <div className="flex flex-wrap justify-center gap-3">
                 <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-black tracking-widest uppercase border border-emerald-500/20">
-                  ⚡ Entrega en 14–21 días
+                  ⚡ Entrega en 7 a 10 días hábiles
                 </span>
                 <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-blue-500/10 text-blue-400 text-xs font-black tracking-widest uppercase border border-blue-500/20">
                   🎨 Diseño único · No usamos templates
@@ -387,7 +387,7 @@ function Home() {
             </div>
 
             <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-10">
-              Tu web lista en <span className="text-emerald-400">3 semanas.</span><br className="hidden md:block" />
+              Tu web lista en <span className="text-emerald-400">7 a 10 días hábiles.</span><br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400">
                 Con diseño que no existe en otro lugar.
               </span>
