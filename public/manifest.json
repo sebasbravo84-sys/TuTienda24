@@ -9,7 +9,7 @@
   "lang": "es-AR",
   "icons": [
     {
-      "src": "/logo.png",
+      "src": "/logo-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
@@ -21,12 +21,5 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["business", "productivity"],
-  "screenshots": [
-    {
-      "src": "/lipipalu-preview.png",
-      "sizes": "1280x720",
-      "type": "image/png"
-    }
-  ]
+  "categories": ["business", "productivity"]
 }

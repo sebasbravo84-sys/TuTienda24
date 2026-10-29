@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { usePageMeta } from '../../hooks/usePageMeta';
 
 export default function Cookies() {
     const navigate = useNavigate();
+    usePageMeta({ title: 'Política de Cookies | TuTienda24', description: 'Qué cookies usa el sitio de TuTienda24 y para qué.', path: '/cookies' });
 
     return (
         <div className="min-h-screen bg-[#0f172a] text-slate-300 py-20 px-6">

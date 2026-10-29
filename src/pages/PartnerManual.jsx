@@ -17,6 +17,7 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../components/Logo';
 import PinGate from '../components/PinGate';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 const sections = [
   {
@@ -139,6 +140,7 @@ const sections = [
 
 export default function PartnerManual() {
   const navigate = useNavigate();
+  usePageMeta({ title: 'Manual de Aliados | TuTienda24', noindex: true });
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

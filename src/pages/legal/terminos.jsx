@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { usePageMeta } from '../../hooks/usePageMeta';
 
 export default function Terminos() {
     const navigate = useNavigate();
+    usePageMeta({ title: 'Términos y Condiciones | TuTienda24', description: 'Términos y condiciones de servicio de TuTienda24: alcance, propiedad intelectual, pagos y cancelaciones.', path: '/terminos' });
 
     return (
         <div className="min-h-screen bg-[#0f172a] text-slate-300 py-20 px-6">

@@ -193,6 +193,7 @@ function Home() {
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
 
               <button
+                aria-label="Cerrar promoción"
                 className="absolute top-6 right-6 z-50 text-slate-400 hover:text-white transition-colors"
                 onClick={() => setShowPromo(false)}
               >
@@ -260,6 +261,7 @@ function Home() {
               onClick={e => e.stopPropagation()}
             >
               <button
+                aria-label="Cerrar"
                 className="absolute top-4 right-4 z-50 w-12 h-12 bg-black/70 hover:bg-black/90 text-white rounded-full flex items-center justify-center transition-all border border-white/20 shadow-2xl"
                 onClick={() => setSelectedProject(null)}
               >
@@ -831,6 +833,7 @@ function Home() {
       <motion.button
         initial={{ scale: 0 }} animate={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
         onClick={() => openWhatsApp()}
+        aria-label="Escribinos por WhatsApp"
         className="fixed bottom-6 right-6 w-14 h-14 rounded-2xl bg-[#25D366] text-white flex items-center justify-center shadow-[0_15px_40px_rgba(37,211,102,0.3)] z-50 whatsapp-pulse"
       >
         <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full border-4 border-[#0f172a] animate-bounce z-10 flex items-center justify-center text-[10px] font-black">

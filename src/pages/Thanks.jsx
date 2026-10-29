@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, Home, MessageCircle, ArrowRight, Instagram, Globe } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../components/Logo';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 const Thanks = () => {
   const navigate = useNavigate();
+  usePageMeta({ title: 'Gracias | TuTienda24', noindex: true });
   const [countdown, setCountdown] = React.useState(7);
 
   useEffect(() => {
@@ -19,17 +21,15 @@ const Thanks = () => {
 
     // Sistema de redirección automática
     const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          navigate('/');
-        }
-        return prev - 1;
-      });
+      setCountdown((prev) => prev - 1);
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [navigate]);
+  }, []);
+
+  useEffect(() => {
+    if (countdown <= 0) navigate('/');
+  }, [countdown, navigate]);
 
   return (
     <div className="min-h-screen bg-[#0f172a] text-slate-50 selection:bg-blue-500/30 flex flex-col relative overflow-hidden">

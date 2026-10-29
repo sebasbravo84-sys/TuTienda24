@@ -71,7 +71,7 @@ export default function ChatWidget() {
                   <p className="text-blue-200 text-[10px] font-bold">Respondemos en menos de 1 hora ⚡</p>
                 </div>
               </div>
-              <button onClick={() => setOpen(false)} className="text-white/60 hover:text-white transition-colors">
+              <button aria-label="Cerrar chat" onClick={() => setOpen(false)} className="text-white/60 hover:text-white transition-colors">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -129,6 +129,7 @@ export default function ChatWidget() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => { setOpen(o => !o); setPulse(false); }}
+        aria-label="Abrir chat"
         className="fixed bottom-6 right-24 z-[150] w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-[0_10px_40px_rgba(37,99,235,0.5)]"
       >
         <AnimatePresence mode="wait">

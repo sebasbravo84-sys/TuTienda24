@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Home } from 'lucide-react';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 const r = (min, max) => min + Math.random() * (max - min);
 
@@ -26,6 +27,7 @@ const LIGHTS = [
 
 export default function NotFound() {
   const navigate = useNavigate();
+  usePageMeta({ title: 'Página no encontrada | TuTienda24', noindex: true });
 
   return (
     <div className="min-h-screen bg-[#02040b] overflow-hidden relative flex flex-col items-center select-none">

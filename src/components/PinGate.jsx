@@ -77,6 +77,7 @@ export default function PinGate({ children }) {
               <button
                 type="button"
                 onClick={() => setShow(!show)}
+                aria-label={show ? "Ocultar PIN" : "Mostrar PIN"}
                 className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
               >
                 {show ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
