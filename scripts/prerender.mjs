@@ -8,6 +8,7 @@ import path from 'node:path';
 import { pricingPlans, sistemaPlan, PROMO_PRICE, PROMO_ORIGINAL_PRICE, PROMO_MES, PROMO_FEATURES } from '../src/PRECIOS.js';
 import { projects } from '../src/data/projects.js';
 import { faqs } from '../src/data/faq.js';
+import { cities } from '../src/data/cities.js';
 
 const SITE = 'https://tutienda24.com.ar';
 const dist = path.resolve('dist');
@@ -15,6 +16,7 @@ const { render } = await import(pathToFileURL(path.resolve('dist-ssr/entry-serve
 
 const routes = [
   { path: '/' },
+  ...cities.map((c) => ({ path: c.path, title: c.title, description: c.description })),
   { path: '/guia-pro', title: '7 Secretos para Vender x3 Online | TuTienda24', description: 'Guía gratuita: 7 estrategias probadas para triplicar tus ventas con una página web profesional. SEO local, WhatsApp, catálogo digital y más. Por TuTienda24.' },
   { path: '/aliados', title: 'Programa de Aliados TuTienda24 · Ganá Comisiones Recomendando', description: 'Sumate al programa de aliados de TuTienda24 y ganá hasta $58.000 por proyecto referido. Sin inversión, sin límite de comisiones. Para toda Argentina.' },
   { path: '/terminos', title: 'Términos y Condiciones | TuTienda24', description: 'Términos y condiciones de servicio de TuTienda24: alcance, propiedad intelectual, pagos y cancelaciones.' },
@@ -123,6 +125,7 @@ ${projects.map((p) => `- [${p.title}](${p.url}): ${p.category}. ${p.description}
 ## Páginas del sitio
 
 - [Inicio](${SITE}/): servicios, portfolio, precios y preguntas frecuentes
+${cities.map((c) => `- [Diseño web en ${c.name}](${SITE}${c.path}): planes, precios y preguntas frecuentes para negocios de ${c.name}`).join('\n')}
 - [Guía: 7 secretos para vender x3 online](${SITE}/guia-pro): guía gratuita
 - [Programa de aliados](${SITE}/aliados): comisión del 10% por cada proyecto referido
 - [Términos y condiciones](${SITE}/terminos)

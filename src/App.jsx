@@ -31,7 +31,8 @@ import {
   ExternalLink,
   Eye,
   Send,
-  Download
+  Download,
+  Menu
 } from 'lucide-react';
 
 // Paginas legales
@@ -60,6 +61,8 @@ const CustomCursor = deferred(() => import('./components/CustomCursor'));
 
 import { projects } from './data/projects.js';
 import { usePromoMes } from './hooks/usePromoMes';
+import { cities } from './data/cities.js';
+const CityLanding = lazy(() => import('./pages/CityLanding'));
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -87,6 +90,7 @@ function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [showPromo, setShowPromo] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -321,14 +325,47 @@ function Home() {
               </a>
             ))}
           </nav>
-          <motion.button
-            whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-            onClick={() => openWhatsApp()}
-            className="bg-white text-slate-900 hover:bg-blue-50 px-6 py-2 rounded-full font-bold shadow-xl transition-all"
-          >
-            Hablemos
-          </motion.button>
+          <div className="flex items-center gap-3">
+            <motion.button
+              whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+              onClick={() => openWhatsApp()}
+              className="hidden sm:block bg-white text-slate-900 hover:bg-blue-50 px-6 py-2 rounded-full font-bold shadow-xl transition-all"
+            >
+              Hablemos
+            </motion.button>
+            <button
+              type="button"
+              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={menuOpen}
+              aria-controls="menu-movil"
+              onClick={() => setMenuOpen((o) => !o)}
+              className="md:hidden w-11 h-11 rounded-full bg-white/10 border border-white/15 text-white flex items-center justify-center"
+            >
+              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
+        {menuOpen && (
+          <nav id="menu-movil" className="md:hidden absolute top-full inset-x-0 glass border-t border-white/10 px-6 py-4 flex flex-col">
+            {['proyectos', 'servicios', 'precios', 'testimonios'].map((item) => (
+              <a
+                key={item}
+                href={`#${item}`}
+                onClick={() => setMenuOpen(false)}
+                className="py-4 text-lg font-bold uppercase tracking-wide text-slate-200 border-b border-white/5 last:border-b-0"
+              >
+                {item}
+              </a>
+            ))}
+            <button
+              type="button"
+              onClick={() => { setMenuOpen(false); openWhatsApp(); }}
+              className="mt-4 bg-white text-slate-900 rounded-full py-3 font-bold"
+            >
+              Hablemos
+            </button>
+          </nav>
+        )}
       </header>
 
       {/* Hero Section */}
@@ -808,6 +845,13 @@ function Home() {
             </div>
           </div>
 
+          <nav aria-label="Zonas de servicio" className="border-t border-slate-900 pt-10 pb-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-bold text-slate-400">
+            <span className="uppercase tracking-widest text-slate-500">Diseño web en:</span>
+            {cities.map((c) => (
+              <Link key={c.slug} to={c.path} className="hover:text-blue-400 transition-colors">{c.name}</Link>
+            ))}
+          </nav>
+
           <div className="border-t border-slate-900 pt-12 flex flex-col md:flex-row justify-between items-center gap-8 text-slate-600 text-sm font-bold tracking-widest uppercase">
             <p>© {new Date().getFullYear()} TuTienda24. Todos los derechos reservados.</p>
             <p>San Fernando del Valle de Catamarca.</p>
@@ -840,6 +884,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/guia-pro" element={<Guide />} />
+        {cities.map((c) => (
+          <Route key={c.slug} path={c.path} element={<CityLanding city={c} />} />
+        ))}
         <Route path="/terminos" element={<Terminos />} />
         <Route path="/privacidad" element={<Privacidad />} />
         <Route path="/cookies" element={<Cookies />} />

@@ -1,14 +1,14 @@
 // Portfolio: fuente única para el sitio y para llms.txt
 const projectImages = {
-  glow:       "/glow-preview.jpg",
-  lipipalu:   "/lipipalu-preview.jpg",
-  voltax:     "/voltax-preview.jpg",
-  dentista:   "/corcent-preview.jpg",
-  finnex:     "/finnex-preview.jpg",
-  precision:  "/precision-preview.jpg",
-  medialunas: "/medialunas-preview.jpg",
-  buba:       "/buba-preview.jpg",
-  caylle:     "/caylle-preview.jpg",
+  glow:       "/glow-preview.webp",
+  lipipalu:   "/lipipalu-preview.webp",
+  voltax:     "/voltax-preview.webp",
+  dentista:   "/corcent-preview.webp",
+  finnex:     "/finnex-preview.webp",
+  precision:  "/precision-preview.webp",
+  medialunas: "/medialunas-preview.webp",
+  buba:       "/buba-preview.webp",
+  caylle:     "/caylle-preview.webp",
 };
 
 export const projects = [
