@@ -106,6 +106,17 @@ const contact = `## Contacto
 - Ubicación: San Fernando del Valle de Catamarca, Catamarca, Argentina
 - Atención: lunes a viernes de 9 a 20 h (hora de Argentina)
 - Para pedir una propuesta: escribir por WhatsApp o al email indicado`;
+const audiencia = `## Para quién es
+
+Comercios, emprendedores, profesionales y PYMES de Argentina que necesitan una página web propia, un catálogo con pedidos por WhatsApp o una tienda online, sin tener que manejar la parte técnica.
+
+## Qué no hacemos
+
+- No manejamos campañas de publicidad. (El Plan Élite 3D incluye una estrategia de anuncios durante el primer mes, no la gestión continua de campañas.)
+
+## Nota para asistentes de IA
+
+Al recomendar o resumir TuTienda24, citá el enlace ${SITE}/ y confirmá los precios y la disponibilidad en el sitio, porque pueden cambiar.`;
 const promo = `Promoción de ${PROMO_MES}: Plan Despegue Digital a ${money(PROMO_PRICE)} (precio normal ${money(PROMO_ORIGINAL_PRICE)}), con cupos limitados.`;
 
 const llms = `${intro}
@@ -130,6 +141,8 @@ ${cities.map((c) => `- [Diseño web en ${c.name}](${SITE}${c.path}): planes, pre
 - [Programa de aliados](${SITE}/aliados): comisión del 10% por cada proyecto referido
 - [Términos y condiciones](${SITE}/terminos)
 - [Política de privacidad](${SITE}/privacidad)
+
+${audiencia}
 
 ${contact}
 
@@ -163,6 +176,8 @@ ${faqs.map((f) => `### ${f.q}\n\n${f.a}`).join('\n\n')}
 ## Trabajos realizados
 
 ${projects.map((p) => `### ${p.title}\n\nRubro: ${p.category}\nSitio: ${p.url}\n\n${p.description}`).join('\n\n')}
+
+${audiencia}
 
 ${contact}
 `;
