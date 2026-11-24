@@ -1,0 +1,6 @@
+[build]
+  # No reconstruir el sitio cuando el único cambio es dentro de proyecto-comunidad/,
+  # que se publica aparte con GitHub Pages y no forma parte de este build.
+  # El comando y la carpeta de publicación siguen tomándose de la configuración
+  # que ya tengas en el panel de Netlify (este archivo no los pisa).
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':!proyecto-comunidad'"
